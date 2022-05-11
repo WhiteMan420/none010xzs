@@ -1,3 +1,1 @@
-Key2:Textbox("Key Here", "Here!", function(v)
-    if v == "yes" then
-        game:GetService("CoreGui").woof.MainFrame.Visible = false
+"0gzY_DweVwspdM1"
