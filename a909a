@@ -107,7 +107,6 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    local TabHoldLayout = Instance.new("UIListLayout")
    local DragFrame = Instance.new("Frame")
    local GameTitle = Instance.new("TextLabel")
-   local ContainerHoldText = Instance.new("TextLabel")
    local MainTitle = Instance.new("TextLabel")
    local lineY = Instance.new("Frame")
    local MainFrameholder = Instance.new("Frame")
@@ -126,7 +125,7 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    local DragFrame2 = Instance.new("Frame")
    local DragFrame2_2 = Instance.new("Frame")
    local ContainerHoldTitle = Instance.new("TextLabel")
-
+   local ContainerHoldText = Instance.new("TextLabel")
    MainFrame.Name = "MainFrame"
    MainFrame.Parent = woof
    MainFrame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
@@ -199,19 +198,6 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    GameTitle.TextSize = 17.000
    GameTitle.TextTransparency = 0.400
    GameTitle.Visible = false
-   
-   ContainerHoldText.Name = "ContainerHoldText"
-   ContainerHoldText.Parent = "ContainerHold"
-   ContainerHoldText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   ContainerHoldText.BackgroundTransparency = 1.000
-   ContainerHoldText.Position = UDim2.new(0, 0, 0, 0)
-   ContainerHoldText.Size = UDim2.new(0, 159, 0, 20)
-   ContainerHoldText.Font = Enum.Font.Gotham
-   ContainerHoldText.Text = "0gzY_DweVwspdM1"
-   ContainerHoldText.TextColor3 = Color3.fromRGB(255, 255, 255)
-   ContainerHoldText.TextSize = 17.000
-   ContainerHoldText.TextTransparency = 1
-   ContainerHoldText.Visible = false
   
    MainTitle.Name = "MainTitle"
    MainTitle.Parent = MainFrame
@@ -246,6 +232,20 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    ContainerHold.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
    ContainerHold.BackgroundTransparency = 1.000
    ContainerHold.Size = UDim2.new(0, 650, 0, 409)
+   
+   
+      ContainerHoldText.Name = "ContainerHoldText"
+   ContainerHoldText.Parent = "ContainerHold"
+   ContainerHoldText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   ContainerHoldText.BackgroundTransparency = 1.000
+   ContainerHoldText.Position = UDim2.new(0, 0, 0, 0)
+   ContainerHoldText.Size = UDim2.new(0, 159, 0, 20)
+   ContainerHoldText.Font = Enum.Font.Gotham
+   ContainerHoldText.Text = "0gzY_DweVwspdM1"
+   ContainerHoldText.TextColor3 = Color3.fromRGB(255, 255, 255)
+   ContainerHoldText.TextSize = 17.000
+   ContainerHoldText.TextTransparency = 1
+   ContainerHoldText.Visible = false
 
    DragFrame2.Name = "DragFrame2"
    DragFrame2.Parent = MainFrame
