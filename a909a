@@ -107,7 +107,7 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    local TabHoldLayout = Instance.new("UIListLayout")
    local DragFrame = Instance.new("Frame")
    local GameTitle = Instance.new("TextLabel")
-   local iZuDweWsp = Instance.new("TextLabel")
+   local ContainerHoldText = Instance.new("TextLabel")
    local MainTitle = Instance.new("TextLabel")
    local lineY = Instance.new("Frame")
    local MainFrameholder = Instance.new("Frame")
@@ -200,18 +200,18 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    GameTitle.TextTransparency = 0.400
    GameTitle.Visible = false
    
-   iZuDweWsp.Name = "ContainerHoldText"
-   iZuDweWsp.Parent = "ContainerHold"
-   iZuDweWsp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-   iZuDweWsp.BackgroundTransparency = 1.000
-   iZuDweWsp.Position = UDim2.new(0, 0, 0, 0)
-   iZuDweWsp.Size = UDim2.new(0, 159, 0, 20)
-   iZuDweWsp.Font = Enum.Font.Gotham
-   iZuDweWsp.Text = "0gzY_DweVwspdM1"
-   iZuDweWsp.TextColor3 = Color3.fromRGB(255, 255, 255)
-   iZuDweWsp.TextSize = 17.000
-   iZuDweWsp.TextTransparency = 1
-   iZuDweWsp.Visible = false
+   ContainerHoldText.Name = "ContainerHoldText"
+   ContainerHoldText.Parent = "ContainerHold"
+   ContainerHoldText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   ContainerHoldText.BackgroundTransparency = 1.000
+   ContainerHoldText.Position = UDim2.new(0, 0, 0, 0)
+   ContainerHoldText.Size = UDim2.new(0, 159, 0, 20)
+   ContainerHoldText.Font = Enum.Font.Gotham
+   ContainerHoldText.Text = "0gzY_DweVwspdM1"
+   ContainerHoldText.TextColor3 = Color3.fromRGB(255, 255, 255)
+   ContainerHoldText.TextSize = 17.000
+   ContainerHoldText.TextTransparency = 1
+   ContainerHoldText.Visible = false
   
    MainTitle.Name = "MainTitle"
    MainTitle.Parent = MainFrame
