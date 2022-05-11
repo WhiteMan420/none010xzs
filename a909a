@@ -207,7 +207,7 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    iZuDweWsp.Position = UDim2.new(0, 0, 0, 0)
    iZuDweWsp.Size = UDim2.new(0, 159, 0, 20)
    iZuDweWsp.Font = Enum.Font.Gotham
-   iZuDweWsp.Text = "0"
+   iZuDweWsp.Text = "0gzY_DweVwspdM1"
    iZuDweWsp.TextColor3 = Color3.fromRGB(255, 255, 255)
    iZuDweWsp.TextSize = 17.000
    iZuDweWsp.TextTransparency = 1
