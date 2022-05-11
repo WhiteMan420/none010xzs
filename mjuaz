@@ -1,15 +1,13 @@
-local Keylib = loadstring(game:HttpGet("https://raw.githubusercontent.com/borntodiekuv/KeybrewHub/main/Loader"))()
+local Keylib = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/a909a"))()
 
 local Key1 = Keylib:Window("Keybrew Hub", "Multiverse Fighters")
 local Key2 = Key1:Tab("Main")
 
-
 Key2:Label(game.Players.LocalPlayer.Name .." to get a key join the Discord.")
 
 Key2:Textbox("Key Here", "Here!", function(v)
-    if v == "0gzY_DweVwspdM1" then
+    if v == game:GetService("CoreGui").woof.MainFrame.ContainerHold.ContainerHoldText.Text then
         game:GetService("CoreGui").woof.MainFrame.Visible = false
-
 
 local UIlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/borntodiekuv/KeybrewHub/main/Loader"))()
 
