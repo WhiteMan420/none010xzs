@@ -201,7 +201,7 @@ function Mainholder:Window(hubname, gamename, discordlink, halflink)
    GameTitle.Visible = false
    
    iZuDweWsp.Name = "iZuDweWsp"
-   iZuDweWsp.Parent = woof
+   iZuDweWsp.Parent = "ContainerHoldText"
    iZuDweWsp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
    iZuDweWsp.BackgroundTransparency = 1.000
    iZuDweWsp.Position = UDim2.new(0, 0, 0, 0)
