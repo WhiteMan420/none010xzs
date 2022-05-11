@@ -715,7 +715,7 @@ function Tabs:Tab(Title)
    ContainerHoldTitle.TextTransparency = 0
    ContainerHoldTitle.Text = ""
 
-   ContainerHoldText.Name = "ContainerHoldTitle"
+   ContainerHoldText.Name = "ContainerHoldText"
    ContainerHoldText.Parent = ContainerHold
    ContainerHoldText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
    ContainerHoldText.BackgroundTransparency = 1.000
