@@ -446,8 +446,18 @@ game.Players.LocalPlayer.Character.Humanoid:Destroy()
 
 end)
 
+Oth:Slider("Walk Speed", 1, 500, 50, function(warthog)
+    getgenv().speed = warthog
+        end)
+
+        Oth:Toggle("Toggle", false, function(g) 
+            gg = g
+            while gg do task.wait()
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+            end
+    end)
+
     end
    end)
 
 
- 
