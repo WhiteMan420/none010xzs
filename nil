@@ -30,6 +30,13 @@ Section1121:CreateButton("Delete GUI", function()
         end
     end
 end)
+
+Section1121:CreateButton("Delete GUI", function()
+    setclipboard("https://discord.gg/vCCjSUcNJT")
+    toclipboard("https://discord.gg/vCCjSUcNJT")
+        end
+    end
+end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/cccccc"))()
 
 Section001:CreateLabel(game.Players.LocalPlayer.Name .." to get a key join the Discord.")
