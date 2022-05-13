@@ -31,7 +31,7 @@ Section1121:CreateButton("Delete GUI", function()
     end
 end)
 
-Section1121:CreateButton("Delete GUI", function()
+Section1121:CreateButton("Copy Discord Link", function()
     setclipboard("https://discord.gg/vCCjSUcNJT")
     toclipboard("https://discord.gg/vCCjSUcNJT")
         end
