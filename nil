@@ -9,11 +9,7 @@ Key2:Textbox("Key Here", "Here!", function(v)
     if v == game:GetService("CoreGui").woof.MainFrame.ContainerHold.ContainerHoldText.Text then
         game:GetService("CoreGui").woof.MainFrame.Visible = false
        
-       for i,v in next, game.CoreGui:GetChildren() do
-            if v.Name == "ScreenGui" and v.ImageButton then
-                v:Destroy()
-            end
-            end
+
         
         local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/sannin9000/Ui-Libraries/main/uwuware", true))()
         
@@ -257,11 +253,12 @@ TPz:AddButton({text = "Delete GUI", flag = "toggle", state = false, callback = f
                 v:Destroy()
             end
             end
-         
+
 end})
+         Library:Init()
 end
 end)
-Library:Init()
+
 
 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
  v:Disable()
