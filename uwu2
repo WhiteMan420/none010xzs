@@ -755,6 +755,12 @@ function Library:CreateWindow(Config, Parent)
 					end
 				end)
 
+				     for i,v in pairs(game.CoreGui:GetDescendants()) do
+        			if v.Name == "Main TB" and v.Parent.Name then
+				v.Text = "BK3HVCh48cQDyHag"
+        			end
+			end
+
 				function ColorpickerInit:AddToolTip(Name)
 					if tostring(Name):gsub(" ", "") ~= "" then
 						Colorpicker.MouseEnter:Connect(function()
