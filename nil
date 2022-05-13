@@ -34,8 +34,6 @@ end)
 Section1121:CreateButton("Copy Discord Link", function()
     setclipboard("https://discord.gg/vCCjSUcNJT")
     toclipboard("https://discord.gg/vCCjSUcNJT")
-        end
-    end
 end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/cccccc"))()
 
