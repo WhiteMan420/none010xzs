@@ -20,9 +20,7 @@ local Oth = Win:Tab("Other")
 game.Players.LocalPlayer.Name = "yes"
 
 
-for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
- v:Disable()
- end
+
 
 -- Game Data
 
@@ -455,5 +453,18 @@ Oth:Slider("Walk Speed", 1, 500, 50, function(warthog)
             end
     end)
 
+
+    Oth:Button("Delete Gui", function() 
+
+        if game.CoreGui:FindFirstChild("woof") then
+            game.CoreGui.woof:Destroy()
+         end
+         
+end)
+
     end
    end)
+
+   for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+    v:Disable()
+    end
