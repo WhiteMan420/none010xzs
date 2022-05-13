@@ -35,7 +35,7 @@ Section1121:CreateButton("Copy Discord Link", function()
     setclipboard("https://discord.gg/vCCjSUcNJT")
     toclipboard("https://discord.gg/vCCjSUcNJT")
 end)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/nil"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/cccccc"))()
 
 Section001:CreateLabel(game.Players.LocalPlayer.Name .." to get a key join the Discord.")
 
@@ -45,13 +45,6 @@ Section001:CreateTextBox("TextBox", "Here!", false, function(key)
         
     if key ==  v.Text then
 
-for i,v in pairs(game.CoreGui:GetChildren()) do
-    if v:IsA"ScreenGui" and v:FindFirstChild("Main") then
-        if v.Main:FindFirstChild("Border") then
-            v.Visible = false
-        end
-    end
-end
 
 local Config = {
     WindowName = "Keybrew Hub",
