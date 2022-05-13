@@ -456,6 +456,13 @@ Oth:Slider("Walk Speed", 1, 500, 50, function(warthog)
             end
     end)
 
+    Oth:Toggle("Equip Best", false, function(k) 
+        kk = k
+        while kk do task.wait()
+            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.EquipBest:FireServer()
+
+        end
+end)
 
     Oth:Button("Delete Gui", function() 
 
