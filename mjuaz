@@ -6,7 +6,7 @@ local Keylib = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteM
 local Key1 = Keylib:Window("Keybrew Hub", "Multiverse Fighters")
 local Key2 = Key1:Tab("Main")
 
-Key2:Label(game.Players.LocalPlayer.Name .." to get a key join the Discord.")
+Key2:Label(game.Players.LocalPlayer.Name .." unlock by joining the discord.")
 
 Key2:Textbox("Key Here", "Here!", function(v)
     if v == game:GetService("CoreGui").woof.MainFrame.ContainerHold.ContainerHoldText.Text then
