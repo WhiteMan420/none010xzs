@@ -15,46 +15,6 @@ local plr = game.Players.LocalPlayer
 local function tp(place)
     plr.Character.HumanoidRootPart.CFrame = place
 end
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/uwu2"))()
-local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
-local Tab01 = Window:CreateTab("Main")
-local Tab5 = Window:CreateTab("Misc")
-local Section001 = Tab01:CreateSection("Main")
-Window:SetBackground("5553946656")
-Window:SetBackgroundColor(Color3.fromRGB(48, 25, 52))
-local Section1121 = Tab5:CreateSection("Misc")
-Section1121:CreateButton("Delete GUI", function()
-    for i,v in pairs(game.CoreGui:GetChildren()) do
-        if v:IsA"ScreenGui" and v:FindFirstChild("Main") then
-            v:Destroy()
-        end
-    end
-end)
-
-Section1121:CreateButton("Copy Discord Link", function()
-    setclipboard("https://discord.gg/vCCjSUcNJT")
-    toclipboard("https://discord.gg/vCCjSUcNJT")
-end)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/none010xzs/main/cccccc"))()
-
-Section001:CreateLabel(game.Players.LocalPlayer.Name .." to get a key join the Discord.")
-
-Section001:CreateTextBox("TextBox", "Here!", false, function(key)
-    for i,v in pairs(game.CoreGui:GetDescendants()) do
-        if v.Name == "Main TB" and v.Parent.Name then
-        
-    if key ==  v.Text then
-
-
-local Config = {
-    WindowName = "Keybrew Hub",
-    Color = Color3.fromRGB(0,120,255),
-    Keybind = Enum.KeyCode.RightBracket
-}
-local plr = game.Players.LocalPlayer
-local function tp(place)
-    plr.Character.HumanoidRootPart.CFrame = place
-end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BracketV3.lua"))()
 local Window = Library:CreateWindow(Config, game:GetService("CoreGui"))
 local Tab1 = Window:CreateTab("Main")
