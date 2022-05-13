@@ -250,6 +250,16 @@ game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:Fire
 
 end})
 
+TPz:AddButton({text = "Delete GUI", flag = "toggle", state = false, callback = function()
+
+        for i,v in next, game.CoreGui:GetChildren() do
+            if v.Name == "ScreenGui" and v.ImageButton then
+                v:Destroy()
+            end
+            end
+         
+end)
+
 Library:Init()
 
 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
