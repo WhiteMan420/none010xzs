@@ -513,7 +513,7 @@ game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:Fire
 
 
 end)
-Section3:CreateSlider("Walkspeed", 0,250,false,true, function(v)
+Section3:CreateSlider("Walkspeed", 0,500,false,true, function(v)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
    end)
 
