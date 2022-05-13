@@ -258,8 +258,9 @@ TPz:AddButton({text = "Delete GUI", flag = "toggle", state = false, callback = f
             end
             end
          
+end})
+end
 end)
-
 Library:Init()
 
 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
