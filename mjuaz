@@ -182,7 +182,6 @@ Window:Toggle("Walk to Npc", false, function(n)
 
             game.Players.LocalPlayer.Character.Humanoid.WalkToPart = getNPC2().HumanoidRootPart
             game.Players.LocalPlayer.Character.Humanoid.WalkToPoint = Vector3.new(getNPC2().HumanoidRootPart.Position) + Vector3.new(6, 0, 0)
-            wait(1)
 
         end)
     end
@@ -481,12 +480,49 @@ Oth:Slider("Walk Speed", 1, 500, 50, function(warthog)
     getgenv().speed = warthog
         end)
 
+
         Oth:Toggle("Toggle", false, function(g) 
             gg = g
             while gg do task.wait()
                 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
             end
     end)
+        Oth:Button("No Clip (B)", function() 
+                local noclipplayer = game:GetService("Players").LocalPlayer
+                local noclipmouse = noclipplayer:GetMouse()
+                 
+                local donoclip = false
+                local noclip = false
+                 
+                function b_noclip(key)
+                if (key == "b") then
+                if noclip == false then
+                donoclip = true
+                 
+                noclip = true
+                elseif noclip == true then
+                donoclip = false
+                 
+                noclip = false
+                end
+                end
+                end
+                 
+                noclipmouse.KeyDown:connect(b_noclip)
+                 
+                game:GetService("Players").LocalPlayer.Character.Head.Touched:connect(function(obj)
+                if obj ~= workspace.Terrain then
+                if donoclip == true then
+                obj.CanCollide = false
+                else
+                obj.CanCollide = true
+                end
+                end
+                end)
+                end)
+                 
+             
+
 
     Oth:Toggle("Equip Best", false, function(k) 
         kk = k
