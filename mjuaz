@@ -160,7 +160,7 @@ Window:Dropdown("Arena", Arena, function(Arena)
 
 
 
-Window:Toggle(" Auto Arena", false, function(b)     
+Window:Toggle("Legit Auto Arena", false, function(b)     
  bb = b
  while bb do task.wait()
      pcall(function()
@@ -174,16 +174,47 @@ Window:Toggle(" Auto Arena", false, function(b)
  end
 end)
 
+
+Window:Toggle("Walk to Npc", false, function(n)     
+    nn = n
+    while nn do task.wait()
+        pcall(function()
+
+            game.Players.LocalPlayer.Character.Humanoid.WalkToPart = getNPC2().HumanoidRootPart
+            game.Players.LocalPlayer.Character.Humanoid.WalkToPoint = Vector3.new(getNPC2().HumanoidRootPart.Position) + Vector3.new(6, 0, 0)
+
+        end)
+    end
+   end)
+
+Window:Toggle("Fastest Auto Arena (Use at own risk)", false, function(c)     
+    cc = c
+    while cc do task.wait()
+        pcall(function()
+            for i,v in next, game:GetService("Workspace").Arenas[arena]:GetDescendants() do
+                if  v.Parent.Name == "ArenaEnemies" and v.Dead.Value == false  then
+   
+            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer((v))
+        end
+    end
+end)
+    end
+   end)
+
 Window:Toggle("Tp to Arena Mobs", false, function(n)     
  nn = n
  while nn do task.wait()
      pcall(function()
+        for i,v in next, game:GetService("Workspace").Arenas[arena]:GetDescendants() do
+            if  v.Parent.Name == "ArenaEnemies" and v.Dead.Value == false  then
          local Time = 0.5
-         local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = getNPC2().HumanoidRootPart.CFrame})                                       
+         local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = v.HumanoidRootPart.CFrame})                                       
          tween:Play()
          tween.Completed:Wait(E)
 
-     end)
+     end
+    end
+end)
  end
 end)
 
@@ -478,6 +509,3 @@ end)
    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
     v:Disable()
     end
-pcall(function()
-    getgenv().rconsoleprint = g
-    end) 
