@@ -182,7 +182,7 @@ Window:Toggle("Walk to Npc", false, function(n)
 
             game.Players.LocalPlayer.Character.Humanoid.WalkToPart = getNPC2().HumanoidRootPart
             game.Players.LocalPlayer.Character.Humanoid.WalkToPoint = Vector3.new(getNPC2().HumanoidRootPart.Position) + Vector3.new(6, 0, 0)
-            wait(2)
+            wait(1)
 
         end)
     end
