@@ -210,8 +210,9 @@ Window:Toggle("Tp to Arena Mobs", false, function(n)
          local Time = 0.5
          local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = v.HumanoidRootPart.CFrame})                                       
          tween:Play()
+         if v.Health.Value == 0 then
          tween.Completed:Wait(E)
-
+         end
      end
     end
 end)
