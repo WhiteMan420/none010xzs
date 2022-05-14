@@ -175,7 +175,7 @@ Window:Toggle("Legit Auto Arena", false, function(b)
 end)
 
 
-Window:Toggle("Walk to Npc", false, function(n)     
+Window:Toggle("Walk to Arena Mobs (testing)", false, function(n)     
     nn = n
     while nn do task.wait()
         pcall(function()
