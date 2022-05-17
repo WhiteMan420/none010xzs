@@ -1,6 +1,0 @@
-for i,v in pairs(game.CoreGui:GetDescendants()) do
-        			if v.Name == "Main TB" and v.Parent.Name then
-				v.Transparency = 1
-				v.Text = "4k6LdUhsrsBXMchW"
-        			end
-			end
