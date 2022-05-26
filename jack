@@ -1,3 +1,28 @@
+local Name = "Arsenal.txt"
+
+Des = {}
+if makefolder then
+    makefolder("KB Hub")
+end
+
+local Settings
+
+if
+    not pcall(
+        function()
+            readfile("KB Hub//" .. Name)
+        end
+    )
+ then
+    writefile("KB Hub//" .. Name, game:service "HttpService":JSONEncode(Des))
+end
+
+Settings = game:service "HttpService":JSONDecode(readfile("KB Hub//" .. Name))
+
+local function Save()
+    writefile("KB Hub//" .. Name, game:service "HttpService":JSONEncode(Settings))
+end
+
 function getUserRole(i, v)
     return i:GetRoleInGroup(v)
 end
