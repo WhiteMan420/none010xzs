@@ -430,8 +430,60 @@ if Settings.AimPart == nil then
 
     end,
     Enabled = false
+
+
+    
 })
-    Misc.Toggle({
+Misc.Toggle({
+    Text = "Rage Mode",nil,
+    Callback = function(c)
+        Settings.AutoFarm = c
+
+
+game:GetService("RunService").Stepped:connect(
+    function()
+        if Settings.AutoFarm then
+    if setfflag then 
+        game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+        end 
+            for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                if
+                    game.Players.LocalPlayer.Character ~= nil and v ~= game.Players.LocalPlayer and
+                        (v.TeamColor ~= game.Players.LocalPlayer.TeamColor or v.TeamColor == "Bright blue") and
+                        v.Character ~= nil and
+                        v.Character:FindFirstChild("Gun")
+                 then
+                    if
+                        v ~= game.Players.LocalPlayer and v:FindFirstChild("NRPBS") and v.NRPBS.Health.Value > 0 and
+                            v.Character and
+                            v.Character:FindFirstChild("Head") and
+                            v.Character:FindFirstChild("Hitbox")
+                     then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                            v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
+                        workspace.CurrentCamera.CFrame =
+                            CFrame.new(workspace.CurrentCamera.CFrame.p, v.Character.UpperTorso.CFrame.p)
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)
+                    end
+                end
+            end
+        end
+    end
+)
+spawn(
+    function()
+        while wait() and Settings.AutoFarm do
+            Spawn()
+        end
+    end
+)
+
+
+    end,
+    Enabled = false
+})
+
+Misc.Toggle({
     Text = "Triggerbot",Settings.T.Enabled,
     Callback = function(c)
         Settings.T.Enabled = c
@@ -450,6 +502,31 @@ Misc.Toggle({
     end,
     Enabled = false
 })
+
+Misc.Toggle({
+    Text = "Rainbow Gun",Settings.RainBowGun,
+    Callback = function(d)
+        Settings.RainBowGun = d
+
+game:GetService("RunService").RenderStepped:Connect(
+    function()
+        if Settings.RainBowGun then
+            if game.Workspace.Camera:FindFirstChild("Arms") then
+                for i, v in pairs(game.Workspace.Camera.Arms:GetChildren()) do 
+                    if v.ClassName == "MeshPart" then
+                        v.Color = Color3.fromHSV(tick()%5/5,1,1) 
+                    end
+                end
+            end
+        end
+    end
+)
+
+
+    end,
+    Enabled = false
+})
+
 Main.Toggle({
     Text = "Silent Aim",Settings.SilentAim,
     Callback = function(e)
@@ -534,6 +611,42 @@ Main1.Toggle({
                 )
             end
         )
+
+    end,
+    Enabled = false
+})
+
+Main1.Toggle({
+    Text = "Always Auto",Settings.Automtatic,
+    Callback = function(d)
+        Settings.Automtatic = d
+        for _, v in pairs(game.ReplicatedStorage.Weapons:GetDescendants()) do
+            if v.Name == "Auto" then
+                if Settings.Automtatic then
+                    v.Value = true -- always auto
+                else
+                    v.Value = false
+                end
+            end
+        end
+
+    end,
+    Enabled = false
+})
+
+Main1.Toggle({
+    Text = "Fast Fire",Settings.FireRate,
+    Callback = function(d)
+        Settings.FireRate = d
+        for _, v in pairs(game.ReplicatedStorage.Weapons:GetDescendants()) do
+            if v.Name == "FireRate" then
+                if Settings.FireRate then
+                    v.Value = 0.02 
+                else
+                    v.Value = 0.8
+                end
+            end
+        end
 
     end,
     Enabled = false
