@@ -617,6 +617,31 @@ Main1.Toggle({
 })
 
 Main1.Toggle({
+    Text = "Instant respawn",Settings.InstantKill,
+    Callback = function(d)
+        Settings.InstantKill = d
+        spawn(function()
+        while Settings.InstantKill do
+            pcall(function()
+            wait()
+            if
+                not game.Players.LocalPlayer.Character:FindFirstChild("Spawned") and
+                    game:GetService("Players").LocalPlayer.Character:FindFirstChild("Cam")
+             then
+                if game.Players.LocalPlayer.PlayerGui.Menew.Enabled == false then
+                    game:GetService("ReplicatedStorage").Events.LoadCharacter:FireServer()
+                    wait(0.5)
+                end
+             end
+        end)
+        end
+        end)
+
+    end,
+    Enabled = false
+})
+
+Main1.Toggle({
     Text = "Always Auto",Settings.Automtatic,
     Callback = function(d)
         Settings.Automtatic = d
