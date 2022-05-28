@@ -199,7 +199,8 @@ Y.Toggle({
                     game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
                     wait(2)
 
-                elseif game:GetService("Workspace").DefenderRooms.DefenderRoom.IsEnded.Value == true then
+                elseif game:GetService("Workspace").DefenderRooms.DefenderRoom.Timer.Value == "0" then
+
                         game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.EndDefender:FireServer()
                 end
                 end)
