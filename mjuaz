@@ -291,7 +291,6 @@ Y.Toggle({
             getgenv().index = Value
         end,
     })
-
     D.Toggle({
         Text = "Auto Passive",
         Callback = function(a)
@@ -302,7 +301,7 @@ Y.Toggle({
                 }
 
                 game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
-
+                wait(3)
             end            
         end,
 
@@ -485,6 +484,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
+wait(3)
                 end
             end
         end            
