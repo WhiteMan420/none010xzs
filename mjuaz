@@ -23,7 +23,7 @@ local Y = X.New({
     Title = "Arena"
 })
 local D = X.New({
-    Title = "Defender"
+    Title = "Defender/Passive"
 })
 
 local Z = X.New({
@@ -31,7 +31,7 @@ local Z = X.New({
 })
 
 local A = X.New({
-    Title = "Eggs"
+    Title = "Crystals/Fuse"
 })
 
 local B = X.New({
@@ -65,6 +65,7 @@ for i,v in pairs(game:GetService("Workspace").Maps[lp.extrastats.Location.Value]
         end
     end
 end
+
 
 Y.Toggle({
     Text = "Auto Clicker",
@@ -267,6 +268,55 @@ Y.Toggle({
         end,
         Enabled = false
     })
+
+    D.Button({
+        Text = "Find Index of Equipped Hero",
+        Callback = function()
+                    for i,v in next, game:GetService("Workspace").HeroFolder:GetChildren() do
+                        print(v)
+                        print(v.Index.Value)   
+                    end
+                end,
+        Menu = {
+            Information = function(self)
+                X.Banner({
+                    Text = "Find Index of Hero. Press F9 (Works best in private servers)"
+                })
+            end
+        }
+    })
+        D.TextField({
+        Text = "Type Index Here",
+        Callback = function(Value)
+            getgenv().index = Value
+        end,
+    })
+
+    D.Toggle({
+        Text = "Auto Passive",
+        Callback = function(a)
+            aa = a
+            while aa do task.wait()
+                local args = {
+                    [1] = tonumber(index)
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
+
+            end            
+        end,
+
+        Enabled = false,
+        Menu = {
+            Information = function(self)
+                X.Banner({
+                    Text = "Must be unequipped to roll"
+                })
+            end
+        }
+        
+    })
+
 local drop = Z.Dropdown({
     Text = "Enemy Select",
     Callback = function(sex)
@@ -394,6 +444,55 @@ end})
     Enabled = false
 })
 
+A.Button({
+    Text = "Find Index of Equipped Hero",
+    Callback = function()
+                for i,v in next, game:GetService("Workspace").HeroFolder:GetChildren() do
+                    print(v)
+                    print(v.Index.Value)   
+                end
+            end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "Find Index of Hero. Press F9 (Works best in private servers)"
+            })
+        end
+    }
+})
+A.TextField({
+    Text = "Type Index Here",
+    Callback = function(Value)
+        getgenv().index1 = Value
+    end,
+})
+
+    A.Toggle({
+    Text = "Auto Fuse Unlocked",
+    Callback = function(a)
+        aa = a
+        while aa do task.wait()
+            for i,v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
+                if v:IsA("TextButton") then
+local args = {
+    [1] = tonumber(index1),
+    [2] = { 
+        i
+        
+
+
+    }
+}
+
+game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
+                end
+            end
+        end            
+    end,
+
+    Enabled = false,
+    
+})
    
     B.Dropdown({
     Text = "Map Select",
