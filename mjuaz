@@ -484,7 +484,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
-wait(3)
+wait(.5)
                 end
             end
         end            
