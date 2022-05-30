@@ -264,7 +264,7 @@ end
         }
     })
         D.Toggle({
-        Text = "TP to Defender NPCs",
+        Text = "Hero to Defender NPCs",
         Callback = function(n)
             nn = n
             while nn do task.wait()
@@ -279,6 +279,22 @@ end
                     end
                 end)
             end
+        end,
+        Enabled = false
+    })
+
+    D.Toggle({
+        Text = "Player to Defender NPCs",
+        Callback = function(n)
+            nn = n
+            while nn do task.wait()
+                pcall(function()                 
+                                lp.Character.HumanoidRootPart.CFrame =  getNPC3().HumanoidRootPart.CFrame
+                            repeat wait() 
+                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                            until getNPC3().Dead.Value == false
+                    end)
+                end
         end,
         Enabled = false
     })
@@ -389,7 +405,7 @@ Z.Toggle({
 })
 
 Z.Toggle({
-    Text = "TP to Enemy",
+    Text = "Hero to Enemy",
     Callback = function(z)
         zz = z
      while zz do task.wait()
@@ -404,6 +420,26 @@ Z.Toggle({
                             until game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false
                         end
                         end
+                    end
+                end
+            end)
+        end
+    end,
+    Enabled = false
+})
+
+Z.Toggle({
+    Text = "Player to Enemy",
+    Callback = function(z)
+        zz = z
+     while zz do task.wait()
+        pcall(function()
+                            if game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false then
+                        if  lp.extrastats.Gamemode.Value == "None" then
+                            lp.Character.HumanoidRootPart.CFrame =  game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].HumanoidRootPart.CFrame
+                            repeat wait() 
+                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                            until game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false
                     end
                 end
             end)
