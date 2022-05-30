@@ -80,6 +80,20 @@ Y.Toggle({
 })
 
 
+local function getNPC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren() do
+        if v.Parent.Name == "EnemyFolder" and v.Dead.Value == false  then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
     local function getNPC2()
         local dist, thing = math.huge
         for i,v in next, game:GetService("Workspace").Arenas:GetDescendants() do
@@ -315,6 +329,26 @@ Y.Toggle({
         }
         
     })
+    Z.Toggle({
+        Text = "Auto Attack Closest",
+        Callback = function(m)
+            mm = m
+            while mm do task.wait()
+                pcall(function()
+           
+                    local args = {
+                    [1] = getNPC()
+                    }
+           
+                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
+                end)
+            end
+        end,
+        Enabled = false
+    })
+    
+
+
 
 local drop = Z.Dropdown({
     Text = "Enemy Select",
