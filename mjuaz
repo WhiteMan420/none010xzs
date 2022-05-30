@@ -70,8 +70,8 @@ end
 Y.Toggle({
     Text = "Auto Clicker",
     Callback = function(a)
-        aa = a
-    while aa do task.wait()
+        a1 = a
+    while a1 do task.wait()
     
             game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
         end
@@ -144,8 +144,8 @@ end
         Y.Toggle({
         Text = "Auto Arena",
         Callback = function(b)
-            bb = b
-            while bb do task.wait()
+            b1 = b
+            while b1 do task.wait()
                 pcall(function()
            
                     local args = {
@@ -170,8 +170,8 @@ end
         Y.Toggle({
         Text = "TP to Arena NPCs",
         Callback = function(n)
-            nn = n
-            while nn do task.wait()
+            n1 = n
+            while n1 do task.wait()
                 pcall(function()                 
                             for i,hero in next, game:GetService("Workspace").HeroFolder:GetChildren() do
                             if  hero:IsA("Model")  then
@@ -203,8 +203,8 @@ end
     D.Toggle({
         Text = "Auto Defender Mode",
         Callback = function(b)
-            bb = b
-            while bb do task.wait()
+            b2 = b
+            while b2 do task.wait()
                 pcall(function()
                     if game.Players.LocalPlayer.extrastats.Gamemode.Value == "Defender" then
                     local args = {
@@ -236,8 +236,8 @@ end
     D.Toggle({
         Text = "Infinite Time Defender Mode",
         Callback = function(b)
-            bb = b
-            while bb do task.wait()
+            b3 = b
+            while b3 do task.wait()
                 pcall(function()
            
                     local args = {
@@ -266,8 +266,8 @@ end
         D.Toggle({
         Text = "Hero to Defender NPCs",
         Callback = function(n)
-            nn = n
-            while nn do task.wait()
+            n2 = n
+            while n2 do task.wait()
                 pcall(function()                 
                             for i,hero in next, game:GetService("Workspace").HeroFolder:GetChildren() do
                             if  hero:IsA("Model")  then
@@ -286,8 +286,8 @@ end
     D.Toggle({
         Text = "Player to Defender NPCs",
         Callback = function(n)
-            nn = n
-            while nn do task.wait()
+            n3 = n
+            while n3 do task.wait()
                 pcall(function()                 
                                 lp.Character.HumanoidRootPart.CFrame =  getNPC3().HumanoidRootPart.CFrame
                             repeat wait() 
@@ -324,8 +324,8 @@ end
     D.Toggle({
         Text = "Auto Passive",
         Callback = function(a)
-            aa = a
-            while aa do task.wait()
+            a2 = a
+            while a2 do task.wait()
                 local args = {
                     [1] = tonumber(index)
                 }
@@ -348,8 +348,8 @@ end
     Z.Toggle({
         Text = "Auto Attack Closest",
         Callback = function(m)
-            mm = m
-            while mm do task.wait()
+            m1 = m
+            while m1 do task.wait()
                 pcall(function()
            
                     local args = {
@@ -386,8 +386,8 @@ local drop = Z.Dropdown({
 Z.Toggle({
     Text = "Auto Farm",
     Callback = function(m)
-        mm = m
-        while mm do task.wait()
+        m2 = m
+        while m2 do task.wait()
                         if lp.extrastats.Gamemode.Value == "None"  then
                 local args = {
                     [1] = workspace.Maps[lp.extrastats.Location.Value].EnemyFolder:FindFirstChild(safe)
@@ -539,22 +539,22 @@ A.TextField({
     A.Toggle({
     Text = "Auto Fuse Unlocked",
     Callback = function(a)
-        aa = a
-        while aa do task.wait()
+        a3 = a
+        while a3 do task.wait()
             for i,v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
                 if v:IsA("TextButton") then
-local args = {
-    [1] = tonumber(index1),
-    [2] = { 
-        i
-        
+                    local args = {
+                        [1] = tonumber(index1),
+                        [2] = { 
+                            i
+                            
 
 
-    }
-}
+                        }
+                    }
 
-game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
-wait(.5)
+                    game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
+                    wait(.5)
                 end
             end
         end            
