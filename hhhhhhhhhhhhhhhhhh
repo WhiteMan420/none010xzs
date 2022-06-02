@@ -1,0 +1,923 @@
+local Config = {
+    WindowName = "KB Hub",
+	Color = Color3.fromRGB(255,128,64),
+	Keybind = Enum.KeyCode.RightControl
+}
+repeat wait() until game:IsLoaded() wait()
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+end)
+game:GetService("RunService").Stepped:connect(
+    function()
+        sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 1000)
+    end
+)
+
+if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Main") then
+repeat wait() until game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main") 
+end
+if game.Players.LocalPlayer.Character then
+repeat wait() until game.Players.LocalPlayer.Character
+end
+
+local Name = "Shindo.json"
+
+Des = {}
+if makefolder then
+    makefolder("KB Hub")
+end
+
+local Settings
+
+if
+    not pcall(
+        function()
+            readfile("KB Hub//" .. Name)
+        end
+    )
+ then
+    writefile("KB Hub//" .. Name, game:GetService("HttpService"):JSONEncode(Des))
+end
+if readfile("KB Hub//" .. Name) then
+Settings = game:GetService("HttpService"):JSONDecode(readfile("KB Hub//" .. Name))
+end
+local function Save()
+    writefile("KB Hub//" .. Name, game:GetService("HttpService"):JSONEncode(Settings))
+end
+
+
+game:GetService("UserInputService").MouseIconEnabled = true
+game:GetService("UserInputService").MouseBehavior = Enum.MouseBehavior.Default
+game:GetService("RunService").Stepped:connect(function()
+        pcall(function()
+        if game:GetService("Workspace"):FindFirstChild("CCoff") then
+            game:GetService("Workspace").CCoff:Destroy()
+        end
+        if game:GetService("Workspace"):FindFirstChild("custo") then
+            game:GetService("Workspace").custo:Destroy()
+        end
+        if game:GetService("Workspace"):FindFirstChild("custo") then
+            game:GetService("Workspace").custo:Destroy()
+        end
+        if game:GetService("Workspace"):FindFirstChild("conquer") then
+            game:GetService("Workspace").conquer:remove()
+        end
+        if game:GetService("Workspace").GLOBALTIME:FindFirstChild("narutoshadowclone") then
+            game:GetService("Workspace").GLOBALTIME:WaitForChild("narutoshadowclone"):remove()
+        end
+        end)
+    end
+) 
+pcall(function()
+Dungon = {}
+for i=1,15 do 
+table.insert(Dungon,"dungeon"..i)
+end 
+end)
+
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+local player = game.Players.LocalPlayer
+local X = Material.Load({
+    Title = "Keybrew Hub | Shindo Life",
+    Style = 3,
+    SizeX = 300,
+    SizeY = 350,
+    Theme = "Light",
+    ColorOverrides = {
+        MainFrame = Color3.fromRGB(0,0,0),
+        Toggle = Color3.fromRGB(124,37,255),
+        ToggleAccent = Color3.fromRGB(255,255,255), 
+        Dropdown = Color3.fromRGB(124,37,255),
+		DropdownAccent = Color3.fromRGB(255,255,255),
+        Slider = Color3.fromRGB(124,37,255),
+		SliderAccent = Color3.fromRGB(255,255,255),
+        NavBarAccent = Color3.fromRGB(0,0,0),
+        Content = Color3.fromRGB(0,0,0),
+    }
+})
+
+local M = X.New({
+    Title = "Main"
+})
+
+local M1 = X.New({
+    Title = "Others"
+})
+
+local S = X.New({
+    Title = "Stats"
+})
+
+local Cred = X.New({
+    Title = "Credits"
+})
+    Cred.Button({
+    Text = "Copy Discord UyuSF4fPC9",
+    Callback = function()
+        setclipboard("https://discord.gg/UyuSF4fPC9")
+        toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+if game.PlaceId == 4616652839 then
+    M.Toggle({
+        Text = "Auto Element 1",
+        Callback = function(a)
+            Settings.Element1 = a
+            spawn(function()
+            while Settings.Element1 do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "element1")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "Element1",
+                        Text = "Current Element1 is " .. game:GetService("Players").LocalPlayer.statz.main.element1.Value
+                    }
+                )
+                wait(5)
+            end
+            end)  
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Element 2",
+        Callback = function(a)
+            Settings.Element11 = a
+            spawn(function()
+            while Settings.Element11 do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "element2")
+            
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "Element2",
+                        Text = "Current Element2 is " .. game:GetService("Players").LocalPlayer.statz.main.element2.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Element 3",
+        Callback = function(a)
+            Settings.Element12 = a
+            spawn(function()
+            while Settings.Element12 do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "element3")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "Element3",
+                        Text = "Current Element3 is " .. game:GetService("Players").LocalPlayer.statz.main.element3.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Element 4",
+        Callback = function(a)
+            Settings.Element14 = a
+            spawn(function()
+            while Settings.Element14 do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "element4")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "Element4",
+                        Text = "Current Element4 is " .. game:GetService("Players").LocalPlayer.statz.main.element4.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Blood 1",
+        Callback = function(a)
+            Settings.Blood = a
+            spawn(function()
+            while Settings.Blood do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "kg1")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "BloodLine1",
+                        Text = "Current BloodLine1 is " .. game:GetService("Players").LocalPlayer.statz.main.kg1.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Blood 2",
+        Callback = function(a)
+            Settings.Blood1 = a
+            spawn(function()
+            while Settings.Blood1 do
+                wait()
+            
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "kg2")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "BloodLine2",
+                        Text = "Current BloodLine2 is " .. game:GetService("Players").LocalPlayer.statz.main.kg2.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Blood 3",
+        Callback = function(a)
+            Settings.Blood2 = a
+            spawn(function()
+            while Settings.Blood2 do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "kg3")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "BloodLine3",
+                        Text = "Current BloodLine3 is " .. game:GetService("Players").LocalPlayer.statz.main.kg3.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+    M.Toggle({
+        Text = "Auto Blood 4",
+        Callback = function(a)
+            Settings.Blood3 = a
+            spawn(function()
+            while Settings.Blood3 do
+                wait()
+                game:GetService("Players").LocalPlayer.startevent:FireServer("spin", "kg4")
+                game.StarterGui:SetCore(
+                    "SendNotification",
+                    {
+                        Title = "BloodLine4",
+                        Text = "Current BloodLine4 is " .. game:GetService("Players").LocalPlayer.statz.main.kg4.Value
+                    }
+                )
+                wait(5)
+            end
+            end)
+        end,
+    })
+end
+
+
+if game.PlaceId == 7524809704 then
+    M.Toggle({
+    Text = "AutoStart Dungeon",
+    Callback = function(a)
+        Settings.Dungeon1 = a
+        spawn(
+            function()
+                while wait() and Settings.Dungeon1 do
+                    game:GetService("Players").LocalPlayer.pressplay:FireServer(Dungon)
+                end
+        end
+        )
+    end,
+    Enabled = false
+})
+
+    M.Dropdown({
+    Text = "Dungeons",Settings.Dungeon,
+    Callback = function(a)
+        Settings.Dungeon = a
+	Dungon = Settings.Dungeon
+    
+    end,
+    Options = Dungon
+})
+end
+
+M.Toggle({
+    Text = "Auto Logs", Settings.Logs,
+    Callback = function(a)
+        Settings.Logs = a
+        game:GetService("RunService").Stepped:connect(
+            function()
+                if Settings.Logs then
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                end
+            end
+        )
+        
+        spawn(function()
+        while Settings.Logs do
+            task.wait()
+            pcall(
+                function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                    game:GetService("Workspace").npc.logtraining.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                    game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                    game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                end
+            )
+        end
+        end)
+    end,
+    Enabled = false
+})
+
+if game.PlaceId ~= 7524809704 then
+    M.Toggle({
+    Text = "Mob Aura", Settings.AutoMobs,
+    Callback = function(a)
+        Settings.AutoMobs = a
+        game:GetService("RunService").Stepped:connect(
+            function()
+                if Settings.AutoMobs then pcall(function()
+                    j = string.split(game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").bg.name.Text, "(s)")[1]
+        
+                    game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").bg.name.Text =
+                        string.gsub(j, tostring((s)), "")
+        
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                    end)
+                end
+            end
+        )
+        spawn(function()
+        while Settings.AutoMobs do
+            wait()
+            pcall(
+                function()
+                    repeat
+                        wait()
+                        for i, v in pairs(game:GetService("Workspace").missiongivers:GetChildren()) do
+                            if
+                                v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission") and v.Head.givemission.Enabled and
+                                    v.Head.givemission:FindFirstChild("color").Image ==
+                                        "http://www.roblox.com/asset/?id=5459241648"
+                             then
+                                if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false then 
+                                    pcall(
+                                        function()
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                                v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                                wait(0.3)
+                                            v:FindFirstChild("CLIENTTALK"):FireServer()
+                                            v:FindFirstChild("CLIENTTALK"):FireServer("accept") wait(0.5)
+                                        end
+                                    )
+                                end
+                            end
+                        end
+                    until Settings.AutoMobs == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true
+                    repeat
+                        wait()
+                        if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true then
+                            for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                                if v:FindFirstChild("npctype") then
+                                  print("Hi")
+                                end
+                                if 
+                                    v.ClassName == "Model" and v:FindFirstChild("npctype") and
+                                        string.find(game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").bg.name.Text, v.Head.mob.fram.name.info.Text) and
+                                        v:FindFirstChild("HumanoidRootPart") and
+                                        v:FindFirstChild("Humanoid") and
+                                        v.Head.CFrame.Y > -1000
+                                 then
+                                    pcall(
+                                        function() wait(0.2)
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                                v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                            if v:FindFirstChild("antiexploit") then
+                                                v.antiexploit:remove()
+                                            end
+                                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                                            if v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health < v.Humanoid.MaxHealth then
+                                            v.Humanoid.Health = 0
+                                            end 
+                                        end
+                                    )
+                                end
+                            end
+                        end
+                       
+                    until Settings.AutoMobs == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false and v.Humanoid.Health == 0 and v
+                end
+            )
+        end
+        end)
+        
+    end,
+    Enabled = false
+})
+
+M.Toggle({
+    Text = "Event Aura",
+    Callback = function(a)
+        Settings.EventBosses = a
+        game:GetService("RunService").Stepped:connect(
+            function()
+                if Settings.EventBosses then
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                end
+            end
+        )
+        spawn(function()
+        while wait() and Settings.EventBosses do
+            for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                if v.Name ~= "logtraining" and v:FindFirstChild("Head") and
+                                        v.Head.CFrame.Y > -1000 then
+                    repeat
+                        wait()
+                        pcall(
+                            function()
+                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame =
+                                v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3)
+                                game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                                game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                            end)
+                    until v.Humanoid.Health == 0 or not v or not Settings.EventBosses
+                end
+            end
+        end
+        end)
+    end,
+    Enabled = false
+})
+
+M.Toggle({
+    Text = "Dungeon Aura",
+    Callback = function(a)
+
+        Settings.Hope = a
+game:GetService("RunService").Stepped:connect(
+    function()
+        if Settings.Hope then pcall(function()
+            game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+            end)
+        end
+    end
+)
+spawn(function()
+while Settings.Hope do
+    wait()
+    pcall(
+        function()
+
+            repeat
+                wait()
+                    for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                        if v:FindFirstChild("npctype") then
+                          print("Hi")
+                        end
+                        if 
+                            v.ClassName == "Model" and v:FindFirstChild("npctype")  and
+                                v:FindFirstChild("HumanoidRootPart") and
+                                v:FindFirstChild("Humanoid") and
+                                v.Head.CFrame.Y > -1000
+                         then
+                            pcall(
+                                function() 
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                        v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                    if v:FindFirstChild("antiexploit") then
+                                        v.antiexploit:remove()
+                                    end
+                                    game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                                    game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                                    if v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health < v.Humanoid.MaxHealth then
+                                    v.Humanoid.Health = 0
+                                    end 
+                                end
+                            )
+
+                    end
+                end
+               
+            until Settings.Hope == false or v.Humanoid.Health == 0 and v
+        end
+    )
+end
+end)
+    end,
+    Enabled = false
+})
+end
+if game.PlaceId == 5451401540 then
+M.Toggle({
+    Text = "Maru Aura",
+    Callback = function(a)
+        Settings.Bosses2 = a
+        game:GetService("RunService").Stepped:connect(
+            function()
+                if Settings.Bosses2 then
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                end
+            end
+        )
+        spawn(function()
+        while Settings.Bosses2 do
+            pcall(
+                function()
+                    wait()
+                    repeat
+                        wait()
+                        for i, v in pairs(game:GetService("Workspace").MARUmission.missions:GetChildren()) do
+                            for i, v in pairs(v:GetChildren()) do
+                                if v:IsA("Model") and v:FindFirstChild("Head") then
+                                    if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false then
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                            v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                        wait(0.3)
+                                        v:FindFirstChild("CLIENTTALK"):FireServer()
+                                        v:FindFirstChild("CLIENTTALK"):FireServer("accept")
+                                        wait(0.5)
+                                    end
+                                end
+                            end
+                        end
+                    until Settings.Bosses2 == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true
+                    repeat
+                        wait()
+                        for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                            if
+                                v.ClassName == "Model" and v:FindFirstChild("npctype") then
+                                if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true then 
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                        v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                    if v:FindFirstChild("antiexploit") then
+                                    v.antiexploit:remove()
+                                    end
+                                    game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                                    game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                                    if isnetworkowner(v.HumanoidRootPart) and v.Humanoid.Health < v.Humanoid.MaxHealth and v:FindFirstChild("HumanoidRootPart") then
+                                        v.Humanoid.Health = 0
+                                    end
+                                end
+                            end
+                        end
+                    until Settings.Bosses2 == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false and v.Humanoid.Health == 0 and v
+                end
+            )
+        end
+        end)
+        
+        
+    end,
+    Enabled = false
+})
+
+M.Toggle({
+    Text = "tailbeast Aura",
+    Callback = function(a)
+        Settings.Bosses3 = a
+game:GetService("RunService").Stepped:connect(
+    function()
+        if Settings.Bosses3 then
+            game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+        end
+    end
+)
+spawn(function()
+while Settings.Bosses3 do
+    pcall(
+        function()
+            wait()
+            repeat
+                wait()
+                for i, v in pairs(game:GetService("Workspace").tailbeastbossmission.missions:GetChildren()) do
+                    for i, v in pairs(v:GetChildren()) do
+                        if v:IsA("Model") and v:FindFirstChild("Head") then
+                            if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false then
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                    v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                wait(0.3)
+                                v:FindFirstChild("CLIENTTALK"):FireServer()
+                                v:FindFirstChild("CLIENTTALK"):FireServer("accept")
+                                wait(0.5)
+                            end
+                        end
+                    end
+                end
+            until Settings.Bosses3 == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true
+            repeat
+                wait()
+                for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                    if
+                        v.ClassName == "Model" and v:FindFirstChild("npctype") then
+                        if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true then 
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                            if v:FindFirstChild("antiexploit") then
+                            v.antiexploit:remove()
+                            end
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                            if isnetworkowner(v.HumanoidRootPart) and v.Humanoid.Health < v.Humanoid.MaxHealth and v:FindFirstChild("HumanoidRootPart") then
+                                v.Humanoid.Health = 0
+                            end
+                        end
+                    end
+                end
+            until Settings.Bosses3 == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false and v.Humanoid.Health == 0 and v
+        end
+    )
+end
+end)        
+    end,
+    Enabled = false
+})
+end
+
+M.Toggle({
+    Text = "Boss Aura",
+    Callback = function(a)
+        Settings.Bosses = a
+game:GetService("RunService").Stepped:connect(
+    function()
+        if Settings.Bosses then
+            game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+        end
+    end
+)
+spawn(function()
+while Settings.Bosses do
+    pcall(
+        function()
+            wait()
+            repeat
+                wait()
+                for i, v in pairs(game:GetService("Workspace").bossdropmission.missions:GetChildren()) do
+                    for i, v in pairs(v:GetChildren()) do
+                        if v:IsA("Model") and v:FindFirstChild("Head") then
+                            if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false then
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                    v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                                wait(0.3)
+                                v:FindFirstChild("CLIENTTALK"):FireServer()
+                                v:FindFirstChild("CLIENTTALK"):FireServer("accept")
+                                wait(0.5)
+                            end
+                        end
+                    end
+                end
+            until Settings.Bosses == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true
+            repeat
+                wait()
+                for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                    if
+                        v.ClassName == "Model" and v:FindFirstChild("npctype") and
+                            string.find(game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").bg.name.Text, v.Head.mob.fram.name.info.Text)
+                     then
+                        if game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == true then 
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                            if v:FindFirstChild("antiexploit") then
+                            v.antiexploit:remove()
+                            end
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                            if v.Humanoid.Health < v.Humanoid.MaxHealth and v:FindFirstChild("HumanoidRootPart") then
+                                v.Humanoid.Health = 0
+                            end
+                        end
+                    end
+                end
+            until Settings.Bosses == false or game.Players.LocalPlayer.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory").Visible == false and v.Humanoid.Health == 0 and v
+        end
+    )
+end
+    end)
+    end,
+    Enabled = false
+})
+       
+    M1.Button({
+    Text = "Copy PS",
+    Callback = function()
+        setclipboard("-E0BJK 0Skr9C 1Isuub 2tgOb8 2vy3Dn 7rTU-A 7v09lz 8CGAZH BcBuAN CI98Au Do2o8A JFDOST KFXSrq QeR2eN Qratoy RRu4E7 Rjb0rQ SbFkZm TVDDoU WY4chE _5_oXy cJ7LIe cdv9R4 dBNARC dG5Y-3 fLe-Az hnI8qv nWv2xH puv68h sCCXqk tkqyBR v5-9u3 w1wF1v zfU90r")
+        toclipboard("-E0BJK 0Skr9C 1Isuub 2tgOb8 2vy3Dn 7rTU-A 7v09lz 8CGAZH BcBuAN CI98Au Do2o8A JFDOST KFXSrq QeR2eN Qratoy RRu4E7 Rjb0rQ SbFkZm TVDDoU WY4chE _5_oXy cJ7LIe cdv9R4 dBNARC dG5Y-3 fLe-Az hnI8qv nWv2xH puv68h sCCXqk tkqyBR v5-9u3 w1wF1v zfU90r")
+    end})
+
+    M1.Toggle({
+        Text = "Auto Rank",
+        Callback = function(a)
+            Settings.Rebirth = a
+            spawn(function()
+            while wait() and Settings.Rebirth do
+                if game.Players.LocalPlayer.statz.lvl:FindFirstChild("lvl").Value >= 500 then
+                    if
+                        game.Players.LocalPlayer.statz.prestige.maxlvlpres.Value >= 1 or
+                            game.Players.LocalPlayer.statz.prestige.maxlvlpres.Value == 0 and
+                                game.Players.LocalPlayer.statz.prestige.rank.Value == "Z" and
+                                game.Players.LocalPlayer.statz.prestige.number.Value == "3"
+                     then
+                        repeat
+                            wait(0.5)
+                            game.Players.LocalPlayer.startevent:FireServer("maxlvlpres")
+                        until game.Players.LocalPlayer.statz.lvl:FindFirstChild("lvl").Value == 1 or not Settings.Rebirth
+                    else
+                        repeat
+                            wait(0.5)
+                            game.Players.LocalPlayer.startevent:FireServer("rankup")
+                        until game.Players.LocalPlayer.statz.lvl:FindFirstChild("lvl").Value == 1 or not Settings.Rebirth
+                    end
+                end
+            end
+            end)
+        end,
+    })
+
+    M1.Toggle({
+        Text = "Jin Aura",
+        Callback = function(a)
+        Settings.Jin = a
+
+        game:GetService("RunService").Stepped:connect(
+            function()
+                if Settings.Jin then
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                end
+            end
+        )
+        spawn(function()
+        while wait() and Settings.Jin do
+            for i, v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+                if v.Name == "npc1" then
+                    repeat
+                        wait()
+                        pcall(
+                            function()
+                                game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame =
+                                    v.HumanoidRootPart.CFrame * CFrame.new(0, -7, 0)
+                                    game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                                    game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                                 if v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health < v.Humanoid.MaxHealth then
+                                    v.Humanoid.Health = 0
+                                end 
+                            end
+                        )
+                    until v.Humanoid.Health == 0 or not v or not Settings.Jin
+                end
+            end
+        end
+        end)    end,
+})
+
+
+    M1.Toggle({
+    Text = "War Aura",
+    Callback = function(a)
+        Settings.War = a
+
+        game:GetService("RunService").Stepped:connect(
+            function()
+                if Settings.War then
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+                end
+            end
+        )
+        
+        spawn(function()
+        while Settings.War do
+            wait()
+            pcall(
+                function()
+                    for i, v in pairs(workspace.npc:GetChildren()) do
+                        if
+                            v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and
+                                v:FindFirstChild("HumanoidRootPart") and
+                                v:FindFirstChild("Humanoid") and
+                                v.Head.CFrame.Y > -1000 and
+                                not v:FindFirstChild("megaboss")
+                         then
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                            if v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health < v.Humanoid.MaxHealth then
+                                v.Humanoid.Health = 0
+                            end
+                        elseif
+                            v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and
+                                v:FindFirstChild("HumanoidRootPart") and
+                                v:FindFirstChild("Humanoid") and
+                                v.Head.CFrame.Y > -1000 and
+                                v:FindFirstChild("megaboss")
+                         then
+                            wait(6)
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", true)
+                            game:GetService("Players").LocalPlayer.Character.combat.update:FireServer("mouse1", false)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                                v.HumanoidRootPart.CFrame * CFrame.new(0, -5, 0)
+                            if v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health < v.Humanoid.MaxHealth then
+                                v.Humanoid.Health = 0
+                            end
+                        end
+                    end
+                end
+            )
+        end
+        
+        end)    
+    end,
+})
+
+M1.Toggle({
+    Text = "Scroll Aura",
+    Callback = function(a)
+        Settings.Scroll = a
+        spawn(function()
+        while Settings.Scroll do
+            wait()
+            pcall(
+                function()
+                    for i, v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
+                        if
+                            v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and
+                                v.sh.Position.Y < 2000
+                         then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.sh.CFrame
+                            fireclickdetector(v.sh:FindFirstChildWhichIsA("ClickDetector"))
+                        end
+                    end
+                    for i, v in pairs(game.workspace:GetChildren()) do
+                        if
+                            v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and
+                                v.sh.Position.Y < 2000
+                         then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.sh.CFrame
+                            fireclickdetector(v.sh:FindFirstChildWhichIsA("ClickDetector"))
+                        end
+                    end
+                end
+            )
+        end
+        end)    
+    end,
+})
+
+    S.Toggle({
+    Text = "Auto Stat Health",
+    Callback = function(a)
+        Settings.Health = a
+        spawn(function()
+        while Settings.Health do
+            wait()
+            game:GetService("Players").LocalPlayer.startevent:FireServer("addstat", "health", 5)
+        end
+        end)    
+    end,
+})
+S.Toggle({
+    Text = "Auto Stat Ninjutsu",
+    Callback = function(a)
+        Settings.Ninjutsu = a
+        spawn(function()
+        while Settings.Ninjutsu do
+            wait()
+            game:GetService("Players").LocalPlayer.startevent:FireServer("addstat", "ninjutsu", 5)
+        end
+        end) 
+    end,
+})
+S.Toggle({
+    Text = "Auto Stat Taijutsu",
+    Callback = function(a)
+        Settings.Taijutsu = a
+        spawn(function()
+        while Settings.Taijutsu do
+            wait()
+            game:GetService("Players").LocalPlayer.startevent:FireServer("addstat", "taijutsu", 5)
+        end
+        end) 
+    end,
+})
+S.Toggle({
+    Text = "Auto Stat Chakra",
+    Callback = function(a)
+        Settings.Chakra = a
+        spawn(function()
+        while Settings.Chakra do
+            wait()
+            game:GetService("Players").LocalPlayer.startevent:FireServer("addstat", "chakra", 5)
+        end
+        end)
+    end,
+})
