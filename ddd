@@ -1,0 +1,111 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local X = Material.Load({
+    Title = "Keybrew Hub | Dragon Fighters",
+    Style = 3,
+    SizeX = 300,
+    SizeY = 350,
+    Theme = "Light",
+    ColorOverrides = {
+        MainFrame = Color3.fromRGB(0,0,0),
+        Toggle = Color3.fromRGB(124,37,255),
+        ToggleAccent = Color3.fromRGB(255,255,255), 
+        Dropdown = Color3.fromRGB(124,37,255),
+		DropdownAccent = Color3.fromRGB(255,255,255),
+        Slider = Color3.fromRGB(124,37,255),
+		SliderAccent = Color3.fromRGB(255,255,255),
+        NavBarAccent = Color3.fromRGB(0,0,0),
+        Content = Color3.fromRGB(0,0,0),
+    }
+})
+
+local Main = X.New({
+    Title = "Main"
+})
+
+
+local Cred = X.New({
+    Title = "Credits"
+})
+    Cred.Button({
+    Text = "Copy Discord UyuSF4fPC9",
+    Callback = function()
+        setclipboard("https://discord.gg/UyuSF4fPC9")
+        toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+
+local Map = {}
+
+for i,v in pairs(game:GetService("Workspace")["__WORKSPACE"]["__MOBS"]:GetChildren()) do
+    if v:IsA"Folder" then
+        table.insert(Map,tostring(v))
+    end
+end
+
+
+local function getDummy()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__MOBS"]:GetDescendants() do
+        if  v:IsA("Model") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Part.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+
+local function getCoin()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__DROPS"]:GetChildren() do
+        if  v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+    Main.Toggle({
+    Text = "Auto Attack Nearest",
+    Callback = function(a)
+        aa = a
+        while aa do task.wait()
+            local args = {
+                [1] = "BowAttack",
+                [2] = getDummy().Part
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.WeaponAttack:FireServer(unpack(args))
+        end
+    end,
+    Enabled = false
+})
+
+
+Main.Toggle({
+    Text = "TP to Mob",
+    Callback = function(g)
+        gg = g
+        while gg do task.wait()
+            pcall(function()
+                local Time = 0.5
+                local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = getDummy().Part.CFrame + Vector3.new(4,5,0)})                                       
+                tween:Play()
+                tween.Completed:Wait(E)
+            end)
+        end
+    end,
+    Enabled = false
+})
+
+
+
+
