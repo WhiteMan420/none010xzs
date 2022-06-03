@@ -78,7 +78,7 @@ end)
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local player = game.Players.LocalPlayer
 local X = Material.Load({
-    Title = "Keybrew Hub | Shindo Life",
+    Title = "Keybrew Hub",
     Style = 3,
     SizeX = 300,
     SizeY = 350,
