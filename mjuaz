@@ -306,7 +306,7 @@ end
         end,
         Enabled = false
     })
-        D.Dropdown({
+      local p =  D.Dropdown({
         Text = "Hero Name",
         Callback = function(j)
             getgenv().name = j
@@ -342,6 +342,24 @@ end
         }
         
     })
+
+    D.Button({Text = "Refresh Heroes", Callback = function()
+        table.clear(In)
+        for i,v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
+            if v:IsA"TextButton" and v.Parent.Name == "InventoryNest" then
+                table.insert(In,tostring(v.HeroName.Text))
+                    p:SetOptions(In)
+            end
+        end
+    end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "Having a lot of heroes in inventory may cause crash"
+            })
+        end
+    }})
+    
     
 
     Z.Toggle({
@@ -460,7 +478,8 @@ Z.Button({Text = "Refresh Enemies", Callback = function()
             end
         end
     end
-end})
+end,
+})
 
     A.Dropdown({
     Text = "Crystal Select",
@@ -513,7 +532,7 @@ end})
 })
 
 
-    A.Dropdown({
+   local t = A.Dropdown({
     Text = "Hero Name",
     Callback = function(k)
         getgenv().name1 = k
@@ -553,6 +572,26 @@ end})
 
     Enabled = false,
     
+})
+
+    A.Button({Text = "Refresh Heroes", Callback = function()
+    table.clear(In)
+    for i,v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
+        if v:IsA"TextButton" and v.Parent.Name == "InventoryNest" then
+            table.insert(In,tostring(v.HeroName.Text))
+                t:SetOptions(In)
+        end
+    end
+
+end,
+Menu = {
+    Information = function(self)
+        X.Banner({
+            Text = "Having a lot of heroes in inventory may cause crash"
+        })
+    end
+}
+
 })
    
     B.Dropdown({
