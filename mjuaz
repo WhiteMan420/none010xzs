@@ -56,6 +56,14 @@ for i,v in pairs(game:GetService("Workspace").Maps:GetChildren()) do
     end
 end
 
+local In = {}
+
+for i,v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
+    if v:IsA"TextButton" and v.Parent.Name == "InventoryNest" then
+        table.insert(In,tostring(v.HeroName.Text))
+    end
+end
+
 local Enemy = {}
 
 for i,v in pairs(game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren()) do
@@ -298,40 +306,29 @@ end
         end,
         Enabled = false
     })
-
-    D.Button({
-        Text = "Find Index of Equipped Hero",
-        Callback = function()
-                    for i,v in next, game:GetService("Workspace").HeroFolder:GetChildren() do
-                        print(v)
-                        print(v.Index.Value)   
-                    end
-                end,
-        Menu = {
-            Information = function(self)
-                X.Banner({
-                    Text = "Find Index of Hero. Press F9 (Works best in private servers)"
-                })
-            end
-        }
-    })
-        D.TextField({
-        Text = "Type Index Here",
-        Callback = function(Value)
-            getgenv().index = Value
+        D.Dropdown({
+        Text = "Hero Name",
+        Callback = function(j)
+            getgenv().name = j
         end,
+        Options = In,
     })
     D.Toggle({
         Text = "Auto Passive",
         Callback = function(a)
             a2 = a
             while a2 do task.wait()
-                local args = {
-                    [1] = tonumber(index)
-                }
+                        for i,v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
+                            if v:IsA("TextButton") and v.HeroName.Text == name then
 
-                game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
-                wait(3)
+                        local args = {
+                            [1] = tonumber(v.Index.Value)
+                        }
+
+                        game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
+                        wait(3)
+                    end
+                end
             end            
         end,
 
@@ -345,6 +342,8 @@ end
         }
         
     })
+    
+
     Z.Toggle({
         Text = "Auto Attack Closest",
         Callback = function(m)
@@ -513,27 +512,13 @@ end})
     Enabled = false
 })
 
-A.Button({
-    Text = "Find Index of Equipped Hero",
-    Callback = function()
-                for i,v in next, game:GetService("Workspace").HeroFolder:GetChildren() do
-                    print(v)
-                    print(v.Index.Value)   
-                end
-            end,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Find Index of Hero. Press F9 (Works best in private servers)"
-            })
-        end
-    }
-})
-A.TextField({
-    Text = "Type Index Here",
-    Callback = function(Value)
-        getgenv().index1 = Value
+
+    A.Dropdown({
+    Text = "Hero Name",
+    Callback = function(k)
+        getgenv().name1 = k
     end,
+    Options = In,
 })
 
     A.Toggle({
@@ -541,12 +526,15 @@ A.TextField({
     Callback = function(a)
         a3 = a
         while a3 do task.wait()
+            pcall(function()
             for i,v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
-                if v:IsA("TextButton") then
+                if v:IsA("TextButton") and v.HeroName.Text == name1 then
+                    for ii,vv in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
+                        if vv:IsA("TextButton") then
                     local args = {
-                        [1] = tonumber(index1),
+                        [1] = tonumber(v.Index.Value),
                         [2] = { 
-                            i
+                            ii
                             
 
 
@@ -556,7 +544,10 @@ A.TextField({
                     game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
                     wait(.5)
                 end
-            end
+                        end
+                    end 
+                end
+            end)
         end            
     end,
 
