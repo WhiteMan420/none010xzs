@@ -277,12 +277,13 @@ Misc.Toggle({
     Callback = function(a)
         a3 = a
         while a3 do task.wait()
+            pcall(function()
             local args = {
                 [1] = {}
             }
             
             game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("rank up"):InvokeServer(unpack(args))
-
+        end)
         end
     end,
     Enabled = false
