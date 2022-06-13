@@ -1,7 +1,7 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
-
+local lp = game.Players.LocalPlayer
 local X = Material.Load({
-    Title = "Keybrew Hub | Dragon Fighters",
+    Title = "Keybrew Hub | Anime Sword Sim",
     Style = 3,
     SizeX = 300,
     SizeY = 350,
@@ -22,7 +22,9 @@ local X = Material.Load({
 local Main = X.New({
     Title = "Main"
 })
-
+local Misc = X.New({
+    Title = "Misc"
+})
 
 local Cred = X.New({
     Title = "Credits"
@@ -35,34 +37,10 @@ local Cred = X.New({
     end,
 })
 
-local Map = {}
-
-for i,v in pairs(game:GetService("Workspace")["__WORKSPACE"]["__MOBS"]:GetChildren()) do
-    if v:IsA"Folder" then
-        table.insert(Map,tostring(v))
-    end
-end
-
-
-local function getDummy()
+local function getNPC()
     local dist, thing = math.huge
     for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__MOBS"]:GetDescendants() do
-        if  v:IsA("Model") then
-            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Part.Position).magnitude
-            if mag < dist then 
-                dist = mag 
-                thing = v 
-            end
-        end
-    end
-    return thing
-end
-
-
-local function getCoin()
-    local dist, thing = math.huge
-    for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__DROPS"]:GetChildren() do
-        if  v:IsA("Part") then
+        if v.Name == "Part" and v:IsA("Part")  then
             local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
             if mag < dist then 
                 dist = mag 
@@ -73,17 +51,36 @@ local function getCoin()
     return thing
 end
 
+local function getPART()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__DROPS"]:GetChildren() do
+        if v:IsA("Part")  then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+
+
+
+
     Main.Toggle({
-    Text = "Auto Attack Nearest",
+    Text = "Auto Attack",
     Callback = function(a)
         aa = a
         while aa do task.wait()
             local args = {
                 [1] = "BowAttack",
-                [2] = getDummy().Part
+                [2] = getNPC()
             }
-            
+
             game:GetService("ReplicatedStorage").Remotes.WeaponAttack:FireServer(unpack(args))
+
         end
     end,
     Enabled = false
@@ -91,21 +88,14 @@ end
 
 
 Main.Toggle({
-    Text = "TP to Mob",
-    Callback = function(g)
-        gg = g
-        while gg do task.wait()
-            pcall(function()
-                local Time = 0.5
-                local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(Time), {CFrame = getDummy().Part.CFrame + Vector3.new(4,5,0)})                                       
-                tween:Play()
-                tween.Completed:Wait(E)
+    Text = "Tp to coins",
+    Callback = function(a)
+        a1 = a
+        while a1 do task.wait()
+           pcall(function()
+           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getPART().CFrame + Vector3.new(3,0,0)
             end)
         end
     end,
     Enabled = false
 })
-
-
-
-
