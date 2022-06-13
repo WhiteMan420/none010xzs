@@ -19,6 +19,28 @@ local X = Material.Load({
     }
 })
 
+local function getITEM()
+    local dist, thing = math.huge
+    for i,v in next, workspace.__MAP.Workouts:GetChildren() do
+        if v.Name == "Training"  then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Center.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+local Egg = {}
+
+for i,v in pairs(game:GetService("Workspace")["__MAP"].Eggs:GetChildren()) do
+    if v:IsA"Folder"  then
+        table.insert(Egg,tostring(v))
+    end
+end
+
 local Main = X.New({
     Title = "Main"
 })
@@ -37,65 +59,255 @@ local Cred = X.New({
     end,
 })
 
-local function getNPC()
-    local dist, thing = math.huge
-    for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__MOBS"]:GetDescendants() do
-        if v.Name == "Part" and v:IsA("Part")  then
-            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
-            if mag < dist then 
-                dist = mag 
-                thing = v 
-            end
-        end
-    end
-    return thing
-end
-
-local function getPART()
-    local dist, thing = math.huge
-    for i,v in next, game:GetService("Workspace")["__WORKSPACE"]["__DROPS"]:GetChildren() do
-        if v:IsA("Part")  then
-            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
-            if mag < dist then 
-                dist = mag 
-                thing = v 
-            end
-        end
-    end
-    return thing
-end
-
-
-
-
-
     Main.Toggle({
     Text = "Auto Attack",
     Callback = function(a)
         aa = a
         while aa do task.wait()
-            local args = {
-                [1] = "BowAttack",
-                [2] = getNPC()
-            }
+        local args = {
+            [1] = {}
+        }
 
-            game:GetService("ReplicatedStorage").Remotes.WeaponAttack:FireServer(unpack(args))
-
+        game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("combat attack"):FireServer(unpack(args))
         end
     end,
     Enabled = false
 })
 
+    Main.TextField({
+    Text = "Rebirth Number Here",
+    Callback = function(Value)
+    getgenv().reb = Value
+    end,
+})
 
-Main.Toggle({
-    Text = "Tp to coins",
+
+    Main.Toggle({
+    Text = "Auto Rebirth",
     Callback = function(a)
         a1 = a
         while a1 do task.wait()
-           pcall(function()
-           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getPART().CFrame + Vector3.new(3,0,0)
-            end)
+            local args = {
+                [1] = {
+                    [1] = tonumber(reb)
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Assets.Events.rebirth:FireServer(unpack(args))
         end
     end,
     Enabled = false
 })
+
+
+    Main.Toggle({
+    Text = "Auto Train Closest Dummy",
+    Callback = function(a)
+        a2 = a
+        while a2 do task.wait()
+            local args = {
+                [1] = {
+                    [1] = getITEM()
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Assets.Events.training:InvokeServer(unpack(args))
+        end
+    end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "Ui for Dummy must show to work"
+            })
+        end
+    },
+    Enabled = false
+})
+
+
+    local O = Main.Dropdown({
+    Text = "Eggs",
+    Callback = function(Value)
+    getgenv().open = Value
+end,
+    Options = Egg
+})
+
+Main.Toggle({
+    Text = "Auto Open",
+    Callback = function(a)
+        a3 = a
+        while a3 do task.wait()
+
+            local args = {
+                [1] = {
+                    [1] = open,
+                    [2] = false
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("buy egg"):InvokeServer(unpack(args))
+
+        end
+    end,
+    Enabled = false
+})
+
+Main.Toggle({
+    Text = "3x Auto Open",
+    Callback = function(a)
+        a4 = a
+        while a4 do task.wait()
+
+            local args = {
+                [1] = {
+                    [1] = open,
+                    [2] = true
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("buy egg"):InvokeServer(unpack(args))
+
+        end
+    end,
+    Enabled = false
+})
+
+
+
+    Main.Button({Text = "Refresh Eggs", Callback = function()
+    table.clear(Egg)
+    for i,v in pairs(game:GetService("Workspace")["__MAP"].Eggs:GetChildren()) do
+        if v:IsA"Folder"  then
+            table.insert(Egg,tostring(v))
+                O:SetOptions(Egg)
+        end
+    end
+end,
+
+})
+
+    Misc.Toggle({
+    Text = "Auto Rewards",
+    Callback = function(a)
+        a4 = a
+        while a4 do task.wait()
+
+            local args = {
+                [1] = {
+                    [1] = 1,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 2,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 3,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 4,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 5,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 6,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 7,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 8,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 9,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 10,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 11,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+            local args = {
+                [1] = {
+                    [1] = 12,
+                }
+            }
+
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("redeem time reward"):InvokeServer(unpack(args))
+
+        end
+    end,
+    Enabled = false
+})
+
+Misc.Button({
+    Text = "Get All Gamepasses",
+    Callback = function()
+            local r = require(game.ReplicatedStorage:WaitForChild("Resources"))
+            local g = {31927159, 31927056, 31953869, 31953619, 31953748, 31953706, 31953662, 31926918, 31953579, 38916043, 31953543, 31431593, 31404754, 31404444}
+            for i,v in ipairs(g) do
+            table.insert(r.StatService.Get().Gamepasses, v)
+        end
+    end,
+})
+
+Misc.Toggle({
+    Text = "Auto Rank up",
+    Callback = function(a)
+        a3 = a
+        while a3 do task.wait()
+            pcall(function()
+            local args = {
+                [1] = {}
+            }
+            
+            game:GetService("ReplicatedStorage").Assets.Events:FindFirstChild("rank up"):InvokeServer(unpack(args))
+        end)
+        end
+    end,
+    Enabled = false
+})
+
