@@ -118,25 +118,19 @@ Main.Toggle(
         Enabled = false
     }
 )
-
-Main.Dropdown(
-    {
-        Text = "Select NPC",
-        Callback = function(Value)
-            getgenv().mob = Value
-        end,
-        Options = {
-            "Human",
-            "Low Level Aogiri",
-            "Mid Level Aogiri",
-            "High Level Aogiri",
-            "Yakumo",
-            "Kuzen",
-            "Eto"
-        }
-    }
-)
-
+local function getBOSS()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace"):GetDescendants() do
+        if v.Parent.Name == "Boss" and v:IsA("Model") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
 local function getLOW()
     local dist, thing = math.huge
     for i, v in next, game:GetService("Workspace").LowLevelSpawns:GetDescendants() do
@@ -340,6 +334,49 @@ Main.TextField(
         }
     }
 )
+Main.Toggle(
+    {
+        Text = "Auto Boss Farm",
+        Callback = function(Value)
+            kk = Value
+            while kk do
+                task.wait()
+                pcall(
+                    function()
+
+                        lp.Character.HumanoidRootPart.CFrame =
+                            CFrame.new(getBOSS().HumanoidRootPart.Position + Vector3.new(0, tonumber(des), 0), getBOSS().HumanoidRootPart.Position)
+                    end
+                )
+            end
+        end,
+        Enabled = false
+    }
+)
+
+Main.Dropdown(
+    {
+        Text = "Select NPC",
+        Callback = function(Value)
+            getgenv().mob = Value
+        end,
+        Options = {
+            "Human",
+            "Every Aogiri",
+            "Low Level Aogiri",
+            "Mid Level Aogiri",
+            "High Level Aogiri",
+            "Yakumo",
+            "Kuzen",
+            "Eto"
+        }
+    }
+)
+
+
+
+
+
 
 Main.Toggle(
     {
@@ -378,6 +415,16 @@ Main.Toggle(
                             lp.Character.HumanoidRootPart.CFrame =
                                 CFrame.new(getKU().Position + Vector3.new(0, tonumber(des), 0), getKU().Position)
                             fireclickdetector(getKC())
+                        elseif mob == "Every Aogiri" then
+                            lp.Character.HumanoidRootPart.CFrame =
+                            CFrame.new(getLOW().Position + Vector3.new(0, tonumber(des), 0), getLOW().Position)
+                        fireclickdetector(getLOWC())
+                        lp.Character.HumanoidRootPart.CFrame =
+                                CFrame.new(getMID().Position + Vector3.new(0, tonumber(des), 0), getMID().Position)
+                            fireclickdetector(getMIDC())
+                            lp.Character.HumanoidRootPart.CFrame =
+                                CFrame.new(getHIGH().Position + Vector3.new(0, tonumber(des), 0), getHIGH().Position)
+                            fireclickdetector(getHIGHC())
                         end
                     end
                 )
@@ -467,30 +514,23 @@ Misc.Toggle(
             a5 = Value
             while a5 do
                 task.wait()
-                if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-                    wait(0.5)
-                    local args1 = {
-                        [1] = "N",
-                        [2] = "Down",
-                        [3] = CFrame.new(1647.1573486328125, 0.38918161392211914, 384.2356872558594) *
-                            CFrame.Angles(-0.4261299669742584, -0.35624513030052185, -0.15701371431350708),
-                        [5] = CFrame.new(1629.7091064453125, 19.77010154724121, 426.93023681640625) *
-                            CFrame.Angles(-0.2617993950843811, 0, -0)
-                    }
+                pcall(function()
+                    for i, v in next, game.workspace:GetChildren() do
+                        if v.Name == lp.Character.Name and not v:FindFirstChild("Quinque") and not v:FindFirstChild("Kagune") then
+                            local args = {
+                                [1] = stage,
+                                [2] = "Down",
+                                [3] = CFrame.new(1647.1573486328125, 0.38918161392211914, 384.2356872558594) *
+                                    CFrame.Angles(-0.4261299669742584, -0.35624513030052185, -0.15701371431350708),
+                                [5] = CFrame.new(1629.7091064453125, 19.77010154724121, 426.93023681640625) *
+                                    CFrame.Angles(-0.2617993950843811, 0, -0)
+                            }
 
-                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args1))
-                    wait(1)
-                    local args = {
-                        [1] = stage,
-                        [2] = "Down",
-                        [3] = CFrame.new(1647.1573486328125, 0.38918161392211914, 384.2356872558594) *
-                            CFrame.Angles(-0.4261299669742584, -0.35624513030052185, -0.15701371431350708),
-                        [5] = CFrame.new(1629.7091064453125, 19.77010154724121, 426.93023681640625) *
-                            CFrame.Angles(-0.2617993950843811, 0, -0)
-                    }
-
-                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
-                end
+                            game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                        wait(1)
+                    end
+                    end
+                end)
             end
         end,
         Menu = {
