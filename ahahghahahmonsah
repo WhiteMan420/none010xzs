@@ -72,6 +72,22 @@ Main.Toggle({
     Enabled = false
 })
 
+Main.Toggle({
+    Text = "Auto Cash",
+    Callback = function(Value)
+    cc = Value
+    while cc do task.wait()
+            local args = {
+                [1] = "Secured1",
+                [2] = game:GetService("Players").LocalPlayer.StorageFile
+            }
+
+            game:GetService("ReplicatedStorage").Remotes.ReppCashhout:InvokeServer(unpack(args))
+        end
+    end,
+    Enabled = false
+})
+
     Main.Dropdown({
     Text = "Select NPC",
     Callback = function(Value)
