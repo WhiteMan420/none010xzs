@@ -61,10 +61,10 @@ Main.Toggle({
     Callback = function(Value)
     a1 = Value
     while a1 do task.wait()
-        if game:GetService("Players").Kuvuxx.StorageFile.Customization.Team.Value == "Ghoul" then
+        if lp.StorageFile.Customization.Team.Value == "Ghoul" then
             game:GetService("ReplicatedStorage").Remotes.Yoshimura.Task:InvokeServer()
             wait(1)
-        elseif game:GetService("Players").Kuvuxx.StorageFile.Customization.Team.Value == "CCG" then
+        elseif lp.StorageFile.Customization.Team.Value == "CCG" then
                 game:GetService("ReplicatedStorage").Remotes.Yoshitoki.Task:InvokeServer()
             end
         end
