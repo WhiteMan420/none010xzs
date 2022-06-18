@@ -468,17 +468,7 @@ Misc.Toggle(
             while a5 do
                 task.wait()
                 if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-                    wait(2)
-                    local args = {
-                        [1] = stage,
-                        [2] = "Down",
-                        [3] = CFrame.new(1647.1573486328125, 0.38918161392211914, 384.2356872558594) *
-                            CFrame.Angles(-0.4261299669742584, -0.35624513030052185, -0.15701371431350708),
-                        [5] = CFrame.new(1629.7091064453125, 19.77010154724121, 426.93023681640625) *
-                            CFrame.Angles(-0.2617993950843811, 0, -0)
-                    }
-
-                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                    wait(1)
                     local args1 = {
                         [1] = "N",
                         [2] = "Down",
@@ -489,6 +479,17 @@ Misc.Toggle(
                     }
 
                     game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args1))
+                    wait(1)
+                    local args = {
+                        [1] = stage,
+                        [2] = "Down",
+                        [3] = CFrame.new(1647.1573486328125, 0.38918161392211914, 384.2356872558594) *
+                            CFrame.Angles(-0.4261299669742584, -0.35624513030052185, -0.15701371431350708),
+                        [5] = CFrame.new(1629.7091064453125, 19.77010154724121, 426.93023681640625) *
+                            CFrame.Angles(-0.2617993950843811, 0, -0)
+                    }
+
+                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                 end
             end
         end,
