@@ -77,12 +77,14 @@ Main.Toggle({
     Callback = function(Value)
     cc = Value
     while cc do task.wait()
+        pcall(function()
             local args = {
                 [1] = "Secured1",
                 [2] = game:GetService("Players").LocalPlayer.StorageFile
             }
 
             game:GetService("ReplicatedStorage").Remotes.ReppCashhout:InvokeServer(unpack(args))
+            end)
         end
     end,
     Enabled = false
