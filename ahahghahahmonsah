@@ -41,6 +41,7 @@ Main.Toggle({
     Callback = function(Value)
     a7 = Value
     while a7 do task.wait()
+        pcall(function()
         local args = {
             [1] = "Mouse1",
             [2] = "Down",
@@ -50,6 +51,7 @@ Main.Toggle({
         
         game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
         wait(.1)
+            end)
         end
     end,
     Enabled = false
