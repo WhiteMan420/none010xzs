@@ -37,24 +37,16 @@ local Cred = X.New({
 })
 
     Main.Toggle({
-    Text = "Auto Ghoul Mission",
+    Text = "Auto Mission",
     Callback = function(Value)
     a1 = Value
     while a1 do task.wait()
+        if game:GetService("Players").Kuvuxx.StorageFile.Customization.Team.Value == "Ghoul" then
             game:GetService("ReplicatedStorage").Remotes.Yoshimura.Task:InvokeServer()
             wait(1)
-        end
-    end,
-    Enabled = false
-})
-
-Main.Toggle({
-    Text = "Auto CCG Mission",
-    Callback = function(Value)
-    a1 = Value
-    while a1 do task.wait()
-            game:GetService("ReplicatedStorage").Remotes.Yoshitoki.Task:InvokeServer()
-            wait(1)
+        elseif game:GetService("Players").Kuvuxx.StorageFile.Customization.Team.Value == "CCG" then
+                game:GetService("ReplicatedStorage").Remotes.Yoshitoki.Task:InvokeServer()
+            end
         end
     end,
     Enabled = false
@@ -417,44 +409,42 @@ Main.Toggle({
     end,
     Enabled = false
 })
+    Misc.Dropdown({
+    Text = "Select Stage",
+    Callback = function(Value)
+        getgenv().stage = Value
+    end,
+    Options = {
+        "One",
+        "Two",
+        "Three",
+        "Four",
+    }
+})
+    Misc.Toggle({
+    Text = "Auto Requip",
+    Callback = function(Value)
+        a5 = Value
+        while a5 do task.wait()
+            if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+                wait(4)
+        local args = {
+            [1] = stage,
+            [2] = "Down",
+            [3] = CFrame.new(1647.1573486328125, 0.38918161392211914, 384.2356872558594) * CFrame.Angles(-0.4261299669742584, -0.35624513030052185, -0.15701371431350708),
+            [5] = CFrame.new(1629.7091064453125, 19.77010154724121, 426.93023681640625) * CFrame.Angles(-0.2617993950843811, 0, -0)
+        }
 
-
-function Notify(titletxt, text, time)
-    local GUI = Instance.new("ScreenGui")
-    local Main = Instance.new("Frame", GUI)
-    local title = Instance.new("TextLabel", Main)
-    local message = Instance.new("TextLabel", Main)
-    GUI.Name = "NotificationOof"
-    GUI.Parent = game.CoreGui
-    Main.Name = "MainFrame"
-    Main.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-    Main.BorderSizePixel = 0
-    Main.Position = UDim2.new(1, 5, 0, 50)
-    Main.Size = UDim2.new(0, 330, 0, 100)
- 
-    title.BackgroundColor3 = Color3.new(0, 0, 0)
-    title.BackgroundTransparency = 0.89999997615814
-    title.Size = UDim2.new(1, 0, 0, 30)
-    title.Font = Enum.Font.SourceSansSemibold
-    title.Text = titletxt
-    title.TextColor3 = Color3.new(255 , 0, 255) --- Color to liking
-    title.TextSize = 50  --- Size to liking
- 
-    message.BackgroundColor3 = Color3.new(0, 0, 0)
-    message.BackgroundTransparency = 1
-    message.Position = UDim2.new(0, 0, 0, 30)
-    message.Size = UDim2.new(1, 0, 1, -30)
-    message.Font = Enum.Font.SourceSans
-    message.Text = text
-    message.TextColor3 = Color3.new(255 , 0, 255)  --- color to liking
-    message.TextSize = 15   --- Size to liking
- 
-    wait(0.1)
-    Main:TweenPosition(UDim2.new(1, -330, 0, 50), "Out", "Sine", 0.5)
-    wait(time)
-    Main:TweenPosition(UDim2.new(1, 5, 0, 50), "Out", "Sine", 0.5)
-    wait(10.0)
-    GUI:Destroy();
-end
- 
-Notify("IMPORTANT", "DO NOT USE AUTO CCG MISSION IF YOURE A GHOUL VISE VERSA", 10)
+        game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+            end
+        end
+    end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "Re equip upon death"
+            })
+        end
+    },
+    Enabled = false
+})
