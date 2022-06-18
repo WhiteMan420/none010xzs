@@ -468,7 +468,7 @@ Misc.Toggle(
             while a5 do
                 task.wait()
                 if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-                    wait(1)
+                    wait(0.5)
                     local args1 = {
                         [1] = "N",
                         [2] = "Down",
