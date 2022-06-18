@@ -34,8 +34,26 @@ local Cred = X.New({
         setclipboard("https://discord.gg/UyuSF4fPC9")
         toclipboard("https://discord.gg/UyuSF4fPC9")
     end,
-})
+})                    
 
+Main.Toggle({
+    Text = "Auto Attack",
+    Callback = function(Value)
+    a7 = Value
+    while a7 do task.wait()
+        local args = {
+            [1] = "Mouse1",
+            [2] = "Down",
+            [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+            [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+        wait(.1)
+        end
+    end,
+    Enabled = false
+})
     Main.Toggle({
     Text = "Auto Mission",
     Callback = function(Value)
@@ -277,79 +295,24 @@ Main.Toggle({
         pcall(function()
                 if mob == "Low Level Aogiri" then
                 lp.Character.HumanoidRootPart.CFrame = CFrame.new(getLOW().Position + Vector3.new(0,tonumber(des),0),getLOW().Position) 
-                    local args = {
-                        [1] = "Mouse1",
-                        [2] = "Down",
-                        [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                        [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                    }
-
-                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                     fireclickdetector(getLOWC())
                 elseif mob == "Mid Level Aogiri" then
                 lp.Character.HumanoidRootPart.CFrame = CFrame.new(getMID().Position + Vector3.new(0,tonumber(des),0),getMID().Position) 
-                    local args = {
-                        [1] = "Mouse1",
-                        [2] = "Down",
-                        [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                        [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                    }
-        
-                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                     fireclickdetector(getMIDC())
                 elseif mob == "High Level Aogiri" then
                     lp.Character.HumanoidRootPart.CFrame = CFrame.new(getHIGH().Position + Vector3.new(0,tonumber(des),0),getHIGH().Position) 
-                        local args = {
-                            [1] = "Mouse1",
-                            [2] = "Down",
-                            [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                            [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                        }
-            
-                        game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                         fireclickdetector(getHIGHC())
                     elseif mob == "Human" then
                         lp.Character.HumanoidRootPart.CFrame = CFrame.new(getH().Position + Vector3.new(0,tonumber(des),0),getH().Position) 
-                            local args = {
-                                [1] = "Mouse1",
-                                [2] = "Down",
-                                [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                                [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                            }
-                
-                            game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                             fireclickdetector(getHC())
                         elseif mob == "Eto" then
                             lp.Character.HumanoidRootPart.CFrame = CFrame.new(getETO().Position + Vector3.new(0,tonumber(des),0),getETO().Position) 
-                                local args = {
-                                    [1] = "Mouse1",
-                                    [2] = "Down",
-                                    [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                                    [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                                }
                                 fireclickdetector(getEC())
-                                game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                             elseif mob == "Yakumo" then
                                 lp.Character.HumanoidRootPart.CFrame = CFrame.new(getYAK().Position + Vector3.new(0,tonumber(des),0),getYAK().Position) 
-                                    local args = {
-                                        [1] = "Mouse1",
-                                        [2] = "Down",
-                                        [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                                        [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                                    }
-                        
-                                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                                     fireclickdetector(getYC())
                                 elseif mob == "Kuzen" then
                                     lp.Character.HumanoidRootPart.CFrame = CFrame.new(getKU().Position + Vector3.new(0,tonumber(des),0),getKU().Position) 
-                                        local args = {
-                                            [1] = "Mouse1",
-                                            [2] = "Down",
-                                            [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
-                                            [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
-                                        }
-                            
-                                        game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
                                         fireclickdetector(getKC())
                 end
             end)
@@ -365,7 +328,7 @@ Main.Toggle({
     Options = {
         "Speed",
         "Durability",
-        "Quinque",
+        "Quinque/Kagune",
     }
 })
 
@@ -380,7 +343,7 @@ Main.Toggle({
     Callback = function(Value)
         a3 = Value
         while a3 do task.wait()
-                if stat == "Quinque" then
+                if stat == "Quinque/Kagune" then
                 local args = {
                     [1] = "DontSpyStupid",
                     [2] = "WeaponAddButton",
@@ -427,7 +390,7 @@ Main.Toggle({
         a5 = Value
         while a5 do task.wait()
             if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-                wait(4)
+                wait(3)
         local args = {
             [1] = stage,
             [2] = "Down",
