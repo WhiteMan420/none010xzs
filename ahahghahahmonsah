@@ -420,11 +420,13 @@ Main.Toggle({
     Callback = function(Value)
         bb = Value
         while bb do task.wait()
+            pcall(function()
                     for i,v in next, game.Players.LocalPlayer.Character.Head:GetChildren() do
                         if v:IsA"BillboardGui" then
                             v:Destroy()    
+                            end
                         end
-                    end
+                    end)
                 end
             end,
     Enabled = false
