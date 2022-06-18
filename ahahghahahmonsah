@@ -1,0 +1,460 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+local lp = game.Players.LocalPlayer
+local X = Material.Load({
+    Title = "Keybrew Hub | Monster Ghoul",
+    Style = 3,
+    SizeX = 300,
+    SizeY = 350,
+    Theme = "Light",
+    ColorOverrides = {
+        MainFrame = Color3.fromRGB(0,0,0),
+        Toggle = Color3.fromRGB(124,37,255),
+        ToggleAccent = Color3.fromRGB(255,255,255), 
+        Dropdown = Color3.fromRGB(124,37,255),
+		DropdownAccent = Color3.fromRGB(255,255,255),
+        Slider = Color3.fromRGB(124,37,255),
+		SliderAccent = Color3.fromRGB(255,255,255),
+        NavBarAccent = Color3.fromRGB(0,0,0),
+        Content = Color3.fromRGB(0,0,0),
+    }
+})
+
+local Main = X.New({
+    Title = "Main"
+})
+local Misc = X.New({
+    Title = "Misc"
+})
+local Cred = X.New({
+    Title = "Credits"
+})
+    Cred.Button({
+    Text = "Copy Discord UyuSF4fPC9",
+    Callback = function()
+        setclipboard("https://discord.gg/UyuSF4fPC9")
+        toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+
+    Main.Toggle({
+    Text = "Auto Ghoul Mission",
+    Callback = function(Value)
+    a1 = Value
+    while a1 do task.wait()
+            game:GetService("ReplicatedStorage").Remotes.Yoshimura.Task:InvokeServer()
+            wait(1)
+        end
+    end,
+    Enabled = false
+})
+
+Main.Toggle({
+    Text = "Auto CCG Mission",
+    Callback = function(Value)
+    a1 = Value
+    while a1 do task.wait()
+            game:GetService("ReplicatedStorage").Remotes.Yoshitoki.Task:InvokeServer()
+            wait(1)
+        end
+    end,
+    Enabled = false
+})
+
+    Main.Dropdown({
+    Text = "Select NPC",
+    Callback = function(Value)
+        getgenv().mob = Value
+    end,
+    Options = {
+        "Human",
+        "Low Level Aogiri",
+        "Mid Level Aogiri",
+        "High Level Aogiri",
+        "Yakumo",
+        "Kuzen",
+        "Eto",
+    }
+})
+
+
+local function getLOW()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").LowLevelSpawns:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getLOWC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").LowLevelSpawns:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+local function getMID()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").MidSpawns:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getMIDC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").MidSpawns:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+local function getHIGH()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").HighSpawns:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getHIGHC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").HighSpawns:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+local function getH()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").InvestigatorSpawns:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getHC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").InvestigatorSpawns:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getYAK()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").YakumoSpawns.Boss:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getYC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").YakumoSpawns.Boss:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+
+local function getKU()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").KuzenSpawns.Boss:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getKC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").KuzenSpawns.Boss:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getETO()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").EtoSpawns.Boss:GetDescendants() do
+        if  v.Name == "HumanoidRootPart" and v:IsA("Part") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+local function getEC()
+    local dist, thing = math.huge
+    for i,v in next, game:GetService("Workspace").EtoSpawns.Boss:GetDescendants() do
+        if  v.Parent.Name == "ClickPart" and v:IsA("ClickDetector") then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Parent.Position).magnitude
+            if mag < dist then 
+                dist = mag 
+                thing = v 
+            end
+        end
+    end
+    return thing
+end
+    Main.TextField({
+    Text = "Distance",
+    Callback = function(Value)
+    getgenv().des = Value    
+end,
+Menu = {
+    Information = function(self)
+        X.Banner({
+            Text = "Use negatives to go underground"
+        })
+    end
+}
+})
+
+Main.Toggle({
+    Text = "Auto Farm",
+    Callback = function(Value)
+    aa = Value
+    while aa do task.wait()
+        pcall(function()
+                if mob == "Low Level Aogiri" then
+                lp.Character.HumanoidRootPart.CFrame = CFrame.new(getLOW().Position + Vector3.new(0,tonumber(des),0),getLOW().Position) 
+                    local args = {
+                        [1] = "Mouse1",
+                        [2] = "Down",
+                        [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                        [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                    }
+
+                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                    fireclickdetector(getLOWC())
+                elseif mob == "Mid Level Aogiri" then
+                lp.Character.HumanoidRootPart.CFrame = CFrame.new(getMID().Position + Vector3.new(0,tonumber(des),0),getMID().Position) 
+                    local args = {
+                        [1] = "Mouse1",
+                        [2] = "Down",
+                        [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                        [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                    }
+        
+                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                    fireclickdetector(getMIDC())
+                elseif mob == "High Level Aogiri" then
+                    lp.Character.HumanoidRootPart.CFrame = CFrame.new(getHIGH().Position + Vector3.new(0,tonumber(des),0),getHIGH().Position) 
+                        local args = {
+                            [1] = "Mouse1",
+                            [2] = "Down",
+                            [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                            [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                        }
+            
+                        game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                        fireclickdetector(getHIGHC())
+                    elseif mob == "Human" then
+                        lp.Character.HumanoidRootPart.CFrame = CFrame.new(getH().Position + Vector3.new(0,tonumber(des),0),getH().Position) 
+                            local args = {
+                                [1] = "Mouse1",
+                                [2] = "Down",
+                                [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                                [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                            }
+                
+                            game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                            fireclickdetector(getHC())
+                        elseif mob == "Eto" then
+                            lp.Character.HumanoidRootPart.CFrame = CFrame.new(getETO().Position + Vector3.new(0,tonumber(des),0),getETO().Position) 
+                                local args = {
+                                    [1] = "Mouse1",
+                                    [2] = "Down",
+                                    [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                                    [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                                }
+                                fireclickdetector(getEC())
+                                game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                            elseif mob == "Yakumo" then
+                                lp.Character.HumanoidRootPart.CFrame = CFrame.new(getYAK().Position + Vector3.new(0,tonumber(des),0),getYAK().Position) 
+                                    local args = {
+                                        [1] = "Mouse1",
+                                        [2] = "Down",
+                                        [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                                        [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                                    }
+                        
+                                    game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                                    fireclickdetector(getYC())
+                                elseif mob == "Kuzen" then
+                                    lp.Character.HumanoidRootPart.CFrame = CFrame.new(getKU().Position + Vector3.new(0,tonumber(des),0),getKU().Position) 
+                                        local args = {
+                                            [1] = "Mouse1",
+                                            [2] = "Down",
+                                            [3] = CFrame.new(1680.3150634765625, 3.5645694732666016, 350.1279296875) * CFrame.Angles(-0.31118515133857727, -0.9888778924942017, -0.26249679923057556),
+                                            [5] = CFrame.new(1599.6353759765625, 19.8182373046875, 400.662109375) * CFrame.Angles(-0.42900002002716064, -0.6313362121582031, -0.2636885643005371)
+                                        }
+                            
+                                        game:GetService("Players").LocalPlayer.Character.Remotes.KeyEvent:FireServer(unpack(args))
+                                        fireclickdetector(getKC())
+                end
+            end)
+        end
+    end,
+    Enabled = false
+})
+    Misc.Dropdown({
+    Text = "Select Stat",
+    Callback = function(Value)
+        getgenv().stat = Value
+    end,
+    Options = {
+        "Speed",
+        "Durability",
+        "Quinque",
+    }
+})
+
+    Misc.TextField({
+    Text = "Stat Amount",
+    Callback = function(Value)
+        getgenv().num = Value
+    end,
+})
+    Misc.Toggle({
+    Text = "Auto Upgrade Stats",
+    Callback = function(Value)
+        a3 = Value
+        while a3 do task.wait()
+                if stat == "Quinque" then
+                local args = {
+                    [1] = "DontSpyStupid",
+                    [2] = "WeaponAddButton",
+                    [3] = tonumber(num)
+                }
+                
+                game:GetService("Players").LocalPlayer.StorageFile.statusfunction:InvokeServer(unpack(args))
+            elseif stat == "Speed" then
+                local args = {
+                    [1] = "DontSpyStupid",
+                    [2] = "SpeedAddButton",
+                    [3] = tonumber(num)
+                }
+
+                game:GetService("Players").LocalPlayer.StorageFile.statusfunction:InvokeServer(unpack(args))
+            elseif stat == "Durability" then
+                local args = {
+                    [1] = "DontSpyStupid",
+                    [2] = "DurabilityAddButton",
+                    [3] = tonumber(num)
+                }
+
+                game:GetService("Players").LocalPlayer.StorageFile.statusfunction:InvokeServer(unpack(args))
+            end
+        end
+    end,
+    Enabled = false
+})
+
+
+function Notify(titletxt, text, time)
+    local GUI = Instance.new("ScreenGui")
+    local Main = Instance.new("Frame", GUI)
+    local title = Instance.new("TextLabel", Main)
+    local message = Instance.new("TextLabel", Main)
+    GUI.Name = "NotificationOof"
+    GUI.Parent = game.CoreGui
+    Main.Name = "MainFrame"
+    Main.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+    Main.BorderSizePixel = 0
+    Main.Position = UDim2.new(1, 5, 0, 50)
+    Main.Size = UDim2.new(0, 330, 0, 100)
+ 
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.BackgroundTransparency = 0.89999997615814
+    title.Size = UDim2.new(1, 0, 0, 30)
+    title.Font = Enum.Font.SourceSansSemibold
+    title.Text = titletxt
+    title.TextColor3 = Color3.new(255 , 0, 255) --- Color to liking
+    title.TextSize = 50  --- Size to liking
+ 
+    message.BackgroundColor3 = Color3.new(0, 0, 0)
+    message.BackgroundTransparency = 1
+    message.Position = UDim2.new(0, 0, 0, 30)
+    message.Size = UDim2.new(1, 0, 1, -30)
+    message.Font = Enum.Font.SourceSans
+    message.Text = text
+    message.TextColor3 = Color3.new(255 , 0, 255)  --- color to liking
+    message.TextSize = 15   --- Size to liking
+ 
+    wait(0.1)
+    Main:TweenPosition(UDim2.new(1, -330, 0, 50), "Out", "Sine", 0.5)
+    wait(time)
+    Main:TweenPosition(UDim2.new(1, 5, 0, 50), "Out", "Sine", 0.5)
+    wait(10.0)
+    GUI:Destroy();
+end
+ 
+Notify("IMPORTANT", "DO NOT USE AUTO CCG MISSION IF YOURE A GHOUL VISE VERSA", 10)
