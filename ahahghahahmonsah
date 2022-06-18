@@ -386,13 +386,14 @@ Main.Toggle({
         "Four",
     }
 })
+
     Misc.Toggle({
     Text = "Auto Requip",
     Callback = function(Value)
         a5 = Value
         while a5 do task.wait()
             if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
-                wait(3)
+                wait(2)
         local args = {
             [1] = stage,
             [2] = "Down",
