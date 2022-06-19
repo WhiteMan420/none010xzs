@@ -346,6 +346,10 @@ Main.Toggle(
 
                         lp.Character.HumanoidRootPart.CFrame =
                             CFrame.new(getBOSS().HumanoidRootPart.Position + Vector3.new(0, tonumber(des), 0), getBOSS().HumanoidRootPart.Position)
+                            fireclickdetector(getEC())
+                            fireclickdetector(getYC())
+                            fireclickdetector(getKC())
+
                     end
                 )
             end
