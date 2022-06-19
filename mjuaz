@@ -396,7 +396,7 @@ D.Toggle(
             Information = function(self)
                 X.Banner(
                     {
-                        Text = "Must be unequipped to roll"
+                        Text = "Must be unequipped to roll. Do not use this with the button"
                     }
                 )
             end
