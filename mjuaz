@@ -358,27 +358,6 @@ D.Toggle(
     }
 )
 
-D.Toggle(
-    {
-        Text = "Player to Defender NPCs",
-        Callback = function(n)
-            n3 = n
-            while n3 do
-                task.wait()
-                pcall(
-                    function()
-                        lp.Character.HumanoidRootPart.CFrame = getNPC3().HumanoidRootPart.CFrame
-                        repeat
-                            wait()
-                            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                        until getNPC3().Dead.Value == false
-                    end
-                )
-            end
-        end,
-        Enabled = false
-    }
-)
 local p =
     D.Dropdown(
     {
@@ -426,16 +405,20 @@ D.Toggle(
 )
 D.Button(
     {
-        Text = "Spin Passive",
+        Text = "Auto Passive Until Gauntlet",
         Callback = function()
             for i, v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
                 if v:IsA("TextButton") and v.HeroName.Text == name then
-                    local args = {
-                        [1] = tonumber(v.Index.Value)
-                    }
+                    repeat
+                        local args = {
+                            [1] = tonumber(v.Index.Value)
+                        }
 
-                    game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
-                    wait(3)
+                        game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(
+                            unpack(args)
+                        )
+                        wait(3)
+                    until v.Passive.Image == "http://www.roblox.com/asset/?id=9726323860"
                 end
             end
         end
@@ -870,3 +853,6 @@ B.Toggle(
         Enabled = false
     }
 )
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+    v:Disable()
+    end
