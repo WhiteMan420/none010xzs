@@ -1,709 +1,872 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 local lp = game.Players.LocalPlayer
-local X = Material.Load({
-    Title = "Keybrew Hub | MFS",
-    Style = 3,
-    SizeX = 300,
-    SizeY = 350,
-    Theme = "Light",
-    ColorOverrides = {
-        MainFrame = Color3.fromRGB(0,0,0),
-        Toggle = Color3.fromRGB(124,37,255),
-        ToggleAccent = Color3.fromRGB(255,255,255), 
-        Dropdown = Color3.fromRGB(124,37,255),
-		DropdownAccent = Color3.fromRGB(255,255,255),
-        Slider = Color3.fromRGB(124,37,255),
-		SliderAccent = Color3.fromRGB(255,255,255),
-        NavBarAccent = Color3.fromRGB(0,0,0),
-        Content = Color3.fromRGB(0,0,0),
+local X =
+    Material.Load(
+    {
+        Title = "Keybrew Hub | MFS",
+        Style = 3,
+        SizeX = 300,
+        SizeY = 350,
+        Theme = "Light",
+        ColorOverrides = {
+            MainFrame = Color3.fromRGB(0, 0, 0),
+            Toggle = Color3.fromRGB(124, 37, 255),
+            ToggleAccent = Color3.fromRGB(255, 255, 255),
+            Dropdown = Color3.fromRGB(124, 37, 255),
+            DropdownAccent = Color3.fromRGB(255, 255, 255),
+            Slider = Color3.fromRGB(124, 37, 255),
+            SliderAccent = Color3.fromRGB(255, 255, 255),
+            NavBarAccent = Color3.fromRGB(0, 0, 0),
+            Content = Color3.fromRGB(0, 0, 0)
+        }
     }
-})
+)
 
-local Y = X.New({
-    Title = "Arena"
-})
-local D = X.New({
-    Title = "Defender/Passive"
-})
+local Y =
+    X.New(
+    {
+        Title = "Arena"
+    }
+)
+local D =
+    X.New(
+    {
+        Title = "Defender/Passive"
+    }
+)
 
-local Z = X.New({
-    Title = "Specific Farming"
-})
+local Z =
+    X.New(
+    {
+        Title = "Specific Farming"
+    }
+)
 
-local A = X.New({
-    Title = "Crystals/Fuse"
-})
+local A =
+    X.New(
+    {
+        Title = "Crystals/Fuse"
+    }
+)
 
-local B = X.New({
-    Title = "Misc"
-})
-local Cred = X.New({
-    Title = "Credits"
-})
-    Cred.Button({
-    Text = "Copy Discord UyuSF4fPC9",
-    Callback = function()
-        setclipboard("https://discord.gg/UyuSF4fPC9")
-        toclipboard("https://discord.gg/UyuSF4fPC9")
-    end,
-})
+local B =
+    X.New(
+    {
+        Title = "Misc"
+    }
+)
+local Cred =
+    X.New(
+    {
+        Title = "Credits"
+    }
+)
+Cred.Button(
+    {
+        Text = "Copy Discord UyuSF4fPC9",
+        Callback = function()
+            setclipboard("https://discord.gg/UyuSF4fPC9")
+            toclipboard("https://discord.gg/UyuSF4fPC9")
+        end
+    }
+)
 
 local Map = {}
 
-for i,v in pairs(game:GetService("Workspace").Maps:GetChildren()) do
-    if v:IsA"Folder" and v.Parent.Name == "Maps" then
-        table.insert(Map,tostring(v))
+for i, v in pairs(game:GetService("Workspace").Maps:GetChildren()) do
+    if v:IsA "Folder" and v.Parent.Name == "Maps" then
+        table.insert(Map, tostring(v))
     end
 end
 
 local In = {}
 
-for i,v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
-    if v:IsA"TextButton" and v.Parent.Name == "InventoryNest" then
-        table.insert(In,tostring(v.HeroName.Text))
+for i, v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
+    if v:IsA "TextButton" and v.Parent.Name == "InventoryNest" then
+        table.insert(In, tostring(v.HeroName.Text))
     end
 end
 
 local Enemy = {}
 
-for i,v in pairs(game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren()) do
-        if v:IsA"Model" and v.Parent.Name == "EnemyFolder" then
-            if not table.find(Enemy,tostring(v)) then
-            table.insert(Enemy,tostring(v))
+for i, v in pairs(game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren()) do
+    if v:IsA "Model" and v.Parent.Name == "EnemyFolder" then
+        if not table.find(Enemy, tostring(v)) then
+            table.insert(Enemy, tostring(v))
         end
     end
 end
 
+Y.Toggle(
+    {
+        Text = "Auto Clicker",
+        Callback = function(a)
+            a1 = a
+            while a1 do
+                task.wait()
 
-Y.Toggle({
-    Text = "Auto Clicker",
-    Callback = function(a)
-        a1 = a
-    while a1 do task.wait()
-    
-            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-        end
-    end,
-    Enabled = false
-})
-
+                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+            end
+        end,
+        Enabled = false
+    }
+)
 
 local function getNPC()
     local dist, thing = math.huge
-    for i,v in next, game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren() do
-        if v.Parent.Name == "EnemyFolder" and v.Dead.Value == false  then
-            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
-            if mag < dist then 
-                dist = mag 
-                thing = v 
+    for i, v in next, game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren() do
+        if v.Parent.Name == "EnemyFolder" and v.Dead.Value == false then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
             end
         end
     end
     return thing
 end
 
-    local function getNPC2()
-        local dist, thing = math.huge
-        for i,v in next, game:GetService("Workspace").Arenas:GetDescendants() do
-            if  v.Parent.Name == "ArenaEnemies" and v.Dead.Value == false  then
-                local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
-                if mag < dist then 
-                    dist = mag 
-                    thing = v 
-                end
+local function getNPC2()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace").Arenas:GetDescendants() do
+        if v.Parent.Name == "ArenaEnemies" and v.Dead.Value == false then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
             end
         end
-        return thing
     end
-   
-    local function getNPC3()
-        local dist, thing = math.huge
-        for i,v in next, game:GetService("Workspace").DefenderRooms.DefenderRoom.DefenderEnemies:GetChildren() do
-            if  v.HumanoidRootPart.CFrame == v.CFrameTarget.Value and v.Dead.Value == false  then
-                local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
-                if mag < dist then 
-                    dist = mag 
-                    thing = v 
-                end
+    return thing
+end
+
+local function getNPC3()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace").DefenderRooms.DefenderRoom.DefenderEnemies:GetChildren() do
+        if v.HumanoidRootPart.CFrame == v.CFrameTarget.Value and v.Dead.Value == false then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
             end
         end
-        return thing
     end
-        Y.Toggle({
+    return thing
+end
+Y.Toggle(
+    {
         Text = "TP to Arena",
         Callback = function(e)
             ee = e
-        while ee do task.wait()
-            pcall(function()
-                if game:GetService("Workspace").Arenas.ArenaOpen.Value == true and game.Players.LocalPlayer.extrastats.Gamemode.Value == "None" then
-                                
+            while ee do
+                task.wait()
+                pcall(
+                    function()
+                        if
+                            game:GetService("Workspace").Arenas.ArenaOpen.Value == true and
+                                game.Players.LocalPlayer.extrastats.Gamemode.Value == "None"
+                         then
                             game:GetService("ReplicatedStorage").Remotes.ArenaRemotes.JoinArena:InvokeServer()
-                            game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:FireServer()                         
-                            repeat wait() 
+                            game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:FireServer()
+                            repeat
+                                wait()
                                 game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
                             until v.Value == false
                         end
-                    end)
-                end
+                    end
+                )
+            end
         end,
         Enabled = false
-    })
-   
-        Y.Toggle({
+    }
+)
+
+Y.Toggle(
+    {
         Text = "Auto Arena",
         Callback = function(b)
             b1 = b
-            while b1 do task.wait()
-                pcall(function()
-           
-                    local args = {
-                    [1] = getNPC2()
-                    }
-           
-                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
+            while b1 do
+                task.wait()
+                pcall(
+                    function()
+                        local args = {
+                            [1] = getNPC2()
+                        }
 
-                end)
+                        game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
+                    end
+                )
             end
         end,
-        
         Enabled = false,
         Menu = {
             Information = function(self)
-                X.Banner({
-                    Text = "Auto Kills Arena Mobs. Only works when inside of Arena Mode"
-                })
+                X.Banner(
+                    {
+                        Text = "Auto Kills Arena Mobs. Only works when inside of Arena Mode"
+                    }
+                )
             end
         }
-    })
-        Y.Toggle({
+    }
+)
+Y.Toggle(
+    {
         Text = "TP to Arena NPCs",
         Callback = function(n)
             n1 = n
-            while n1 do task.wait()
-                pcall(function()                 
-                            for i,hero in next, game:GetService("Workspace").HeroFolder:GetChildren() do
-                            if  hero:IsA("Model")  then
-                                hero.HumanoidRootPart.CFrame =  getNPC2().HumanoidRootPart.CFrame
-                            repeat wait() 
-                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                            until getNPC2().Dead.Value == false
+            while n1 do
+                task.wait()
+                pcall(
+                    function()
+                        for i, hero in next, game:GetService("Workspace").HeroFolder:GetChildren() do
+                            if hero:IsA("Model") then
+                                hero.HumanoidRootPart.CFrame = getNPC2().HumanoidRootPart.CFrame
+                                repeat
+                                    wait()
+                                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                                until getNPC2().Dead.Value == false
+                            end
                         end
                     end
-                end)
+                )
             end
         end,
         Enabled = false
-    })
-    D.Toggle({
+    }
+)
+D.Toggle(
+    {
         Text = "TP to Defender",
         Callback = function(e)
             ee = e
-        while ee do task.wait()
-                        if game.Players.LocalPlayer.extrastats.Gamemode.Value == "None" and lp.PlayerGui.DefenderChatter.MainFrame.Options.Join.TextLabel.Text == "JOIN DEFENDER" then 
-                            game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.JoinDefender:InvokeServer()
-                            game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:FireServer()
+            while ee do
+                task.wait()
+                if
+                    game.Players.LocalPlayer.extrastats.Gamemode.Value == "None" and
+                        lp.PlayerGui.DefenderChatter.MainFrame.Options.Join.TextLabel.Text == "JOIN DEFENDER"
+                 then
+                    game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.JoinDefender:InvokeServer()
+                    game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:FireServer()
                 end
             end
         end,
         Enabled = false
-    })
+    }
+)
 
-    D.Toggle({
+D.Toggle(
+    {
         Text = "Auto Defender Mode",
         Callback = function(b)
             b2 = b
-            while b2 do task.wait()
-                pcall(function()
-                    if game.Players.LocalPlayer.extrastats.Gamemode.Value == "Defender" then
-                    local args = {
-                    [1] = getNPC3()
-                    }
-           
-                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
-                    wait(2)
+            while b2 do
+                task.wait()
+                pcall(
+                    function()
+                        if game.Players.LocalPlayer.extrastats.Gamemode.Value == "Defender" then
+                            local args = {
+                                [1] = getNPC3()
+                            }
 
-                elseif game:GetService("Workspace").DefenderRooms.DefenderRoom.Timer.Value == "0" then
-
-                        game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.EndDefender:FireServer()
-                end
-                end)
+                            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(
+                                unpack(args)
+                            )
+                            wait(2)
+                        elseif game:GetService("Workspace").DefenderRooms.DefenderRoom.Timer.Value == "0" then
+                            game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.EndDefender:FireServer()
+                        end
+                    end
+                )
             end
         end,
-        
         Enabled = false,
         Menu = {
             Information = function(self)
-                X.Banner({
-                    Text = "Auto Kills Defender Mobs. Only works when inside of Defender Mode"
-                })
+                X.Banner(
+                    {
+                        Text = "Auto Kills Defender Mobs. Only works when inside of Defender Mode"
+                    }
+                )
             end
         }
-    })
+    }
+)
 
-
-    D.Toggle({
+D.Toggle(
+    {
         Text = "Infinite Time Defender Mode",
         Callback = function(b)
             b3 = b
-            while b3 do task.wait()
-                pcall(function()
-           
-                    local args = {
-                    [1] = getNPC3()
-                    }
-           
-                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
-                    wait(2)
-                    repeat wait()
-                        game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.EndDefender:FireServer()
-                    until game:GetService("Workspace").DefenderRooms.DefenderRoom.IsEnded.Value == false
+            while b3 do
+                task.wait()
+                pcall(
+                    function()
+                        local args = {
+                            [1] = getNPC3()
+                        }
 
-                end)
+                        game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
+                        wait(2)
+                        repeat
+                            wait()
+                            game:GetService("ReplicatedStorage").Remotes.DefenderRemotes.EndDefender:FireServer()
+                        until game:GetService("Workspace").DefenderRooms.DefenderRoom.IsEnded.Value == false
+                    end
+                )
             end
         end,
-        
         Enabled = false,
         Menu = {
             Information = function(self)
-                X.Banner({
-                    Text = "Toggle before entering Defender Mode"
-                })
+                X.Banner(
+                    {
+                        Text = "Toggle before entering Defender Mode"
+                    }
+                )
             end
         }
-    })
-        D.Toggle({
+    }
+)
+D.Toggle(
+    {
         Text = "Hero to Defender NPCs",
         Callback = function(n)
             n2 = n
-            while n2 do task.wait()
-                pcall(function()                 
-                            for i,hero in next, game:GetService("Workspace").HeroFolder:GetChildren() do
-                            if  hero:IsA("Model")  then
-                                hero.HumanoidRootPart.CFrame =  getNPC3().HumanoidRootPart.CFrame
-                            repeat wait() 
-                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                            until getNPC3().Dead.Value == false
+            while n2 do
+                task.wait()
+                pcall(
+                    function()
+                        for i, hero in next, game:GetService("Workspace").HeroFolder:GetChildren() do
+                            if hero:IsA("Model") then
+                                hero.HumanoidRootPart.CFrame = getNPC3().HumanoidRootPart.CFrame
+                                repeat
+                                    wait()
+                                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                                until getNPC3().Dead.Value == false
+                            end
                         end
                     end
-                end)
+                )
             end
         end,
         Enabled = false
-    })
+    }
+)
 
-    D.Toggle({
+D.Toggle(
+    {
         Text = "Player to Defender NPCs",
         Callback = function(n)
             n3 = n
-            while n3 do task.wait()
-                pcall(function()                 
-                                lp.Character.HumanoidRootPart.CFrame =  getNPC3().HumanoidRootPart.CFrame
-                            repeat wait() 
-                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                            until getNPC3().Dead.Value == false
-                    end)
-                end
+            while n3 do
+                task.wait()
+                pcall(
+                    function()
+                        lp.Character.HumanoidRootPart.CFrame = getNPC3().HumanoidRootPart.CFrame
+                        repeat
+                            wait()
+                            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                        until getNPC3().Dead.Value == false
+                    end
+                )
+            end
         end,
         Enabled = false
-    })
-      local p =  D.Dropdown({
+    }
+)
+local p =
+    D.Dropdown(
+    {
         Text = "Hero Name",
         Callback = function(j)
             getgenv().name = j
         end,
-        Options = In,
-    })
-    D.Toggle({
+        Options = In
+    }
+)
+D.Toggle(
+    {
         Text = "Auto Passive",
         Callback = function(a)
             a2 = a
-            while a2 do task.wait()
-                        for i,v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
-                            if v:IsA("TextButton") and v.HeroName.Text == name then
+            while a2 do
+                task.wait()
+                for i, v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren(
 
+                ) do
+                    if v:IsA("TextButton") and v.HeroName.Text == name then
                         local args = {
                             [1] = tonumber(v.Index.Value)
                         }
 
-                        game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
+                        game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(
+                            unpack(args)
+                        )
                         wait(3)
                     end
                 end
-            end            
+            end
         end,
-
         Enabled = false,
         Menu = {
             Information = function(self)
-                X.Banner({
-                    Text = "Must be unequipped to roll"
-                })
+                X.Banner(
+                    {
+                        Text = "Must be unequipped to roll"
+                    }
+                )
             end
         }
-        
-    })
+    }
+)
+D.Button(
+    {
+        Text = "Spin Passive",
+        Callback = function()
+            for i, v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
+                if v:IsA("TextButton") and v.HeroName.Text == name then
+                    local args = {
+                        [1] = tonumber(v.Index.Value)
+                    }
 
-    D.Button({Text = "Refresh Heroes", Callback = function()
-        table.clear(In)
-        for i,v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
-            if v:IsA"TextButton" and v.Parent.Name == "InventoryNest" then
-                table.insert(In,tostring(v.HeroName.Text))
-                    p:SetOptions(In)
+                    game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PassiveRoll:InvokeServer(unpack(args))
+                    wait(3)
+                end
             end
         end
-    end,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Having a lot of heroes in inventory may cause crash"
-            })
-        end
-    }})
-    
-    
+    }
+)
 
-    Z.Toggle({
+D.Button(
+    {
+        Text = "Refresh Heroes",
+        Callback = function()
+            table.clear(In)
+            for i, v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
+                if v:IsA "TextButton" and v.Parent.Name == "InventoryNest" then
+                    table.insert(In, tostring(v.HeroName.Text))
+                    p:SetOptions(In)
+                end
+            end
+        end,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Having a lot of heroes in inventory may cause crash"
+                    }
+                )
+            end
+        }
+    }
+)
+
+Z.Toggle(
+    {
         Text = "Auto Attack Closest",
         Callback = function(m)
             m1 = m
-            while m1 do task.wait()
-                pcall(function()
-           
-                    local args = {
-                    [1] = getNPC()
-                    }
-           
-                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
-                end)
+            while m1 do
+                task.wait()
+                pcall(
+                    function()
+                        local args = {
+                            [1] = getNPC()
+                        }
+
+                        game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
+                    end
+                )
             end
         end,
         Enabled = false
-    })
-    
-
-
-
-local drop = Z.Dropdown({
-    Text = "Enemy Select",
-    Callback = function(sex)
-        getgenv().safe = sex
-    end,
-    Options = 
-        Enemy
-    ,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Select the npc to farm"
-            })
-        end
     }
-})
+)
 
-Z.Toggle({
-    Text = "Auto Farm",
-    Callback = function(m)
-        m2 = m
-        while m2 do task.wait()
-                        if lp.extrastats.Gamemode.Value == "None"  then
-                local args = {
-                    [1] = workspace.Maps[lp.extrastats.Location.Value].EnemyFolder:FindFirstChild(safe)
-                }
-
-                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
-
-                repeat wait() 
-                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                until lp.extrastats.Gamemode.Value == "None"
+local drop =
+    Z.Dropdown(
+    {
+        Text = "Enemy Select",
+        Callback = function(sex)
+            getgenv().safe = sex
+        end,
+        Options = Enemy,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Select the npc to farm"
+                    }
+                )
             end
-        end
-    end,
-    Enabled = false
-})
+        }
+    }
+)
 
-Z.Toggle({
-    Text = "Hero to Enemy",
-    Callback = function(z)
-        zz = z
-     while zz do task.wait()
-        pcall(function()
-                            if game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false then
-                            for i,v in next, game:GetService("Workspace").HeroFolder:GetChildren() do
-                                if  v:IsA("Model")  then
-                        if  lp.extrastats.Gamemode.Value == "None" then
-                            v.HumanoidRootPart.CFrame =  game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].HumanoidRootPart.CFrame
-                            repeat wait() 
-                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                            until game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false
-                        end
+Z.Toggle(
+    {
+        Text = "Auto Farm",
+        Callback = function(m)
+            m2 = m
+            while m2 do
+                task.wait()
+                if lp.extrastats.Gamemode.Value == "None" then
+                    local args = {
+                        [1] = workspace.Maps[lp.extrastats.Location.Value].EnemyFolder:FindFirstChild(safe)
+                    }
+
+                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
+
+                    repeat
+                        wait()
+                        game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                    until lp.extrastats.Gamemode.Value == "None"
+                end
+            end
+        end,
+        Enabled = false
+    }
+)
+
+Z.Toggle(
+    {
+        Text = "Hero to Enemy",
+        Callback = function(z)
+            zz = z
+            while zz do
+                task.wait()
+                pcall(
+                    function()
+                        if game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false then
+                            for i, v in next, game:GetService("Workspace").HeroFolder:GetChildren() do
+                                if v:IsA("Model") then
+                                    if lp.extrastats.Gamemode.Value == "None" then
+                                        v.HumanoidRootPart.CFrame =
+                                            game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].HumanoidRootPart.CFrame
+                                        repeat
+                                            wait()
+                                            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer(
+
+                                            )
+                                        until game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value ==
+                                            false
+                                    end
+                                end
+                            end
                         end
                     end
-                end
-            end)
-        end
-    end,
-    Enabled = false
-})
+                )
+            end
+        end,
+        Enabled = false
+    }
+)
 
-Z.Toggle({
-    Text = "Player to Enemy",
-    Callback = function(z)
-        zz = z
-     while zz do task.wait()
-        pcall(function()
-                            if game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false then
-                        if  lp.extrastats.Gamemode.Value == "None" then
-                            lp.Character.HumanoidRootPart.CFrame =  game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].HumanoidRootPart.CFrame
-                            repeat wait() 
-                                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-                            until game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false
+Z.Toggle(
+    {
+        Text = "Player to Enemy",
+        Callback = function(z)
+            zz = z
+            while zz do
+                task.wait()
+                pcall(
+                    function()
+                        if game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value == false then
+                            if lp.extrastats.Gamemode.Value == "None" then
+                                lp.Character.HumanoidRootPart.CFrame =
+                                    game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].HumanoidRootPart.CFrame
+                                repeat
+                                    wait()
+                                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                                until game.workspace.Maps[lp.extrastats.Location.Value].EnemyFolder[safe].Dead.Value ==
+                                    false
+                            end
+                        end
+                    end
+                )
+            end
+        end,
+        Enabled = false
+    }
+)
+
+Z.Button(
+    {
+        Text = "Refresh Enemies",
+        Callback = function()
+            table.clear(Enemy)
+            for i, v in pairs(game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren()) do
+                if v:IsA "Model" and v.Parent.Name == "EnemyFolder" then
+                    if not table.find(Enemy, tostring(v)) then
+                        table.insert(Enemy, tostring(v))
+                        drop:SetOptions(Enemy)
                     end
                 end
-            end)
-        end
-    end,
-    Enabled = false
-})
-
-
-
-
-Z.Button({Text = "Refresh Enemies", Callback = function()
-    table.clear(Enemy)
-        for i,v in pairs(game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren()) do
-            if v:IsA"Model" and v.Parent.Name == "EnemyFolder" then
-                if not table.find(Enemy,tostring(v)) then
-                table.insert(Enemy,tostring(v))
-                drop:SetOptions(Enemy)
             end
         end
-    end
-end,
-})
-
-    A.Dropdown({
-    Text = "Crystal Select",
-    Callback = function(Map)
-        getgenv().map = Map
-    end,
-    Options = 
-        Map
-    ,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Select the crystal to hatch"
-            })
-        end
     }
-})
-    A.Toggle({
-    Text = "Auto Hatch",
-    Callback = function(f)
-        ff = f
-        while ff do task.wait(.5)
-    
+)
+
+A.Dropdown(
+    {
+        Text = "Crystal Select",
+        Callback = function(Map)
+            getgenv().map = Map
+        end,
+        Options = Map,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Select the crystal to hatch"
+                    }
+                )
+            end
+        }
+    }
+)
+A.Toggle(
+    {
+        Text = "Auto Hatch",
+        Callback = function(f)
+            ff = f
+            while ff do
+                task.wait(.5)
+
                 local args = {
                     [1] = map
                 }
-                
+
                 game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.HeroRoll:InvokeServer(unpack(args))
-        end
-    end,
-    Enabled = false
-})
+            end
+        end,
+        Enabled = false
+    }
+)
 
-    A.Toggle({
-    Text = "Auto Hatch Ticket Crystal",
-    Callback = function(f)
-        ff = f
-        while ff do task.wait()
-            if lp.PlayerGui.CrystalShop.Animating.Value == false then
-                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
-            local args = {
-                [1] = "Robux Crystal"
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PurchaseArenaItem:InvokeServer(unpack(args))
-        end
-       end
-    end,
-    Enabled = false
-})
-
-
-   local t = A.Dropdown({
-    Text = "Hero Name",
-    Callback = function(k)
-        getgenv().name1 = k
-    end,
-    Options = In,
-})
-
-    A.Toggle({
-    Text = "Auto Fuse Unlocked",
-    Callback = function(a)
-        a3 = a
-        while a3 do task.wait()
-            pcall(function()
-            for i,v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
-                if v:IsA("TextButton") and v.HeroName.Text == name1 then
-                    for ii,vv in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren() do
-                        if vv:IsA("TextButton") then
+A.Toggle(
+    {
+        Text = "Auto Hatch Ticket Crystal",
+        Callback = function(f)
+            ff = f
+            while ff do
+                task.wait()
+                if lp.PlayerGui.CrystalShop.Animating.Value == false then
+                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
                     local args = {
-                        [1] = tonumber(v.Index.Value),
-                        [2] = { 
-                            ii
-                            
-
-
-                        }
+                        [1] = "Robux Crystal"
                     }
 
-                    game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(unpack(args))
-                    wait(.5)
+                    game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.PurchaseArenaItem:InvokeServer(
+                        unpack(args)
+                    )
                 end
+            end
+        end,
+        Enabled = false
+    }
+)
+
+local t =
+    A.Dropdown(
+    {
+        Text = "Hero Name",
+        Callback = function(k)
+            getgenv().name1 = k
+        end,
+        Options = In
+    }
+)
+
+A.Toggle(
+    {
+        Text = "Auto Fuse Unlocked",
+        Callback = function(a)
+            a3 = a
+            while a3 do
+                task.wait()
+                pcall(
+                    function()
+                        for i, v in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren(
+
+                        ) do
+                            if v:IsA("TextButton") and v.HeroName.Text == name1 then
+                                for ii, vv in next, lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren(
+
+                                ) do
+                                    if vv:IsA("TextButton") then
+                                        local args = {
+                                            [1] = tonumber(v.Index.Value),
+                                            [2] = {
+                                                ii
+                                            }
+                                        }
+
+                                        game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.FuseHeroes:FireServer(
+                                            unpack(args)
+                                        )
+                                        wait(.5)
+                                    end
+                                end
+                            end
                         end
-                    end 
+                    end
+                )
+            end
+        end,
+        Enabled = false
+    }
+)
+
+A.Button(
+    {
+        Text = "Refresh Heroes",
+        Callback = function()
+            table.clear(In)
+            for i, v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
+                if v:IsA "TextButton" and v.Parent.Name == "InventoryNest" then
+                    table.insert(In, tostring(v.HeroName.Text))
+                    t:SetOptions(In)
                 end
-            end)
-        end            
-    end,
-
-    Enabled = false,
-    
-})
-
-    A.Button({Text = "Refresh Heroes", Callback = function()
-    table.clear(In)
-    for i,v in pairs(lp.PlayerGui.Inventory.MainFrame.InnerFrame.InventoryScroll.InventoryNest:GetChildren()) do
-        if v:IsA"TextButton" and v.Parent.Name == "InventoryNest" then
-            table.insert(In,tostring(v.HeroName.Text))
-                t:SetOptions(In)
-        end
-    end
-
-end,
-Menu = {
-    Information = function(self)
-        X.Banner({
-            Text = "Having a lot of heroes in inventory may cause crash"
-        })
-    end
-}
-
-})
-   
-    B.Dropdown({
-    Text = "Map Select",
-    Callback = function(Tp)
-        getgenv().tp = Tp
-    end,
-    Options = 
-        Map
-    ,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Select the Map to teleport"
-            })
-        end
+            end
+        end,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Having a lot of heroes in inventory may cause crash"
+                    }
+                )
+            end
+        }
     }
-})
-    B.Button({
-    Text = "Teleport to",
-    Callback = function()
-        local args = {
-            [1] = tp
-           }
-           
-           game:GetService("ReplicatedStorage").Remotes.LocationRemotes.ChangeLocation:InvokeServer(unpack(args))
-           
-           game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:FireServer()    end,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Teleport to map"
-            })
-        end
+)
+
+B.Dropdown(
+    {
+        Text = "Map Select",
+        Callback = function(Tp)
+            getgenv().tp = Tp
+        end,
+        Options = Map,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Select the Map to teleport"
+                    }
+                )
+            end
+        }
     }
-})
-   
-    B.Slider({
-    Text = "WalkSpeed",
-    Callback = function(warthog)
-        getgenv().speed = warthog
-    end,
-    Min = 1,
-    Max = 500,
-    Def = 50
-})
-    B.Toggle({
-    Text = "Toggle",
-    Callback = function(g)
-        gg = g
-        while gg do task.wait()
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
-        end
-    end,
-    Enabled = false
-})
-   
-    B.Toggle({
-    Text = "Equip Best",
-    Callback = function(k)
-        kk = k
-        while kk do task.wait()
-            game:GetService("ReplicatedStorage").Remotes.HeroRemotes.EquipBest:FireServer()
+)
+B.Button(
+    {
+        Text = "Teleport to",
+        Callback = function()
+            local args = {
+                [1] = tp
+            }
 
-        end
-    end,
-    Enabled = false
-})
+            game:GetService("ReplicatedStorage").Remotes.LocationRemotes.ChangeLocation:InvokeServer(unpack(args))
 
-B.Toggle({
-    Text = "Auto Rewards",
-    Callback = function(p)
-        pp = p
-        while pp do task.wait()
-            local args = {
-                [1] = 1
-                
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
-            local args = {
-                [1] = 2
-                
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
-            local args = {
-                [1] = 3
-                
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
-            local args = {
-                [1] = 4
-                
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
-            local args = {
-                [1] = 5
-                
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
-            local args = {
-                [1] = 6
-                
-            }
-            
-            game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.LocationRemotes.RespawnRequest:FireServer()
+        end,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Teleport to map"
+                    }
+                )
+            end
+        }
+    }
+)
 
-        end
-    end,
-    Enabled = false
-})
+B.Slider(
+    {
+        Text = "WalkSpeed",
+        Callback = function(warthog)
+            getgenv().speed = warthog
+        end,
+        Min = 1,
+        Max = 500,
+        Def = 50
+    }
+)
+B.Toggle(
+    {
+        Text = "Toggle",
+        Callback = function(g)
+            gg = g
+            while gg do
+                task.wait()
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+            end
+        end,
+        Enabled = false
+    }
+)
+
+B.Toggle(
+    {
+        Text = "Equip Best",
+        Callback = function(k)
+            kk = k
+            while kk do
+                task.wait()
+                game:GetService("ReplicatedStorage").Remotes.HeroRemotes.EquipBest:FireServer()
+            end
+        end,
+        Enabled = false
+    }
+)
+
+B.Toggle(
+    {
+        Text = "Auto Rewards",
+        Callback = function(p)
+            pp = p
+            while pp do
+                task.wait()
+                local args = {
+                    [1] = 1
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+                local args = {
+                    [1] = 2
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+                local args = {
+                    [1] = 3
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+                local args = {
+                    [1] = 4
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+                local args = {
+                    [1] = 5
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+                local args = {
+                    [1] = 6
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.GiftRemotes.ClaimGift:FireServer(unpack(args))
+            end
+        end,
+        Enabled = false
+    }
+)
