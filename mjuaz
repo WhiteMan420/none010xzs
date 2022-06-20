@@ -366,6 +366,7 @@ D.Toggle(
                 task.wait()
                 pcall(
                     function()
+                        game.Players.LocalPlayer.HumanoidRootPart.CFrame = getNPC3().HumanoidRootPart.CFrame
                                 repeat
                                     wait()
                                     game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
