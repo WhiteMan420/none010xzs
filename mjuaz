@@ -357,7 +357,26 @@ D.Toggle(
         Enabled = false
     }
 )
-
+D.Toggle(
+    {
+        Text = "Player to Defender NPCs",
+        Callback = function(n)
+            n2 = n
+            while n2 do
+                task.wait()
+                pcall(
+                    function()
+                                repeat
+                                    wait()
+                                    game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackClick:InvokeServer()
+                                until getNPC3().Dead.Value == false
+                    end
+                )
+            end
+        end,
+        Enabled = false
+    }
+)
 local p =
     D.Dropdown(
     {
