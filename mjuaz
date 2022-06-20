@@ -243,8 +243,8 @@ D.Toggle(
     {
         Text = "TP to Defender",
         Callback = function(e)
-            ee = e
-            while ee do
+            e0 = e
+            while e0 do
                 task.wait()
                 if
                     game.Players.LocalPlayer.extrastats.Gamemode.Value == "None" and
