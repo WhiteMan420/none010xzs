@@ -361,8 +361,8 @@ D.Toggle(
     {
         Text = "Player to Defender NPCs",
         Callback = function(n)
-            n2 = n
-            while n2 do
+            n3 = n
+            while n3 do
                 task.wait()
                 pcall(
                     function()
