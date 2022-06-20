@@ -511,6 +511,21 @@ local drop =
     }
 )
 
+local function getNPC0()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace").Maps[lp.extrastats.Location.Value].EnemyFolder:GetChildren() do
+        if v.Name == safe and v.Dead.Value == false then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+
 Z.Toggle(
     {
         Text = "Auto Farm",
@@ -520,7 +535,7 @@ Z.Toggle(
                 task.wait()
                 if lp.extrastats.Gamemode.Value == "None" then
                     local args = {
-                        [1] = workspace.Maps[lp.extrastats.Location.Value].EnemyFolder:FindFirstChild(safe)
+                        [1] = getNPC0()
                     }
 
                     game:GetService("ReplicatedStorage").Remotes.HeroRemotes.AttackEnemy:FireServer(unpack(args))
