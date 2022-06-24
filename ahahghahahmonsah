@@ -49,7 +49,13 @@ Cred.Button(
         end
     }
 )
+local Wep = {}
 
+    for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        if v:IsA "Model"  then
+            table.insert(Wep, tostring(v))
+        end
+    end
 Main.Toggle(
     {
         Text = "Auto Attack",
@@ -346,6 +352,9 @@ Main.Toggle(
 
                         lp.Character.HumanoidRootPart.CFrame =
                             CFrame.new(getBOSS().HumanoidRootPart.Position + Vector3.new(0, tonumber(des), 0), getBOSS().HumanoidRootPart.Position)
+                            fireclickdetector(getEC())
+                            fireclickdetector(getYC())
+                            fireclickdetector(getKC())
 
                     end
                 )
@@ -508,7 +517,34 @@ Misc.Dropdown(
         }
     }
 )
-
+local w = Misc.Dropdown({
+    Text = "Select Weapon",
+    Callback = function(Value)
+        getgenv().wep = Value
+    end,
+    Options = Wep,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "Equip Weapon then press refresh then select weapon"
+            })
+        end
+    }
+})
+Misc.Button(
+    {
+        Text = "Refresh Weapons",
+        Callback = function()
+            table.clear(Wep)
+            for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA "Model"  then
+                    table.insert(Wep, tostring(v))
+                    w:SetOptions(Wep)
+                end
+            end
+        end,
+    }
+)
 Misc.Toggle(
     {
         Text = "Auto Requip",
@@ -518,7 +554,7 @@ Misc.Toggle(
                 task.wait()
                 pcall(function()
                     for i, v in next, game.workspace:GetChildren() do
-                        if v.Name == lp.Character.Name and not v:FindFirstChild("Quinque") and not v:FindFirstChild("Kagune") then
+                        if v.Name == lp.Character.Name and not v:FindFirstChild(wep) then
                             local args = {
                                 [1] = stage,
                                 [2] = "Down",
@@ -539,7 +575,7 @@ Misc.Toggle(
             Information = function(self)
                 X.Banner(
                     {
-                        Text = "Re equip upon death"
+                        Text = "Must use Select Weapon and Select Stage dropdowns to work"
                     }
                 )
             end
