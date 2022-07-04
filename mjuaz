@@ -657,7 +657,8 @@ A.Toggle(
                 task.wait(.5)
 
                 local args = {
-                    [1] = map
+                    [1] = map,
+                    [2] = "Normal"
                 }
 
                 game:GetService("ReplicatedStorage").Remotes.InventoryRemotes.HeroRoll:InvokeServer(unpack(args))
