@@ -71,6 +71,14 @@ Cred.Button(
     }
 )
 
+local Egg = {}
+
+for i, v in pairs(game:GetService("ReplicatedStorage").Heroes:GetChildren()) do
+    if v:IsA "Folder" and v.Parent.Name == "Heroes" then
+        table.insert(Egg, tostring(v))
+    end
+end
+
 local Map = {}
 
 for i, v in pairs(game:GetService("Workspace").Maps:GetChildren()) do
@@ -633,10 +641,10 @@ Z.Button(
 A.Dropdown(
     {
         Text = "Crystal Select",
-        Callback = function(Map)
-            getgenv().map = Map
+        Callback = function(Egg)
+            getgenv().egg = Egg
         end,
-        Options = Map,
+        Options = Egg,
         Menu = {
             Information = function(self)
                 X.Banner(
@@ -657,7 +665,7 @@ A.Toggle(
                 task.wait(.5)
 
                 local args = {
-                    [1] = map,
+                    [1] = egg,
                     [2] = "Normal"
                 }
 
