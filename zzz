@@ -168,8 +168,6 @@ Create()
 task.wait(1)
 start2()
 task.wait()
-WatermarkForIdiotYter()
-task.wait(5)
 end
 elseif game.PlaceId == 8349889591 then
 repeat wait() until game:IsLoaded()
