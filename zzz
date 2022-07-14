@@ -154,6 +154,7 @@ elseif game:GetService("Workspace")["_wave_num"].Value > 5 then
 
 local function teleport() 
 if game:GetService("Workspace")["_DATA"].GameFinished.Value == true then
+webhook()
 task.wait(5)
 game:GetService("ReplicatedStorage").endpoints.client_to_server.teleport_back_to_lobby:InvokeServer()
 end
@@ -193,7 +194,6 @@ place2()
 upgrade()
 start()
 teleport()
-webhook()
 sell()
 end
 end
