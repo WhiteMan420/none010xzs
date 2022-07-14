@@ -193,6 +193,8 @@ place2()
 upgrade()
 start()
 teleport()
+webhook()
+sell()
 end
 end
   end
