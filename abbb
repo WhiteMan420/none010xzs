@@ -1,7 +1,7 @@
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
 
 local X = Material.Load({
-    Title = "Keybrew Hub | Anime Battles Simulator",
+    Title = "Keybrew Hub | Anime Battle Simulator",
     Style = 3,
     SizeX = 300,
     SizeY = 350,
@@ -131,6 +131,7 @@ Y.Toggle({
         while aa do task.wait()
             pcall(function()
             game:GetService("Workspace").Live.Pickups.Pickup.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            game:GetService("Workspace").Live.Pickups.Material.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
         end)
         end
     end,
@@ -151,53 +152,6 @@ Z.Button({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].SpawnLocation.CFrame
     end,
 })
-local Villain = {}
-
-    for i, v in pairs(game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].NPCs:GetChildren()) do
-        if v.Parent.Name == "NPCs"  then
-            if not table.find(Villain, tostring(v)) then
-            table.insert(Villain, tostring(v))
-            end
-    end
-end
-local va = Z.Dropdown({
-    Text = "Select NPC",
-    Callback = function(Value)
-        getgenv().villain = Value
-    end,
-    Options = Villain
-})
-
-Z.Button({
-    Text = "Teleport to NPC",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].NPCs[villain].CFrame
-    end,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "Select a World then refresh to work"
-            })
-        end
-    }
-})
-
-Z.Button(
-    {
-        Text = "Refresh NPCs",
-        Callback = function()
-            table.clear(Villain)
-            for i, v in pairs(game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].NPCs:GetChildren()) do
-                if v.Parent.Name == "NPCs"  then
-                    if not table.find(Villain, tostring(v)) then
-                        table.insert(Villain, tostring(v))
-                        va:SetOptions(Villain)
-                    end
-                end
-            end
-        end
-    }
-)
 
 B.Slider(
     {
