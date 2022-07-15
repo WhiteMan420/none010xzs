@@ -1,0 +1,141 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local X = Material.Load({
+    Title = "Keybrew Hub | Pet Posse",
+    Style = 3,
+    SizeX = 300,
+    SizeY = 350,
+    Theme = "Light",
+    ColorOverrides = {
+        MainFrame = Color3.fromRGB(0,0,0),
+        Toggle = Color3.fromRGB(124,37,255),
+        ToggleAccent = Color3.fromRGB(255,255,255), 
+        Dropdown = Color3.fromRGB(124,37,255),
+		DropdownAccent = Color3.fromRGB(255,255,255),
+        Slider = Color3.fromRGB(124,37,255),
+		SliderAccent = Color3.fromRGB(255,255,255),
+        NavBarAccent = Color3.fromRGB(0,0,0),
+        Content = Color3.fromRGB(0,0,0),
+    }
+})
+
+local Y = X.New({
+    Title = "Main"
+})
+
+local B = X.New({
+    Title = "Misc"
+})
+
+local Cred = X.New({
+    Title = "Credits"
+})
+    Cred.Button({
+    Text = "Copy Discord UyuSF4fPC9",
+    Callback = function()
+        setclipboard("https://discord.gg/UyuSF4fPC9")
+        toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+local function getClosest()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace")["__THINGS"].Coins.SpawnWorld:GetChildren() do
+        if v:IsA("Folder") then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Coin.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+
+Y.Toggle({
+    Text = "Auto Attack Nearest",
+    Callback = function(Value)
+        a = Value
+        while a do task.wait()
+            pcall(function()
+            fireclickdetector(getClosest().Coin.ClickDetector)
+        end)
+        end
+    end,
+    Enabled = false
+})
+
+Y.Toggle({
+    Text = "Auto Click Circles",
+    Callback = function(Value)
+        aa = Value
+        while aa do task.wait()
+            pcall(function()
+            fireclickdetector(getClosest().Coin.ClickDetector)
+            local args = {
+                [1] = getClosest().Coin,
+                [2] = getClosest()
+            }
+
+            workspace.__THINGS.__REMOTES.clickedButton:FireServer(unpack(args))
+        end)
+        end
+    end,
+    Enabled = false
+})
+
+local Egg = {}
+
+    for i, v in pairs(game:GetService("Players").Kuvuxx.PlayerGui.Billboards.Eggs:GetChildren()) do
+        if v.Parent.Name == "Eggs"  then
+            table.insert(Egg, tostring(v))
+    end
+end
+
+Y.Dropdown({
+    Text = "Select Egg",
+    Callback = function(Value)
+        getgenv().egg = Value
+    end,
+    Options = Egg
+})
+
+Y.Toggle({
+    Text = "Auto Buy Egg",
+    Callback = function(Value)
+        aa = Value
+        while aa do task.wait()
+            local args = {
+                [1] = egg
+            }
+            workspace.__THINGS.__REMOTES.buyEgg:InvokeServer(unpack(args))
+        end
+    end,
+    Enabled = false
+})
+B.Slider(
+    {
+        Text = "WalkSpeed",
+        Callback = function(warthog)
+            getgenv().speed = warthog
+        end,
+        Min = 1,
+        Max = 500,
+        Def = 50
+    }
+)
+B.Toggle(
+    {
+        Text = "Toggle",
+        Callback = function(g)
+            gg = g
+            while gg do
+                task.wait()
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+            end
+        end,
+        Enabled = false
+    }
+)
+
+
