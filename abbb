@@ -1,0 +1,263 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local X = Material.Load({
+    Title = "Keybrew Hub | Anime Battle Simulator",
+    Style = 3,
+    SizeX = 300,
+    SizeY = 350,
+    Theme = "Light",
+    ColorOverrides = {
+        MainFrame = Color3.fromRGB(0,0,0),
+        Toggle = Color3.fromRGB(124,37,255),
+        ToggleAccent = Color3.fromRGB(255,255,255), 
+        Dropdown = Color3.fromRGB(124,37,255),
+		DropdownAccent = Color3.fromRGB(255,255,255),
+        Slider = Color3.fromRGB(124,37,255),
+		SliderAccent = Color3.fromRGB(255,255,255),
+        NavBarAccent = Color3.fromRGB(0,0,0),
+        Content = Color3.fromRGB(0,0,0),
+    }
+})
+
+local Y = X.New({
+    Title = "Main"
+})
+
+local Z = X.New({
+    Title = "Teleports"
+})
+
+local B = X.New({
+    Title = "Misc"
+})
+
+local Cred = X.New({
+    Title = "Credits"
+})
+    Cred.Button({
+    Text = "Copy Discord UyuSF4fPC9",
+    Callback = function()
+        setclipboard("https://discord.gg/UyuSF4fPC9")
+        toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+local function getnpc()
+    local dist, thing = math.huge
+    for i, v in pairs(game:GetService("Workspace").Live.ClientNPCs:GetChildren()) do
+        if v:IsA "Model"  then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+
+local World = {}
+
+    for i, v in pairs(game:GetService("Workspace").Resources.Worlds.Spawn.Areas:GetChildren()) do
+        if v:IsA "Folder"  then
+            table.insert(World, tostring(v))
+    end
+end
+
+local Power = {}
+
+    for i, v in pairs(game:GetService("ReplicatedStorage").ClientModules.Controllers.AfterLoad.PowerController.Powers:GetChildren()) do
+        if v.Parent.Name == "Powers"  then
+            table.insert(Power, tostring(v))
+    end
+end
+
+local Egg = {}
+
+    for i, v in pairs(game:GetService("Workspace").Resources.Eggs:GetDescendants()) do
+        if v:IsA "Part" then
+            if not table.find(Egg, tostring(v)) then
+            table.insert(Egg, tostring(v))
+        end
+    end
+end
+
+
+Y.Toggle({
+    Text = "Auto Attack Nearest",
+    Callback = function(Value)
+        a = Value
+        while a do task.wait()
+            pcall(function()
+            local args = {
+                [1] = getnpc().name
+            }
+
+            game:GetService("ReplicatedStorage").Packages.Knit.Services.TargettingService.RF.SelectTarget:InvokeServer(unpack(args))
+        end)
+        end
+    end,
+    Enabled = false
+})
+Y.Dropdown({
+    Text = "Select Egg",
+    Callback = function(Value)
+        getgenv().egg = Value
+    end,
+    Options = Egg
+})
+
+
+Y.Toggle({
+    Text = "Auto Open Egg",
+    Callback = function(Value)
+        a = Value
+        while a do task.wait()
+            local args = {
+                [1] = egg,
+                [2] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg:InvokeServer(unpack(args))
+        end
+    end,
+    Enabled = false
+})
+
+Y.Toggle({
+    Text = "Magnet Coins",
+    Callback = function(Value)
+        aa = Value
+        while aa do task.wait()
+            pcall(function()
+            game:GetService("Workspace").Live.Pickups.Pickup.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        end)
+        end
+    end,
+    Enabled = false
+})
+
+Z.Dropdown({
+    Text = "Select World",
+    Callback = function(Value)
+        getgenv().world = Value
+    end,
+    Options = World
+})
+
+Z.Button({
+    Text = "Teleport to World",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].SpawnLocation.CFrame
+    end,
+})
+local Villain = {}
+
+    for i, v in pairs(game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].NPCs:GetChildren()) do
+        if v.Parent.Name == "NPCs"  then
+            if not table.find(Villain, tostring(v)) then
+            table.insert(Villain, tostring(v))
+            end
+    end
+end
+local va = Z.Dropdown({
+    Text = "Select NPC",
+    Callback = function(Value)
+        getgenv().villain = Value
+    end,
+    Options = Villain
+})
+
+Z.Button({
+    Text = "Teleport to NPC",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].NPCs[villain].CFrame
+    end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "Select a World then refresh to work"
+            })
+        end
+    }
+})
+
+Z.Button(
+    {
+        Text = "Refresh NPCs",
+        Callback = function()
+            table.clear(Villain)
+            for i, v in pairs(game:GetService("Workspace").Resources.Worlds.Spawn.Areas[world].NPCs:GetChildren()) do
+                if v.Parent.Name == "NPCs"  then
+                    if not table.find(Villain, tostring(v)) then
+                        table.insert(Villain, tostring(v))
+                        va:SetOptions(Villain)
+                    end
+                end
+            end
+        end
+    }
+)
+
+B.Slider(
+    {
+        Text = "WalkSpeed",
+        Callback = function(warthog)
+            getgenv().speed = warthog
+        end,
+        Min = 1,
+        Max = 500,
+        Def = 50
+    }
+)
+B.Toggle(
+    {
+        Text = "Toggle",
+        Callback = function(g)
+            gg = g
+            while gg do
+                task.wait()
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+            end
+        end,
+        Enabled = false
+    }
+)
+
+B.Toggle(
+    {
+        Text = "Auto Equip Best",
+        Callback = function(Value)
+            best = Value
+            while best do
+                game:GetService("ReplicatedStorage").Packages.Knit.Services.InventoryService.RF.EquipBest:InvokeServer()
+            end
+        end,
+        Enabled = false
+    }
+)
+
+B.Dropdown({
+    Text = "Select Power",
+    Callback = function(Value)
+        getgenv().power = Value
+    end,
+    Options = Power
+})
+
+B.Toggle(
+    {
+        Text = "Auto Power",
+        Callback = function(Value)
+            p = Value
+            while p do
+                local args = {
+                    [1] = power
+                }
+                
+                game:GetService("ReplicatedStorage").Packages.Knit.Services.PowerService.RF.UsePowerPlayer:InvokeServer(unpack(args))
+            end
+        end,
+        Enabled = false
+    }
+)
