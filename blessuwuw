@@ -113,6 +113,20 @@ local D = Y.Dropdown({
     },
 })
 
+local function getDEMON()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace")["Demon_Flowers_Spawn"]:GetDescendants() do
+        if v:IsA("MeshPart") and v.Parent.Name == "Demon_Flower" then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
 
 
 
@@ -207,6 +221,19 @@ Y.Button({
     Text = "Teleport to Kurake",
     Callback = function()
         moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(125))
+    end,
+})
+
+T.Button({
+    Text = "Teleport to Demon Flower",
+    Callback = function()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Searching..."; 
+            Text = "If Lily not found then render more chunks..."; 
+            Icon = ""; 
+            Duration = 15; 
+            })
+         moveto(getDEMON().CFrame + Vector3.new(0,0,0), tonumber(125))
     end,
 })
 
@@ -326,5 +353,6 @@ B.Toggle(
         Enabled = false
     }
 )
+
 
 
