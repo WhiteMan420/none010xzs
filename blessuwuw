@@ -118,6 +118,7 @@ Y.Toggle({
         while aa do task.wait()
        if quest == "Wagon" then
         moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+	wait(3)
             local args = {
                 [1] = "AddQuest",
                 [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
