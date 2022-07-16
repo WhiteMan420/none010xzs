@@ -101,6 +101,15 @@ local Cred = X.New({
     end,
 })
 
+local D = Y.Dropdown({
+    Text = "Select Quest",
+    Callback = function(Value)
+        getgenv().quest = Value
+    end,
+    Options = {
+        "Wagon"
+    },
+})
 
 Y.Toggle({
     Text = "Auto Quest",
