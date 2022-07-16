@@ -102,7 +102,6 @@ local Cred = X.New({
         toclipboard("https://discord.gg/UyuSF4fPC9")
     end,
 })
-
 local D = Y.Dropdown({
     Text = "Select Quest",
     Callback = function(Value)
@@ -125,10 +124,11 @@ Y.Toggle({
        if quest == "Wagon" then
         moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(125))
         wait(3)
+
             local args = {
                 [1] = "AddQuest",
                 [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
-                [3] = 20375.4365348,
+                [3] = 84732.8527069,
                 [4] = game:GetService("ReplicatedStorage").Player_Data[game.Players.LocalPlayer.Name].Quest,
                 [5] = {
                     ["List"] = {
@@ -143,9 +143,9 @@ Y.Toggle({
                     ["Current"] = "Deliver grandpa Wagwon's wagon"
                 }
             }
-            
+
             game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-            wait()
+            task.wait()
             moveto(CFrame.new(450, 275, -2674) + Vector3.new(0,0,0), tonumber(125))
             wait(8)
             moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(125))
@@ -156,7 +156,7 @@ Y.Toggle({
         local args = {
             [1] = "AddQuest",
             [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
-            [3] = 36608.7356407,
+            [3] = 86188.8231813,
             [4] = game:GetService("ReplicatedStorage").Player_Data[game.Players.LocalPlayer.Name].Quest,
             [5] = {
                 ["List"] = {
@@ -173,18 +173,21 @@ Y.Toggle({
         }
 
         game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+
         moveto(CFrame.new(297, 276, -2545) + Vector3.new(0,0,0), tonumber(125))
-        wait(6)
+        wait(10)
+
             local args = {
                 [1] = "Quest_add",
                 [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
-                [3] = 36957.913095899996,
+                [3] = 86230.3159479,
                 [4] = {},
                 [5] = game:GetService("Players").LocalPlayer,
                 [6] = "ouwbihgemstoneasd123"
             }
 
             game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+
             moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(125))
             wait(30)
 
