@@ -102,55 +102,7 @@ local Cred = X.New({
         toclipboard("https://discord.gg/UyuSF4fPC9")
     end,
 })
-Y.Toggle({
-    Text = "Instant Levels",
-    Callback = function(Value)
-        c = Value
-        while c do task.wait()
-            moveto(CFrame.new(141, 283, -1706) + Vector3.new(0,0,0), tonumber(125))
-            local args = {
-                [1] = "AddQuest",
-                [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
-                [3] = 1657956848,
-                [4] = game:GetService("ReplicatedStorage").Player_Data[game.Players.LocalPlayer.Name].Quest,
-                [5] = {
-                ["List"] = {
-                [1] = {
-                ["Progress"] = {
-                [1] = 2,
-                [2] = 2
-                },
-                ["Name"] = "Defeat 2 subordinates while carrying Riyaku"
-                },
-                [2] = {
-                ["Progress"] = {
-                [1] = 1,
-                [2] = 1
-                },
-                ["Name"] = "Bring Riyaku to somi"
-                }
-                },
-                ["Current"] = "Rescue Somi's little sister Riyaku"
-                }
-                }
-                
-                game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-            
-            local args = {
-                [1] = "Quest_add",
-                [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
-                [3] = 1657956948,
-                [4] = {},
-                [5] = game:GetService("Players").LocalPlayer,
-                [6] = "royakurescuqthinggivebaxcktosomi"
-                }
-                
-                game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-                wait(.1)
-        end
-    end,
-    Enabled = false
-})
+
 local D = Y.Dropdown({
     Text = "Select Quest",
     Callback = function(Value)
