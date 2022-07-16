@@ -144,7 +144,7 @@ Y.Toggle({
                 }
                 
                 game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-                
+                wait(.5)
         end
     end,
     Enabled = false
