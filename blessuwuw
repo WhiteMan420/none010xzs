@@ -1,0 +1,272 @@
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Important"; 
+    Text = "May take up to 30 seconds for certain autofarms to start"; 
+    Icon = ""; 
+    Duration = 15; 
+    })
+
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Important"; 
+        Text = "Make sure to stand near quest NPC before enabling"; 
+        Icon = ""; 
+        Duration = 30; 
+        })
+
+local eventbypass
+
+eventbypass = hookmetamethod(game, "__namecall", function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if not checkcaller() and self.Name == "moddelteasdasd123" and method == "FireServer" then
+        print("Project Slayers anti-cheat has been blocked")
+        return; 
+    end
+
+    return eventbypass(self, ...)
+end)
+
+local TweenService  = game:GetService("TweenService")
+local noclipE       = false
+local antifall      = false
+
+local function noclip()
+    for i, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+        if v:IsA("BasePart") and v.CanCollide == true then
+            v.CanCollide = false
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+        end
+    end
+end
+
+local function moveto(obj, speed)
+    local info = TweenInfo.new(((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - obj.Position).Magnitude)/ speed,Enum.EasingStyle.Linear)
+    local tween = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, info, {CFrame = obj})
+
+    if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyVelocity") then
+        antifall = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
+        antifall.Velocity = Vector3.new(0,0,0)
+        noclipE = game:GetService("RunService").Stepped:Connect(noclip)
+        tween:Play()
+    end
+        
+    tween.Completed:Connect(function()
+        antifall:Destroy()
+        noclipE:Disconnect()
+    end)
+end
+
+
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local X = Material.Load({
+    Title = "Keybrew Hub | Project Slayer",
+    Style = 3,
+    SizeX = 300,
+    SizeY = 350,
+    Theme = "Light",
+    ColorOverrides = {
+        MainFrame = Color3.fromRGB(0,0,0),
+        Toggle = Color3.fromRGB(124,37,255),
+        ToggleAccent = Color3.fromRGB(255,255,255), 
+        Dropdown = Color3.fromRGB(124,37,255),
+		DropdownAccent = Color3.fromRGB(255,255,255),
+        Slider = Color3.fromRGB(124,37,255),
+		SliderAccent = Color3.fromRGB(255,255,255),
+        NavBarAccent = Color3.fromRGB(0,0,0),
+        Content = Color3.fromRGB(0,0,0),
+    }
+})
+
+local Y = X.New({
+    Title = "Main"
+})
+
+local T = X.New({
+    Title = "Teleports"
+})
+
+local B = X.New({
+    Title = "Misc"
+})
+
+local Cred = X.New({
+    Title = "Credits"
+})
+    Cred.Button({
+    Text = "Copy Discord UyuSF4fPC9",
+    Callback = function()
+        setclipboard("https://discord.gg/UyuSF4fPC9")
+        toclipboard("https://discord.gg/UyuSF4fPC9")
+    end,
+})
+
+local D = Y.Dropdown({
+    Text = "Select Quest",
+    Callback = function(Value)
+        getgenv().quest = Value
+    end,
+    Options = {
+        "Wagon",
+    },
+})
+
+Y.Toggle({
+    Text = "Auto Quest",
+    Callback = function(Value)
+        aa = Value
+        while aa do task.wait()
+            
+       if quest == "Wagon" then
+        moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+        wait(30)
+            local args = {
+                [1] = "AddQuest",
+                [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
+                [3] = 20375.4365348,
+                [4] = game:GetService("ReplicatedStorage").Player_Data[game.Players.LocalPlayer.Name].Quest,
+                [5] = {
+                    ["List"] = {
+                        [1] = {
+                            ["Name"] = "Deliver wagon",
+                            ["Progress"] = {
+                                [1] = 0,
+                                [2] = 1
+                            }
+                        }
+                    },
+                    ["Current"] = "Deliver grandpa Wagwon's wagon"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+            wait()
+            moveto(CFrame.new(450, 275, -2674) + Vector3.new(0,0,0), tonumber(200))
+            wait(8)
+            moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+            wait(6)
+        end
+        end
+    end,
+    Enabled = false
+})
+
+
+T.Button({
+    Text = "Teleport to Muzan",
+    Callback = function()
+         moveto(CFrame.new(game:GetService("Workspace").Muzan.SpawnPos.Value) + Vector3.new(0,0,0), tonumber(200))
+    end,
+})
+T.Dropdown({
+    Text = "Select Area",
+    Callback = function(Value)
+        getgenv().area = Value
+    end,
+    Options = {
+        "Kiribating Village",
+        "Zapiwara Cave",
+        "Butterfly Mansion",
+        "Zapiwara Mountain",
+        "Usumaru Village",
+        "Waroru Cave",
+        "Kabiwaru Village",
+        "Abubu Cave",
+        "Final Selection",
+        "Ouwbayashi Home",
+        "Wind Trainer",
+        "Dangerous Woods",
+        "Slasher Demon",
+    },
+})
+
+T.Button({
+    Text = "Teleport",
+    Callback = function()
+        if area == "Kiribating Village" then
+            moveto(CFrame.new(107, 282, -1630) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Zapiwara Cave" then
+            moveto(CFrame.new(18, 276, -2569) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Usumaru Village" then
+            moveto(CFrame.new(-142, 353, -3039) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Butterfly Mansion" then
+            moveto(CFrame.new(2961, 317, -3920) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Zapiwara Mountain" then
+            moveto(CFrame.new(-326, 427, -2384) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Waroru Cave" then
+            moveto(CFrame.new(705, 261, -2395) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Kabiwaru Village" then
+            moveto(CFrame.new(1987, 326, -2903) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Abubu Cave" then
+            moveto(CFrame.new(1037, 276, -3554) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Final Selection" then
+            moveto(CFrame.new(5340, 372, -2424) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Ouwbayashi Home" then
+            moveto(CFrame.new(1268, 316, -4578) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Wind Trainer" then
+            moveto(CFrame.new(1788, 334, -3522) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Dangerous Woods" then
+            moveto(CFrame.new(3966, 343, -3989) + Vector3.new(0,0,0), tonumber(200))
+        elseif area == "Slasher Demon" then
+            moveto(CFrame.new(4324, 342, -4274) + Vector3.new(0,0,0), tonumber(200))
+        end
+    end,
+})
+
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/bub/main/chub"))()
+B.Toggle({
+    Text = "Toggle ESP",
+    Callback = function(d)
+        ESP:Toggle(d)
+
+
+    end,
+    Enabled = false
+})
+
+
+
+B.Toggle({
+    Text = "Toggle Players",
+    Callback = function(d)
+        ESP.Players = d
+
+    end,
+    Enabled = false
+})
+B.Toggle({
+    Text = "Toggle Boxes",
+    Callback = function(d)
+        ESP.Boxes = d
+
+    end,
+    Enabled = false
+})
+
+
+B.Slider(
+    {
+        Text = "WalkSpeed",
+        Callback = function(warthog)
+            getgenv().speed = warthog
+        end,
+        Min = 1,
+        Max = 500,
+        Def = 50
+    }
+)
+B.Toggle(
+    {
+        Text = "Toggle",
+        Callback = function(g)
+            gg = g
+            while gg do
+                task.wait()
+                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+            end
+        end,
+        Enabled = false
+    }
+)
+
+
