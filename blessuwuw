@@ -108,9 +108,9 @@ Y.Toggle({
             moveto(CFrame.new(141, 283, -1706) + Vector3.new(0,0,0), tonumber(125))
             local args = {
                 [1] = "AddQuest",
-                [2] = "Players.FreeWollah.PlayerGui.Npc_Dialogue.LocalScript.Functions",
+                [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
                 [3] = 1657956848,
-                [4] = game:GetService("ReplicatedStorage").Player_Data.FreeWollah.Quest,
+                [4] = game:GetService("ReplicatedStorage").Player_Data[game.Players.LocalPlayer.Name].Quest,
                 [5] = {
                 ["List"] = {
                 [1] = {
@@ -136,7 +136,7 @@ Y.Toggle({
             
             local args = {
                 [1] = "Quest_add",
-                [2] = "Players.FreeWollah.PlayerGui.Npc_Dialogue.LocalScript.Functions",
+                [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
                 [3] = 1657956948,
                 [4] = {},
                 [5] = game:GetService("Players").LocalPlayer,
@@ -144,7 +144,7 @@ Y.Toggle({
                 }
                 
                 game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-                wait(.5)
+                wait(.1)
         end
     end,
     Enabled = false
