@@ -12,19 +12,21 @@ game.StarterGui:SetCore("SendNotification", {
         Duration = 30; 
         })
 
-local eventbypass
-
-eventbypass = hookmetamethod(game, "__namecall", function(self, ...)
-    local method = getnamecallmethod()
-    local args = {...}
-
-    if not checkcaller() and self.Name == "moddelteasdasd123" and method == "FireServer" then
-        print("Project Slayers anti-cheat has been blocked")
-        return; 
-    end
-
-    return eventbypass(self, ...)
-end)
+        local metatable = getrawmetatable(game)
+        local nc = metatable.__namecall
+        
+        setreadonly(metatable, false)
+        
+        metatable.__namecall = newcclosure(function(self, ...)
+                local args = {...} 
+                local name = self
+            if getnamecallmethod() == "FireServer" and tostring(name) == "moddelteasdasd123" then  
+                    return wait(9e9)
+            end
+            return nc(self,...)
+        end)
+        
+        setreadonly(metatable, true)
 
 local TweenService  = game:GetService("TweenService")
 local noclipE       = false
