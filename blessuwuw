@@ -118,7 +118,7 @@ Y.Toggle({
         aa = Value
         while aa do task.wait()
        if quest == "Wagon" then
-        moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+        moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(125))
         wait(3)
             local args = {
                 [1] = "AddQuest",
@@ -141,12 +141,12 @@ Y.Toggle({
             
             game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
             wait()
-            moveto(CFrame.new(450, 275, -2674) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(450, 275, -2674) + Vector3.new(0,0,0), tonumber(125))
             wait(8)
-            moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(125))
             wait(40)
         elseif quest == "Kurake" then
-           moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(200))
+           moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(125))
            wait(3)
         local args = {
             [1] = "AddQuest",
@@ -168,7 +168,7 @@ Y.Toggle({
         }
 
         game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-        moveto(CFrame.new(297, 276, -2545) + Vector3.new(0,0,0), tonumber(200))
+        moveto(CFrame.new(297, 276, -2545) + Vector3.new(0,0,0), tonumber(125))
         wait(6)
             local args = {
                 [1] = "Quest_add",
@@ -180,7 +180,7 @@ Y.Toggle({
             }
 
             game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-            moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(125))
             wait(30)
 
         end
@@ -191,21 +191,21 @@ Y.Toggle({
 Y.Button({
     Text = "Teleport to Wagon",
     Callback = function()
-        moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+        moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(125))
     end,
 })
 
 Y.Button({
     Text = "Teleport to Kurake",
     Callback = function()
-        moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(200))
+        moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(125))
     end,
 })
 
 T.Button({
     Text = "Teleport to Muzan",
     Callback = function()
-         moveto(CFrame.new(game:GetService("Workspace").Muzan.SpawnPos.Value) + Vector3.new(0,0,0), tonumber(200))
+         moveto(CFrame.new(game:GetService("Workspace").Muzan.SpawnPos.Value) + Vector3.new(0,0,0), tonumber(125))
     end,
 })
 T.Dropdown({
@@ -234,31 +234,31 @@ T.Button({
     Text = "Teleport",
     Callback = function()
         if area == "Kiribating Village" then
-            moveto(CFrame.new(107, 282, -1630) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(107, 282, -1630) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Zapiwara Cave" then
-            moveto(CFrame.new(18, 276, -2569) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(18, 276, -2569) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Usumaru Village" then
-            moveto(CFrame.new(-142, 353, -3039) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(-142, 353, -3039) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Butterfly Mansion" then
-            moveto(CFrame.new(2961, 317, -3920) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(2961, 317, -3920) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Zapiwara Mountain" then
-            moveto(CFrame.new(-326, 427, -2384) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(-326, 427, -2384) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Waroru Cave" then
-            moveto(CFrame.new(705, 261, -2395) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(705, 261, -2395) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Kabiwaru Village" then
-            moveto(CFrame.new(1987, 326, -2903) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(1987, 326, -2903) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Abubu Cave" then
-            moveto(CFrame.new(1037, 276, -3554) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(1037, 276, -3554) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Final Selection" then
-            moveto(CFrame.new(5340, 372, -2424) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(5340, 372, -2424) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Ouwbayashi Home" then
-            moveto(CFrame.new(1268, 316, -4578) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(1268, 316, -4578) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Wind Trainer" then
-            moveto(CFrame.new(1788, 334, -3522) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(1788, 334, -3522) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Dangerous Woods" then
-            moveto(CFrame.new(3966, 343, -3989) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(3966, 343, -3989) + Vector3.new(0,0,0), tonumber(125))
         elseif area == "Slasher Demon" then
-            moveto(CFrame.new(4324, 342, -4274) + Vector3.new(0,0,0), tonumber(200))
+            moveto(CFrame.new(4324, 342, -4274) + Vector3.new(0,0,0), tonumber(125))
         end
     end,
 })
