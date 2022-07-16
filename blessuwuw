@@ -101,31 +101,6 @@ local Cred = X.New({
     end,
 })
 
-local function getRICE()
-    local dist, thing = math.huge
-    for i, v in next, game:GetService("Workspace")["StarterVillage_RiceStrings"]:GetChildren() do
-        if v:IsA("Part") and v.Name == "RiceString" then
-            local mag =
-                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
-            if mag < dist then
-                dist = mag
-                thing = v
-            end
-        end
-    end
-    return thing
-end
-
-local D = Y.Dropdown({
-    Text = "Select Quest",
-    Callback = function(Value)
-        getgenv().quest = Value
-    end,
-    Options = {
-        "Wagon",
-        "Rice Farm"
-    },
-})
 
 Y.Toggle({
     Text = "Auto Quest",
@@ -166,20 +141,6 @@ Y.Toggle({
     Enabled = false
 })
 
-Y.Button({
-    Text = "Invisible",
-    Callback = function()
-         for i,v in pairs(workspace:GetDescendants()) do
-  if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("Decal") then
-local ohString1 = "Change_Transparency"
-local ohInstance2 = v
-local ohNumber3 = 1
-
-game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(ohString1, ohInstance2, ohNumber3)
-end
-end
-    end,
-})
 T.Button({
     Text = "Teleport to Muzan",
     Callback = function()
