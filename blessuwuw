@@ -107,7 +107,8 @@ local D = Y.Dropdown({
         getgenv().quest = Value
     end,
     Options = {
-        "Wagon"
+        "Wagon",
+        "Kurake",
     },
 })
 
@@ -117,8 +118,8 @@ Y.Toggle({
         aa = Value
         while aa do task.wait()
        if quest == "Wagon" then
-        wait(3)
         moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+        wait(3)
             local args = {
                 [1] = "AddQuest",
                 [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
@@ -144,11 +145,61 @@ Y.Toggle({
             wait(8)
             moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
             wait(40)
+        elseif quest == "Kurake" then
+           moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(200))
+           wait(3)
+        local args = {
+            [1] = "AddQuest",
+            [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
+            [3] = 36608.7356407,
+            [4] = game:GetService("ReplicatedStorage").Player_Data[game.Players.LocalPlayer.Name].Quest,
+            [5] = {
+                ["List"] = {
+                    [1] = {
+                        ["Name"] = "Deliver food",
+                        ["Progress"] = {
+                            [1] = 0,
+                            [2] = 1
+                        }
+                    }
+                },
+                ["Current"] = "Deliver food supply to Naratia"
+            }
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+        moveto(CFrame.new(297, 276, -2545) + Vector3.new(0,0,0), tonumber(200))
+        wait(6)
+            local args = {
+                [1] = "Quest_add",
+                [2] = "Players."..game.Players.LocalPlayer.Name..".PlayerGui.Npc_Dialogue.LocalScript.Functions",
+                [3] = 36957.913095899996,
+                [4] = {},
+                [5] = game:GetService("Players").LocalPlayer,
+                [6] = "ouwbihgemstoneasd123"
+            }
+
+            game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+            moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(200))
+            wait(30)
 
         end
         end
     end,
     Enabled = false
+})
+Y.Button({
+    Text = "Teleport to Wagon",
+    Callback = function()
+        moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0), tonumber(200))
+    end,
+})
+
+Y.Button({
+    Text = "Teleport to Kurake",
+    Callback = function()
+        moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(200))
+    end,
 })
 
 T.Button({
