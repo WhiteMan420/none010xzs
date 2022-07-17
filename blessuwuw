@@ -222,20 +222,6 @@ Y.Button({
         moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0), tonumber(125))
     end,
 })
-Y.Button({
-    Text = "Invisible",
-    Callback = function()
-        for i,v in pairs(workspace:GetDescendants()) do
-            if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("Decal") then
-          local ohString1 = "Change_Transparency"
-          local ohInstance2 = v
-          local ohNumber3 = 1
-          
-          game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(ohString1, ohInstance2, ohNumber3)
-          end
-          end
-    end,
-})
 
 T.Button({
     Text = "Teleport to Demon Flower",
