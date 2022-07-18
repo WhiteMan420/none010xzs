@@ -1,3 +1,4 @@
+
 local Item = {}
 
 for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
@@ -98,6 +99,7 @@ Y.Toggle({
         for i, v in next, workspace:GetDescendants() do
             if v:IsA("ClickDetector") then
                 fireclickdetector(v)
+                wait(.5)
             end
             end
         end)
@@ -113,10 +115,25 @@ local S = Y.Dropdown({
     Options = Item
 })
 
+local function getITEM()
+    local dist, thing = math.huge
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+        if v:IsA "MeshPart" and v.Name == item then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+
 Y.Button({
     Text = "Tp to Item Spawn",
     Callback = function()
-        moveto(game:GetService("ReplicatedStorage")[item].CFrame + Vector3.new(0,0,0), tonumber(100))
+        moveto(getITEM().CFrame + Vector3.new(0,0,0), tonumber(100))
     end,
     Menu = {
         Information = function(self)
