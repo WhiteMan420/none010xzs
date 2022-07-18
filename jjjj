@@ -335,5 +335,13 @@ B.Toggle(
     }
 )
 
+B.Button({
+    Text = "Server hop",
+    Callback = function()
+        local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
+
+        module:Teleport(game.PlaceId)
+    end,
+})
 
 
