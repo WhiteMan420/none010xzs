@@ -105,7 +105,7 @@ Y.Toggle({
     Enabled = false
 })
 
-Y.Dropdown({
+local S = Y.Dropdown({
     Text = "Select Item Spawn",
     Callback = function(Value)
         getgenv().item = Value
@@ -126,7 +126,22 @@ Y.Button({
         end
     }
 })
-
+Y.Button(
+    {
+        Text = "Refresh Items",
+        Callback = function()
+            table.clear(Item)
+            for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+                if v:IsA "MeshPart" then
+                    if not table.find(Item, tostring(v)) then
+                    table.insert(Item, tostring(v))
+                    S:SetOptions(Item)
+                    end
+                end
+            end
+        end,
+    }
+)
 Y.Dropdown({
     Text = "Select Location",
     Callback = function(Value)
