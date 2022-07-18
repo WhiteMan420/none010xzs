@@ -95,22 +95,6 @@ local Cred = X.New({
         toclipboard("https://discord.gg/UyuSF4fPC9")
     end,
 })
-Y.Toggle({
-    Text = "Autopick drops",
-    Callback = function(Value)
-        a = Value
-        while a do task.wait()
-            pcall(function()
-        for i, v in next, workspace:GetDescendants() do
-            if v:IsA("ClickDetector") then
-                fireclickdetector(v)
-                wait(.5)
-            end
-            end
-        end)
-        end    end,
-    Enabled = false
-})
 
 local S = Y.Dropdown({
     Text = "Select Item Spawn",
