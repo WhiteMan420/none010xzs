@@ -75,6 +75,11 @@ local Y = X.New({
     Title = "Main"
 })
 
+local L = X.New({
+    Title = "Instant Teleports"
+})
+
+
 
 local B = X.New({
     Title = "Misc"
@@ -131,7 +136,7 @@ local function getITEM()
 end
 
 Y.Button({
-    Text = "Tp to Item Spawn",
+    Text = "Tween to Item Spawn",
     Callback = function()
         moveto(getITEM().CFrame + Vector3.new(0,0,0), tonumber(100))
     end,
@@ -168,23 +173,108 @@ Y.Dropdown({
 })
 
 Y.Button({
-    Text = "Tp to Location",
+    Text = "Tween to Location",
     Callback = function()
         moveto(game:GetService("Workspace").Locations[locale].CFrame + Vector3.new(0,0,0), tonumber(100))
     end,
 })
 
 Y.Button({
-    Text = "Tp to Training Instructor",
+    Text = "Tween to Training Instructor",
     Callback = function()
         moveto(game:GetService("Workspace")["Training Instructor"].Torso.CFrame + Vector3.new(0,0,0), tonumber(100))
     end,
 })
 
 Y.Button({
-    Text = "Tp to Aki (Get Pin)",
+    Text = "Tween to Aki (Get Pin)",
     Callback = function()
         moveto(game:GetService("Workspace").Aki.Torso.CFrame + Vector3.new(0,0,0), tonumber(100))
+    end,
+})
+
+
+
+
+
+local SS = L.Dropdown({
+    Text = "Select Item Spawn",
+    Callback = function(Value)
+        getgenv().Ltem = Value
+    end,
+    Options = Item
+})
+
+local function getLTEM()
+    local dist, thing = math.huge
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+        if v:IsA "MeshPart" and v.Name == Ltem then
+            local mag =
+                (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+
+L.Button({
+    Text = "Tp to Item Spawn",
+    Callback = function()
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getLTEM().CFrame + Vector3.new(0,0,0)
+    end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "This takes you to a possible spawn location of item."
+            })
+        end
+    }
+})
+L.Button(
+    {
+        Text = "Refresh Items",
+        Callback = function()
+            table.clear(Item)
+            for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+                if v:IsA "MeshPart" then
+                    if not table.find(Item, tostring(v)) then
+                    table.insert(Item, tostring(v))
+                    SS:SetOptions(Item)
+                    end
+                end
+            end
+        end,
+    }
+)
+L.Dropdown({
+    Text = "Select Location",
+    Callback = function(Value)
+        getgenv().locale = Value
+    end,
+    Options = Location
+})
+
+L.Button({
+    Text = "Tp to Location",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Locations[locale].CFrame + Vector3.new(0,0,0)
+    end,
+})
+
+L.Button({
+    Text = "Tp to Training Instructor",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")["Training Instructor"].Torso.CFrame + Vector3.new(0,0,0)
+    end,
+})
+
+L.Button({
+    Text = "Tp to Aki (Get Pin)",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Aki.Torso.CFrame + Vector3.new(0,0,0)
     end,
 })
 
