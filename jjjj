@@ -71,7 +71,7 @@ local Cred = X.New({
     end,
 })
 Y.Toggle({
-    Text = "Autopick up all",
+    Text = "Autopick drops",
     Callback = function(Value)
         a = Value
         while a do task.wait()
