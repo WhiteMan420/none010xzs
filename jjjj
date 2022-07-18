@@ -1,3 +1,22 @@
+local Item = {}
+
+for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+    if v:IsA "MeshPart" then
+        if not table.find(Item, tostring(v)) then
+            table.insert(Item, tostring(v))
+        end
+    end
+end
+
+local Location = {}
+
+for i, v in pairs(game:GetService("Workspace").Locations:GetChildren()) do
+    if v:IsA "Part" then
+        if not table.find(Location, tostring(v)) then
+            table.insert(Location, tostring(v))
+        end
+    end
+end
 
 local TweenService  = game:GetService("TweenService")
 local noclipE       = false
@@ -86,6 +105,42 @@ Y.Toggle({
     Enabled = false
 })
 
+Y.Dropdown({
+    Text = "Select Item Spawn",
+    Callback = function(Value)
+        getgenv().item = Value
+    end,
+    Options = Item
+})
+
+Y.Button({
+    Text = "Tp to Item Spawn",
+    Callback = function()
+        moveto(game:GetService("ReplicatedStorage")[item].CFrame + Vector3.new(0,0,0), tonumber(100))
+    end,
+    Menu = {
+        Information = function(self)
+            X.Banner({
+                Text = "This takes you to a possible spawn location of item."
+            })
+        end
+    }
+})
+
+Y.Dropdown({
+    Text = "Select Location",
+    Callback = function(Value)
+        getgenv().locale = Value
+    end,
+    Options = Location
+})
+
+Y.Button({
+    Text = "Tp to Location",
+    Callback = function()
+        moveto(game:GetService("Workspace").Locations[locale].CFrame + Vector3.new(0,0,0), tonumber(100))
+    end,
+})
 
 Y.Button({
     Text = "Tp to Training Instructor",
