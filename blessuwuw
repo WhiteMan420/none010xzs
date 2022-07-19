@@ -1,4 +1,15 @@
+local player = game.Players.LocalPlayer
+local char = player.Character
 local lp = game.Players.LocalPlayer
+local NPCs = {}
+
+for i, v in pairs(game:GetService("Workspace").Mobs:GetDescendants()) do
+    if v:IsA "Model" and v:FindFirstChild("Humanoid") then
+        if not table.find(NPCs, tostring(v)) then
+            table.insert(NPCs, tostring(v))
+        end
+    end
+end
 local Pack = {}
 
 for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
@@ -171,6 +182,433 @@ local function getDEMON()
     end
     return thing
 end
+
+Y.Toggle({
+    Text = "Invisible",
+    Callback = function(Value)
+        pz = Value
+
+local args = {
+    [1] = "Change_Transparency",
+    [2] = {
+        [1] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftHand,
+            [2] = 1
+        },
+        [2] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+            [2] = 1
+        },
+        [3] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LowerTorso,
+            [2] = 1
+        },
+        [4] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightUpperLeg,
+            [2] = 1
+        },
+        [5] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftUpperLeg,
+            [2] = 1
+        },
+        [6] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.UpperTorso,
+            [2] = 1
+        },
+        [7] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightLowerLeg,
+            [2] = 1
+        },
+        [8] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightFoot,
+            [2] = 1
+        },
+        [9] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftLowerLeg,
+            [2] = 1
+        },
+        [10] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftFoot,
+            [2] = 1
+        },
+        [11] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightUpperArm,
+            [2] = 1
+        },
+        [12] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftUpperArm,
+            [2] = 1
+        },
+        [13] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head,
+            [2] = 1
+        },
+        [14] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead,
+            [2] = 1
+        },
+        [15] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Eyes,
+            [2] = 1
+        },
+        [16] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Eyes.Blink,
+            [2] = 1
+        },
+        [17] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Mouth,
+            [2] = 1
+        },
+        [18] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Mouth.Breath,
+            [2] = 1
+        },
+        [19] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Mouth.InitialValue,
+            [2] = 1
+        },
+        [20] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Nose,
+            [2] = 1
+        },
+        [21] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Extra,
+            [2] = 1
+        },
+        [22] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Extra2,
+            [2] = 1
+        },
+        [23] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightLowerArm,
+            [2] = 1
+        },
+        [24] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightHand,
+            [2] = 1
+        },
+        [25] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftLowerArm,
+            [2] = 1
+        },
+        [26] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.UpperTorso,
+            [2] = 1
+        },
+        [27] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.UpperTorso,
+            [2] = 1
+        },
+        [28] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.UpperTorso,
+            [2] = 1
+        },
+        [29] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.LeftUpperArm,
+            [2] = 1
+        },
+        [30] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.LeftLowerArm,
+            [2] = 1
+        },
+        [31] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.LeftLowerArm,
+            [2] = 1
+        },
+        [32] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LowerTorso,
+            [2] = 1
+        },
+        [33] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.RightUpperLeg,
+            [2] = 1
+        },
+        [34] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.RightLowerLeg,
+            [2] = 1
+        },
+        [35] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.RightLowerLeg,
+            [2] = 1
+        },
+        [36] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LeftUpperLeg,
+            [2] = 1
+        },
+        [37] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LeftLowerLeg,
+            [2] = 1
+        },
+        [38] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LeftLowerLeg,
+            [2] = 1
+        },
+        [39] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shoes3.RightFoot,
+            [2] = 1
+        },
+        [40] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shoes3.LeftFoot,
+            [2] = 1
+        },
+        [41] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Hair52,
+            [2] = 1
+        },
+        [42] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.TorsoWeld.Handle,
+            [2] = 1
+        },
+        [43] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.TorsoWeld:FindFirstChild("Meshes/sabito sword_Plane.001 (6)"),
+            [2] = 1
+        },
+        [44] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.TorsoWeld:FindFirstChild("Meshes/sabito sword_Cube.007 (3)"),
+            [2] = 1
+        },
+        [45] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Urodoki_Mask.Uro_mask,
+            [2] = 1
+        },
+        [46] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftHand,
+            [2] = 1
+        },
+        [47] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+            [2] = 1
+        },
+        [48] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LowerTorso,
+            [2] = 1
+        },
+        [49] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightUpperLeg,
+            [2] = 1
+        },
+        [50] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftUpperLeg,
+            [2] = 1
+        },
+        [51] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.UpperTorso,
+            [2] = 1
+        },
+        [52] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightLowerLeg,
+            [2] = 1
+        },
+        [53] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightFoot,
+            [2] = 1
+        },
+        [54] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftLowerLeg,
+            [2] = 1
+        },
+        [55] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftFoot,
+            [2] = 1
+        },
+        [56] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightUpperArm,
+            [2] = 1
+        },
+        [57] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftUpperArm,
+            [2] = 1
+        },
+        [58] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head,
+            [2] = 1
+        },
+        [59] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead,
+            [2] = 1
+        },
+        [60] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Eyes,
+            [2] = 1
+        },
+        [61] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Eyes.Blink,
+            [2] = 1
+        },
+        [62] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Mouth,
+            [2] = 1
+        },
+        [63] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Mouth.Breath,
+            [2] = 1
+        },
+        [64] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Mouth.InitialValue,
+            [2] = 1
+        },
+        [65] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Nose,
+            [2] = 1
+        },
+        [66] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Extra,
+            [2] = 1
+        },
+        [67] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Head.FakeHead.Extra2,
+            [2] = 1
+        },
+        [68] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightLowerArm,
+            [2] = 1
+        },
+        [69] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.RightHand,
+            [2] = 1
+        },
+        [70] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.LeftLowerArm,
+            [2] = 1
+        },
+        [71] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.UpperTorso,
+            [2] = 1
+        },
+        [72] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.UpperTorso,
+            [2] = 1
+        },
+        [73] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.UpperTorso,
+            [2] = 1
+        },
+        [74] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.LeftUpperArm,
+            [2] = 1
+        },
+        [75] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.LeftLowerArm,
+            [2] = 1
+        },
+        [76] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shirt29.LeftLowerArm,
+            [2] = 1
+        },
+        [77] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LowerTorso,
+            [2] = 1
+        },
+        [78] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.RightUpperLeg,
+            [2] = 1
+        },
+        [79] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.RightLowerLeg,
+            [2] = 1
+        },
+        [80] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.RightLowerLeg,
+            [2] = 1
+        },
+        [81] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LeftUpperLeg,
+            [2] = 1
+        },
+        [82] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LeftLowerLeg,
+            [2] = 1
+        },
+        [83] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Pants16.LeftLowerLeg,
+            [2] = 1
+        },
+        [84] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shoes3.RightFoot,
+            [2] = 1
+        },
+        [85] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shoes3.LeftFoot,
+            [2] = 1
+        },
+        [86] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Hair52,
+            [2] = 1
+        },
+        [87] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.TorsoWeld.Handle,
+            [2] = 1
+        },
+        [88] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.TorsoWeld:FindFirstChild("Meshes/sabito sword_Plane.001 (6)"),
+            [2] = 1
+        },
+        [89] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.TorsoWeld:FindFirstChild("Meshes/sabito sword_Cube.007 (3)"),
+            [2] = 1
+        },
+        [90] = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Urodoki_Mask.Uro_mask,
+            [2] = 1
+        }
+    }
+}
+
+game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+    end,
+    Enabled = false
+})
+
+
+Y.Dropdown(
+    {
+        Text = "Select NPC",
+        Callback = function(Value)
+            getgenv().npcs = Value
+        end,
+        Options = NPCs
+    }
+)
+local function getNPC()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace").Mobs:GetDescendants() do
+        if v.Name == "HumanoidRootPart" and v.Parent.Name == npcs then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+Y.Toggle(
+    {
+        Text = "Autofarm NPC",
+        Callback = function(Value)
+            o = Value
+            while o do
+                task.wait()
+                if not game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Model") then
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true, 49, false, game)
+                end
+                local Time =
+                    (getNPC().CFrame.p + Vector3.new(0, -5, 0) -
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude / 100
+                local Info = TweenInfo.new(Time, Enum.EasingStyle.Linear)
+                local Tween =
+                    game:GetService("TweenService"):Create(
+                    game.Players.LocalPlayer.Character.HumanoidRootPart,
+                    Info,
+                    {CFrame = getNPC().CFrame * CFrame.new(0, 0, 5) * CFrame.Angles(0, 0, 0)}
+                )
+                Tween:Play()
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)
+            end
+        end,
+        Enabled = false
+    }
+)
 
 Y.Toggle(
     {
