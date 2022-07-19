@@ -187,7 +187,7 @@ Y.Toggle({
     Text = "Invisible",
     Callback = function(Value)
         pz = Value
-
+        while pz do task.wait()
 local args = {
     [1] = "Change_Transparency",
     [2] = {
@@ -555,6 +555,7 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+end
     end,
     Enabled = false
 })
