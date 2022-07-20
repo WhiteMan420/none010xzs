@@ -493,7 +493,7 @@ T.Button(
             elseif area == "Nezuko" then
                 moveto(CFrame.new(3530.02, 349.031, -4450.54) + Vector3.new(0, 0, 0), tonumber(125))
             elseif area == "Giyu" then
-                moveto(CFrame.new(2932.052, 352.44458, -297) + Vector3.new(0, 0, 0), tonumber(125))
+                moveto(CFrame.new(2935, 352, -2931) + Vector3.new(0, 0, 0), tonumber(125))
             elseif area == "Shiron" then
                 moveto(CFrame.new(3283.97, 448.609, -3941.2) + Vector3.new(0, 0, 0), tonumber(125))
             elseif area == "Slasher" then
