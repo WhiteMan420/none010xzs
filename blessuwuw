@@ -133,6 +133,13 @@ local T =
     }
 )
 
+local S =
+    X.New(
+    {
+        Title = "Skills"
+    }
+)
+
 local B =
     X.New(
     {
@@ -502,6 +509,94 @@ T.Button(
                 moveto(CFrame.new(1403, 500, -4459) + Vector3.new(0, 0, 0), tonumber(125))
             end
         end
+    }
+)
+S.Toggle(
+    {
+        Text = "Auto Skill X",
+        Callback = function(Value)
+            ax = Value
+            while ax do
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.X,false,game)
+                wait(1)
+            end
+        end,
+        Enabled = false
+    }
+)
+S.Toggle(
+    {
+        Text = "Auto Skill Z",
+        Callback = function(Value)
+            az = Value
+            while az do
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.Z,false,game)
+                wait(.5)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+S.Toggle(
+    {
+        Text = "Auto Skill N",
+        Callback = function(Value)
+            an = Value
+            while an do
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.N,false,game)
+                wait(.5)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+S.Toggle(
+    {
+        Text = "Auto Skill B",
+        Callback = function(Value)
+            ab = Value
+            while ab do
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.B,false,game)
+                wait(.5)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+S.Toggle(
+    {
+        Text = "Auto Skill V",
+        Callback = function(Value)
+            av = Value
+            while av do
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.V,false,game)
+                wait(.5)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+S.Toggle(
+    {
+        Text = "Auto Skill C",
+        Callback = function(Value)
+            ac = Value
+            while ac do
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.C,false,game)
+                wait(.5)
+            end
+        end,
+        Enabled = false
     }
 )
 
