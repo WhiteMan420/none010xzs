@@ -468,7 +468,7 @@ T.Button(
 
 B.Toggle(
     {
-        Text = "Auto Blood",
+        Text = "Auto Soul",
         Callback = function(Value)
             be = Value
             while be do
