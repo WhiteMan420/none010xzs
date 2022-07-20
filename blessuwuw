@@ -455,6 +455,56 @@ T.Button(
     }
 )
 
+T.Dropdown(
+    {
+        Text = "Select Boss",
+        Callback = function(Value)
+            getgenv().area = Value
+        end,
+        Options = {
+            "Zuko",
+            "Sabito",
+            "Zenitsu",
+            "Kaden",
+            "Sanemi",
+            "Nezuko",
+            "Giyu",
+            "Shiron",
+            "Slasher",
+            "Yahaba/Susamaru"
+        }
+    }
+)
+
+T.Button(
+    {
+        Text = "Teleport",
+        Callback = function()
+            if area == "Zuko" then
+                moveto(CFrame.new(209.372, 292.624, -1860.0) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Sabito" then
+                moveto(CFrame.new(1121.19, 291.22, -2890.5) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Zenitsu" then
+                moveto(CFrame.new(-398, 435, -2188) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Kaden" then
+                moveto(CFrame.new(-477.035, 308.986, -2918.89) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Sanemi" then
+                moveto(CFrame.new(1547.73, 348.462, -3778.08) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Nezuko" then
+                moveto(CFrame.new(3530.02, 349.031, -4450.54) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Giyu" then
+                moveto(CFrame.new(2932.052, 352.44458, -297) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Shiron" then
+                moveto(CFrame.new(3283.97, 448.609, -3941.2) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Slasher" then
+                moveto(CFrame.new(4290, 365, -4367) + Vector3.new(0, 0, 0), tonumber(125))
+            elseif area == "Yahaba/Susamaru" then
+                moveto(CFrame.new(1403, 500, -4459) + Vector3.new(0, 0, 0), tonumber(125))
+            end
+        end
+    }
+)
+
 B.Toggle(
     {
         Text = "Auto Soul",
