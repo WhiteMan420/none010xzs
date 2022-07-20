@@ -273,6 +273,8 @@ Y.Toggle(
     }
 )
 
+
+
 Y.Toggle(
     {
         Text = "Auto Quest",
@@ -375,6 +377,33 @@ Y.Button(
         end
     }
 )
+
+Y.Button(
+    {
+        Text = "Breathing/Demon Progress",
+        Callback = function()
+            game.StarterGui:SetCore(
+    "SendNotification",
+    {
+        Title = "Breathing",
+        Text = game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[2].Value,
+        Icon = "",
+        Duration = 15
+    }
+)
+game.StarterGui:SetCore(
+    "SendNotification",
+    {
+        Title = "Demon",
+        Text = game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[2].Value,
+        Icon = "",
+        Duration = 15
+    }
+)
+        end
+    }
+)
+
 
 T.Button(
     {
