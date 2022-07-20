@@ -257,19 +257,8 @@ Y.Toggle(
                 if not game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Model") then
                     game:GetService("VirtualInputManager"):SendKeyEvent(true, 49, false, game)
                 end
-                local Time =
-                    (getNPC().CFrame.p + Vector3.new(0, -5, 0) -
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude / 100
-                local Info = TweenInfo.new(Time, Enum.EasingStyle.Linear)
-                local Tween =
-                    game:GetService("TweenService"):Create(
-                    game.Players.LocalPlayer.Character.HumanoidRootPart,
-                    Info,
-                    {CFrame = getNPC().CFrame * CFrame.new(0, 0, 3) * CFrame.Angles(0, 0, 0)}
-                )
-                Tween:Play()
+                moveto(getNPC().CFrame + Vector3.new(0,0,0),100)
                 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)
-        
         end)
             end
         end,
