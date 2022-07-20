@@ -253,6 +253,7 @@ Y.Toggle(
             o = Value
             while o do
                 task.wait()
+                pcall(function()
                 if not game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Model") then
                     game:GetService("VirtualInputManager"):SendKeyEvent(true, 49, false, game)
                 end
@@ -268,6 +269,8 @@ Y.Toggle(
                 )
                 Tween:Play()
                 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)
+        
+        end)
             end
         end,
         Enabled = false
@@ -463,6 +466,79 @@ T.Button(
     }
 )
 
+B.Toggle(
+    {
+        Text = "Auto Blood",
+        Callback = function(Value)
+            be = Value
+            while be do
+                for i, v in next,game:GetService("Workspace").Debree.Soul.Handle:GetChildren() do
+                    if v.Name == "Pick_up_soul" then
+                        fireproximityprompt(v)
+                end
+            end
+            end
+        end,
+        Enabled = false
+    }
+)
+
+
+B.Toggle(
+    {
+        Text = "Auto Chest",
+        Callback = function(Value)
+            ez = Value
+            while ez do
+                pcall(
+                    function()
+                        task.wait()
+                        for i, v in next,game:GetService("Workspace").Debree["Loot_Chest"].Drops:GetChildren() do
+                            if v.Parent.Name == "Drops" then
+                        local args = {
+                            [1] = v.Name
+                        }
+                        
+                        workspace.Debree.Loot_Chest.Add_To_Inventory:InvokeServer(unpack(args))
+                        wait(0.5)
+                    end
+                
+            end
+        end)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+B.Toggle(
+    {
+        Text = "Inf Stamina",
+        Callback = function(Value)
+            ae = Value
+            while ae do
+                getrenv()._G.AddStamina("",999999999)
+                wait(3)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+B.Toggle(
+    {
+        Text = "Inf Breathing",
+        Callback = function(Value)
+            ue = Value
+            while ue do
+                getrenv()._G.AddBreath("",999999999)
+                wait(3)
+            end
+        end,
+        Enabled = false
+    }
+)
+
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/bub/main/chub"))()
 B.Toggle(
     {
@@ -547,6 +623,9 @@ B.Toggle(
         Enabled = false
     }
 )
+
+
+
 
 B.Button(
     {
