@@ -472,12 +472,8 @@ B.Toggle(
         Callback = function(Value)
             be = Value
             while be do
-                for i, v in next,game:GetService("Workspace").Debree.Soul.Handle:GetChildren() do
-                    if v.Name == "Pick_up_soul" then
-                        fireproximityprompt(v)
-                        wait(1)
-                end
-            end
+                task.wait()
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.E,false,game)
             end
         end,
         Enabled = false
@@ -518,8 +514,8 @@ B.Toggle(
         Callback = function(Value)
             ae = Value
             while ae do
+                task.wait()
                 getrenv()._G.AddStamina("",999999999)
-                wait(3)
             end
         end,
         Enabled = false
@@ -532,8 +528,8 @@ B.Toggle(
         Callback = function(Value)
             ue = Value
             while ue do
+                task.wait()
                 getrenv()._G.AddBreath("",999999999)
-                wait(3)
             end
         end,
         Enabled = false
