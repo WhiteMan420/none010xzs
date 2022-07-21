@@ -820,38 +820,6 @@ B.Toggle(
     }
 )
 
-local ee =
-    B.Dropdown(
-    {
-        Text = "Select Weapon",
-        Callback = function(Value)
-            getgenv().back = Value
-        end,
-        Options = Pack
-    }
-)
-
-B.Toggle(
-    {
-        Text = "Auto Equip",
-        Callback = function(Value)
-            e = Value
-            while e do
-                pcall(
-                    function()
-                        task.wait()
-                        game.Players.LocalPlayer:findFirstChildOfClass("Backpack")[back].Parent =
-                            game.Players.LocalPlayer.Character
-                    end
-                )
-            end
-        end,
-        Enabled = false
-    }
-)
-
-
-
 
 B.Button(
     {
