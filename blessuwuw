@@ -274,7 +274,7 @@ Y.Toggle(
                 task.wait()
                 if quest == "Wagon" then
                     moveto(CFrame.new(223, 283, -1610) + Vector3.new(0, 0, 0), tonumber(125))
-                    wait(3)
+                    wait(10)
 
                     local args = {
                         [1] = "AddQuest",
@@ -297,11 +297,8 @@ Y.Toggle(
                     }
 
                     game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-                    task.wait()
                     moveto(CFrame.new(450, 275, -2674) + Vector3.new(0, 0, 0), tonumber(125))
-                    wait(8)
-                    moveto(CFrame.new(223, 283, -1610) + Vector3.new(0, 0, 0), tonumber(125))
-                    wait(40)
+                    wait(30)
                 elseif quest == "Kurake" then
                     moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0, 0, 0), tonumber(125))
                     wait(3)
