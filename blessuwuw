@@ -170,6 +170,53 @@ Cred.Button(
         end
     }
 )
+local breathingprogress = Y.Button(
+    {
+        Text = "Breathing Progress: "..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[2].Value,
+        Callback = function()
+            game.StarterGui:SetCore(
+    "SendNotification",
+    {
+        Title = "Breathing",
+        Text = game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[2].Value,
+        Icon = "",
+        Duration = 15
+    }
+)
+        end
+    }
+)
+
+local demonprogress = Y.Button(
+    {
+        Text = "Demon Progress: "..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[2].Value,
+        Callback = function()
+            game.StarterGui:SetCore(
+    "SendNotification",
+    {
+        Title = "Demon",
+        Text = game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[2].Value,
+        Icon = "",
+        Duration = 15
+    }
+)
+        end
+    }
+)
+
+local function DemonProgressRefresh()
+    demonprogress:SetText("Demon Progress: "..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[2].Value)
+end
+
+game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[1].Changed:Connect(DemonProgressRefresh)
+
+local function BreathingProgressRefresh()
+    breathingprogress:SetText("Breathing Progress: "..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[2].Value)
+end
+
+game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Changed:Connect(BreathingProgressRefresh)
+
+
 local D =
     Y.Dropdown(
     {
@@ -183,6 +230,11 @@ local D =
         }
     }
 )
+
+
+
+
+
 
 Y.Toggle(
     {
@@ -325,6 +377,7 @@ local function getNPC()
     end
     return thing
 end
+
 Y.Toggle(
     {
         Text = "Autofarm NPC",
@@ -362,63 +415,6 @@ Y.Button(
     }
 )
 
-Y.Button(
-    {
-        Text = "Breathing/Demon Progress",
-        Callback = function()
-            game.StarterGui:SetCore(
-    "SendNotification",
-    {
-        Title = "Breathing",
-        Text = game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[2].Value,
-        Icon = "",
-        Duration = 15
-    }
-)
-game.StarterGui:SetCore(
-    "SendNotification",
-    {
-        Title = "Demon",
-        Text = game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[1].Value.."/"..game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].DemonProgress[2].Value,
-        Icon = "",
-        Duration = 15
-    }
-)
-        end
-    }
-)
-
-Y.Toggle({
-    Text = "Auto Fishing",
-    Callback = function(Value)
-        pz = Value
-        while pz do task.wait()
-            pcall(function()
-                char["Fishing Rod"]:Activate()
-                repeat wait(0) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Fish_Minigame")
-        if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Fish_Minigame") then
-        game:GetService("Players").LocalPlayer.PlayerGui["Fish_Minigame"].Holder.LocalScript.Value.Value = 100
-    end
-            end)
-        end
-    end,
-    Enabled = false
-})
-
-Y.Toggle({
-    Text = "Auto Pickup Fish",
-    Callback = function(Value)
-        pzz = Value
-        while pzz do task.wait()
-            for i, v in pairs(game:GetService("Workspace").Debree:GetChildren()) do
-                if v.Name == "Ouwfish" or v.Name == "Ouwfwesh" or v.Name == "Ouwfash" then
-                    fireproximityprompt(v.Center.Take_Fish)
-                end
-            end
-        end
-    end,
-    Enabled = false
-})
 
 T.Button(
     {
@@ -689,7 +685,6 @@ S.Toggle(
         Enabled = false
     }
 )
-
 B.Toggle(
     {
         Text = "Auto Soul",
@@ -697,9 +692,11 @@ B.Toggle(
             be = Value
             while be do
                 task.wait()
-                game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.E,false,game)
-            end
-        end,
+    if game:GetService("Workspace").Debree:FindFirstChild("Soul") then
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.E,false,game)
+    end
+end
+end,
         Enabled = false
     }
 )
@@ -815,23 +812,6 @@ B.Toggle(
     }
 )
 
-
-B.Button(
-    {
-        Text = "Refresh Weapons",
-        Callback = function()
-            table.clear(Pack)
-            for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v:IsA "Tool" and v:FindFirstChild("BlockEquiped") then
-                    if not table.find(Pack, tostring(v)) then
-                        table.insert(Pack, tostring(v))
-                        ee:SetOptions(Pack)
-                    end
-                end
-            end
-        end
-    }
-)
     B.Dropdown(
     {
         Text = "Select Gourd",
