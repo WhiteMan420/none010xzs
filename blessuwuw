@@ -396,12 +396,13 @@ Y.Toggle({
     Callback = function(Value)
         pz = Value
         while pz do task.wait()
+            pcall(function()
                 char["Fishing Rod"]:Activate()
                 repeat wait(0) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Fish_Minigame")
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Fish_Minigame") then
         game:GetService("Players").LocalPlayer.PlayerGui["Fish_Minigame"].Holder.LocalScript.Value.Value = 100
-
-            end
+    end
+            end)
         end
     end,
     Enabled = false
