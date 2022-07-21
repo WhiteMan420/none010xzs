@@ -184,87 +184,6 @@ local D =
     }
 )
 
-local function getDEMON()
-    local dist, thing = math.huge
-    for i, v in next, game:GetService("Workspace")["Demon_Flowers_Spawn"]:GetDescendants() do
-        if v:IsA("MeshPart") and v.Parent.Name == "Demon_Flower" then
-            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
-            if mag < dist then
-                dist = mag
-                thing = v
-            end
-        end
-    end
-    return thing
-end
-Y.Button({
-    Text = "Invisible",
-    Callback = function()
-        for i,v in pairs(workspace:GetDescendants()) do
-            if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("Decal") then
-local args = {
-    [1] = "Change_Transparency",
-    [2] = {
-        [1] = {
-            [1] = v,
-            [2] = 1
-
-        },
-        
-    }
-}
-
-game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-end
-end
-    end,
-})
-
-
-Y.Dropdown(
-    {
-        Text = "Select NPC",
-        Callback = function(Value)
-            getgenv().npcs = Value
-        end,
-        Options = NPCs
-    }
-)
-local function getNPC()
-    local dist, thing = math.huge
-    for i, v in next, game:GetService("Workspace").Mobs:GetDescendants() do
-        if v.Name == "HumanoidRootPart" and v.Parent.Name == npcs then
-            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
-            if mag < dist then
-                dist = mag
-                thing = v
-            end
-        end
-    end
-    return thing
-end
-Y.Toggle(
-    {
-        Text = "Autofarm NPC",
-        Callback = function(Value)
-            o = Value
-            while o do
-                task.wait()
-                pcall(function()
-                if not game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Model") then
-                    game:GetService("VirtualInputManager"):SendKeyEvent(true, 49, false, game)
-                end
-                moveto(getNPC().CFrame + Vector3.new(0,0,0),100)
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)
-        end)
-            end
-        end,
-        Enabled = false
-    }
-)
-
-
-
 Y.Toggle(
     {
         Text = "Auto Quest",
@@ -347,6 +266,84 @@ Y.Toggle(
         Enabled = false
     }
 )
+local function getDEMON()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace")["Demon_Flowers_Spawn"]:GetDescendants() do
+        if v:IsA("MeshPart") and v.Parent.Name == "Demon_Flower" then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+Y.Button({
+    Text = "Invisible",
+    Callback = function()
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("Decal") then
+local args = {
+    [1] = "Change_Transparency",
+    [2] = {
+        [1] = {
+            [1] = v,
+            [2] = 1
+
+        },
+        
+    }
+}
+
+game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
+end
+end
+    end,
+})
+
+
+Y.Dropdown(
+    {
+        Text = "Select NPC",
+        Callback = function(Value)
+            getgenv().npcs = Value
+        end,
+        Options = NPCs
+    }
+)
+local function getNPC()
+    local dist, thing = math.huge
+    for i, v in next, game:GetService("Workspace").Mobs:GetDescendants() do
+        if v.Name == "HumanoidRootPart" and v.Parent.Name == npcs then
+            local mag = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+            if mag < dist then
+                dist = mag
+                thing = v
+            end
+        end
+    end
+    return thing
+end
+Y.Toggle(
+    {
+        Text = "Autofarm NPC",
+        Callback = function(Value)
+            o = Value
+            while o do
+                task.wait()
+                pcall(function()
+                moveto(getNPC().CFrame + Vector3.new(0,0,0),100)
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)
+        end)
+            end
+        end,
+        Enabled = false
+    }
+)
+
+
+
 Y.Button(
     {
         Text = "Teleport to Wagon",
