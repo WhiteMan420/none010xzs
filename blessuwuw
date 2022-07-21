@@ -20,6 +20,14 @@ for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     end
 end
 
+local Players = {}
+
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+    if v:FindFirstChild("Climbing") then
+            table.insert(Players, tostring(v))
+    end
+end
+
 game.StarterGui:SetCore(
     "SendNotification",
     {
@@ -522,6 +530,52 @@ T.Button(
         end
     }
 )
+
+local p = T.Dropdown(
+    {
+        Text = "Select Player",
+        Callback = function(Value)
+            getgenv().playr = Value
+        end,
+        Options = 
+            Players
+    }
+)
+T.Toggle({
+    Text = "Tween to player",
+    Callback = function(Value)
+        tween = Value
+        while tween do task.wait()
+        moveto(game:GetService("Workspace")[playr].HumanoidRootPart.CFrame + Vector3.new(0,0,0),100)
+        end
+    end,
+    Enabled = false
+})
+
+T.Button(
+    {
+        Text = "Refresh Players",
+        Callback = function()
+            table.clear(Players)
+            for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+                if v:FindFirstChild("Climbing") then
+                    table.insert(Players, tostring(v))
+                    p:SetOptions(Players)
+                end
+            end
+        end,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Having a lot of heroes in inventory may cause crash"
+                    }
+                )
+            end
+        }
+    }
+)
+
 S.Toggle(
     {
         Text = "Auto Skill X",
