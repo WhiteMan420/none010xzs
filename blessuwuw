@@ -394,6 +394,36 @@ game.StarterGui:SetCore(
     }
 )
 
+Y.Toggle({
+    Text = "Auto Fishing",
+    Callback = function(Value)
+        pz = Value
+        while pz do task.wait()
+                char["Fishing Rod"]:Activate()
+                repeat wait(0) until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Fish_Minigame")
+        if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Fish_Minigame") then
+        game:GetService("Players").LocalPlayer.PlayerGui["Fish_Minigame"].Holder.LocalScript.Value.Value = 100
+
+            end
+        end
+    end,
+    Enabled = false
+})
+
+Y.Toggle({
+    Text = "Auto Pickup Fish",
+    Callback = function(Value)
+        pzz = Value
+        while pzz do task.wait()
+            for i, v in pairs(game:GetService("Workspace").Debree:GetChildren()) do
+                if v.Name == "Ouwfish" or v.Name == "Ouwfwesh" or v.Name == "Ouwfash" then
+                    fireproximityprompt(v.Center.Take_Fish)
+                end
+            end
+        end
+    end,
+    Enabled = false
+})
 
 T.Button(
     {
