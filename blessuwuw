@@ -148,6 +148,13 @@ local S =
     }
 )
 
+local E =
+    X.New(
+    {
+        Title = "ESP"
+    }
+)
+
 local B =
     X.New(
     {
@@ -758,7 +765,191 @@ B.Toggle(
 )
 
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/bub/main/chub"))()
-B.Toggle(
+
+local Waypoints = Instance.new("Folder", game.Workspace)
+Waypoints.Name = "Waypoints"
+
+local Butterfly_Mansion = Instance.new("Part", game.Workspace.Waypoints)
+Butterfly_Mansion.Name = "Butterfly Mansion"
+Butterfly_Mansion.Anchored = true
+Butterfly_Mansion.CanCollide = false
+Butterfly_Mansion.Position = Vector3.new(3001, 315, -3817)
+Butterfly_Mansion.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Butterfly Mansion",
+    CustomName = "Butterfly Mansion",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Butterfly_Mansion"
+})
+
+local function locateMuzan()
+    if game.Workspace:FindFirstChild("Muzan") then
+        if not game.Workspace.Waypoints:FindFirstChild("Muzan") then
+            local Muzan = Instance.new("Part", game.Workspace.Waypoints)
+            Muzan.Name = "Muzan"
+            Muzan.Anchored = true
+            Muzan.CanCollide = false
+            Muzan.Position = Vector3.new(game:GetService("Workspace").Muzan.SpawnPos.Value)
+            Muzan.Transparency = 1
+        end
+        else
+            if game.Workspace.Waypoints:FindFirstChild("Muzan") then
+                game.Workspace.Waypoints.Muzan:Destroy()
+            end
+        end
+    end
+    
+    locateMuzan()
+
+    ESP:AddObjectListener(game.Workspace.Waypoints, {
+        Name = "Muzan",
+        CustomName = "Muzan",
+        Color = Color3.fromRGB(255,255,255),
+        IsEnabled = "Muzan"
+    })
+
+local Kiribating_Village = Instance.new("Part", game.Workspace.Waypoints)
+Kiribating_Village.Name = "Kiribating Village"
+Kiribating_Village.Anchored = true
+Kiribating_Village.CanCollide = false
+Kiribating_Village.Position = Vector3.new(107, 282, -1630)
+Kiribating_Village.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Kiribating Village",
+    CustomName = "Kiribating Village",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Kiribating_Village"
+})
+
+local Zapiwara_Cave = Instance.new("Part", game.Workspace.Waypoints)
+Zapiwara_Cave.Name = "Zapiwara_Cave"
+Zapiwara_Cave.Anchored = true
+Zapiwara_Cave.CanCollide = false
+Zapiwara_Cave.Position = Vector3.new(18, 275, -2569)
+Zapiwara_Cave.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Zapiwara Cave",
+    CustomName = "Zapiwara Cave",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Zapiwara_Cave"
+})
+
+local Zapiwara_Mountain = Instance.new("Part", game.Workspace.Waypoints)
+Zapiwara_Mountain.Name = "Zapiwara Mountain"
+Zapiwara_Mountain.Anchored = true
+Zapiwara_Mountain.CanCollide = false
+Zapiwara_Mountain.Position = Vector3.new(-326, 426, -2384)
+Zapiwara_Mountain.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Zapiwara Mountain",
+    CustomName = "Zapiwara Mountain",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Zapiwara_Mountain"
+})
+
+local Usumaru_Village = Instance.new("Part", game.Workspace.Waypoints)
+Usumaru_Village.Name = "Usumaru Village"
+Usumaru_Village.Anchored = true
+Usumaru_Village.CanCollide = false
+Usumaru_Village.Position = Vector3.new(-141, 353, -3039)
+Usumaru_Village.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Usumaru Village",
+    CustomName = "Usumaru Village",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Usumaru_Village"
+})
+
+local Waroru_Cave = Instance.new("Part", game.Workspace.Waypoints)
+Waroru_Cave.Name = "Waroru Cave"
+Waroru_Cave.Anchored = true
+Waroru_Cave.CanCollide = false
+Waroru_Cave.Position = Vector3.new(705, 260, -2395)
+Waroru_Cave.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Waroru Cave",
+    CustomName = "Waroru Cave",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Waroru_Cave"
+})
+
+local Kabiwaru_Village = Instance.new("Part", game.Workspace.Waypoints)
+Kabiwaru_Village.Name = "Kabiwaru Village"
+Kabiwaru_Village.Anchored = true
+Kabiwaru_Village.CanCollide = false
+Kabiwaru_VillagePosition = Vector3.new(1987, 326, -2903)
+Kabiwaru_Village.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Kabiwaru Village",
+    CustomName = "Kabiwaru Village",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Kabiwaru_Village"
+})
+
+local Abubu_Cave = Instance.new("Part", game.Workspace.Waypoints)
+Abubu_Cave.Name = "Abubu Cave"
+Abubu_Cave.Anchored = true
+Abubu_Cave.CanCollide = false
+Abubu_Cave.Position = Vector3.new(1042, 276, -3555)
+Abubu_Cave.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Abubu Cave",
+    CustomName = "Abubu Cave",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Abubu_Cave"
+})
+
+local Final_Selection = Instance.new("Part", game.Workspace.Waypoints)
+Final_Selection.Name = "Final Selection"
+Final_Selection.Anchored = true
+Final_Selection.CanCollide = false
+Final_Selection.Position = Vector3.new(5340, 372, -2424)
+Final_Selection.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Final Selection",
+    CustomName = "Final Selection",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Final_Selection"
+})
+
+local Ouwbayashi_Home = Instance.new("Part", game.Workspace.Waypoints)
+Ouwbayashi_Home.Name = "Ouwbayashi Home"
+Ouwbayashi_Home.Anchored = true
+Ouwbayashi_Home.CanCollide = false
+Ouwbayashi_Home.Position = Vector3.new(1268, 316, -4578)
+Ouwbayashi_Home.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Ouwbayashi Home",
+    CustomName = "Ouwbayashi Home",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Ouwbayashi_Home"
+})
+
+local Dangerous_Woods = Instance.new("Part", game.Workspace.Waypoints)
+Dangerous_Woods.Name = "Dangerous Woods"
+Dangerous_Woods.Anchored = true
+Dangerous_Woods.CanCollide = false
+Dangerous_Woods.Position = Vector3.new(3966, 342, -3989)
+Dangerous_Woods.Transparency = 1
+
+ESP:AddObjectListener(workspace.Waypoints, {
+    Name = "Dangerous Woods",
+    CustomName = "Dangerous Woods",
+    Color = Color3.fromRGB(255,255,255),
+    IsEnabled = "Dangerous_Woods"
+})
+
+E.Toggle(
     {
         Text = "Toggle ESP",
         Callback = function(d)
@@ -768,7 +959,7 @@ B.Toggle(
     }
 )
 
-B.Toggle(
+E.Toggle(
     {
         Text = "Toggle Players",
         Callback = function(d)
@@ -777,7 +968,7 @@ B.Toggle(
         Enabled = false
     }
 )
-B.Toggle(
+E.Toggle(
     {
         Text = "Toggle Boxes",
         Callback = function(d)
@@ -787,6 +978,35 @@ B.Toggle(
     }
 )
 
+E.Toggle(
+    {
+        Text = "Toggle Areas",
+        Callback = function(d)
+            ESP.Butterfly_Mansion = d
+            ESP.Kiribating_Village = d
+            ESP.Zapiwara_Cave = d
+            ESP.Zapiwara_Mountain = d
+            ESP.Usumaru_Village = d
+            ESP.Waroru_Cave = d
+            ESP.Kabiwaru_Village = d
+            ESP.Abubu_Cave = d
+            ESP.Final_Selection = d
+            ESP.Ouwbayashi_Home = d
+            ESP.Dangerous_Woods = d
+        end,
+        Enabled = false
+    }
+)
+
+E.Toggle(
+    {
+        Text = "Toggle Muzan",
+        Callback = function(d)
+            ESP.Muzan = d
+        end,
+        Enabled = false
+    }
+)
 B.Slider(
     {
         Text = "WalkSpeed",
