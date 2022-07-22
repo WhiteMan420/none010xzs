@@ -403,7 +403,7 @@ end,
         Enabled = false
     }
 )
-Y.Dropdown(
+local k = Y.Dropdown(
     {
         Text = "Select NPC",
         Callback = function(Value)
@@ -442,7 +442,29 @@ Y.Toggle(
     }
 )
 
-
+T.Button(
+    {
+        Text = "Refresh NPCs",
+        Callback = function()
+            table.clear(NPCs)
+            for i, v in pairs(game:GetService("Workspace").Mobs:GetDescendants()) do
+                if v:IsA "Model" and v:FindFirstChild("Humanoid") then
+                    table.insert(NPCs, tostring(v))
+                    k:SetOptions(NPCs)
+                end
+            end
+        end,
+        Menu = {
+            Information = function(self)
+                X.Banner(
+                    {
+                        Text = "Having a lot of heroes in inventory may cause crash"
+                    }
+                )
+            end
+        }
+    }
+)
 
 Y.Button(
     {
