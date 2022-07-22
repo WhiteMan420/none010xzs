@@ -449,8 +449,10 @@ Y.Button(
             table.clear(NPCs)
             for i, v in pairs(game:GetService("Workspace").Mobs:GetDescendants()) do
                 if v:IsA "Model" and v:FindFirstChild("Humanoid") then
-                    table.insert(NPCs, tostring(v))
+                    if not table.find(NPCs, tostring(v)) then
+                        table.insert(NPCs, tostring(v))
                     k:SetOptions(NPCs)
+                    end
                 end
             end
         end,
@@ -1142,9 +1144,11 @@ B.Toggle(
     }
 )
 
+
 local vu = game:GetService("VirtualUser")
 game:GetService("Players").LocalPlayer.Idled:connect(function()
    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
    wait(1)
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
+
