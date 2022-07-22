@@ -442,7 +442,7 @@ Y.Toggle(
     }
 )
 
-T.Button(
+Y.Button(
     {
         Text = "Refresh NPCs",
         Callback = function()
@@ -863,13 +863,6 @@ local function locateMuzan()
     end
     
     locateMuzan()
-
-    ESP:AddObjectListener(game.Workspace.Waypoints, {
-        Name = "Muzan",
-        CustomName = "Muzan",
-        Color = Color3.fromRGB(255,255,255),
-        IsEnabled = "Muzan"
-    })
 
 local Kiribating_Village = Instance.new("Part", game.Workspace.Waypoints)
 Kiribating_Village.Name = "Kiribating Village"
