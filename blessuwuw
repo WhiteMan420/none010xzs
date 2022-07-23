@@ -649,7 +649,7 @@ S.Toggle(
             while ax do
                 task.wait()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.X,false,game)
-                wait(1)
+                wait(.1)
             end
         end,
         Enabled = false
@@ -663,7 +663,7 @@ S.Toggle(
             while az do
                 task.wait()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.Z,false,game)
-                wait(.5)
+                wait(.1)
             end
         end,
         Enabled = false
@@ -678,7 +678,7 @@ S.Toggle(
             while an do
                 task.wait()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.N,false,game)
-                wait(.5)
+                wait(.1)
             end
         end,
         Enabled = false
@@ -693,7 +693,7 @@ S.Toggle(
             while ab do
                 task.wait()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.B,false,game)
-                wait(.5)
+                wait(.1)
             end
         end,
         Enabled = false
@@ -708,7 +708,7 @@ S.Toggle(
             while av do
                 task.wait()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.V,false,game)
-                wait(.5)
+                wait(.1)
             end
         end,
         Enabled = false
@@ -723,7 +723,7 @@ S.Toggle(
             while ac do
                 task.wait()
                 game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.C,false,game)
-                wait(.5)
+                wait(.1)
             end
         end,
         Enabled = false
