@@ -177,24 +177,6 @@ Cred.Button(
         end
     }
 )
-Y.Button({
-    Text = "inf money",
-    Callback = function()
-        local silly1 = 1
-        local silly2 = 0
-        local silly3 = -30000
-        
-        game:GetService("ReplicatedStorage").purchase_elixirs:FireServer(silly1, silly2, silly3)    end,
-    Menu = {
-        Information = function(self)
-            X.Banner({
-                Text = "This function can get you banned in up-to-date servers; use at your own risk."
-            })
-        end
-    }
-})
-
-
 
 local breathingprogress = Y.Button(
     {
