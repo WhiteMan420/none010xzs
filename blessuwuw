@@ -240,10 +240,6 @@ local D =
 )
 
 
-
-
-
-
 Y.Toggle(
     {
         Text = "Auto Quest",
@@ -361,20 +357,6 @@ end
 end
     end,
 })
-Y.Dropdown(
-    {
-        Text = "Select Style",
-        Callback = function(Value)
-            getgenv().style = Value
-        end,
-        Options = { "Fist Drunken Style",
-        "Chad Sword Style"
-
-        }
-    }
-)
-
-
 local k = Y.Dropdown(
     {
         Text = "Select NPC",
@@ -407,7 +389,7 @@ Y.Toggle(
                 task.wait()
                 pcall(function()
                 moveto(getNPC().CFrame + Vector3.new(0,0,0),100)   
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 1)     
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 1, 0, true, game, 1)     
                 end)
             end
         end,
