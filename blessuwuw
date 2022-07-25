@@ -100,7 +100,7 @@ end
 
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local window = library.CreateLib("Keybrew Hub", "GrapeTheme")
+local window = library.CreateLib("Keybrew Dev Build", "GrapeTheme")
 
 -- Main
 
@@ -143,10 +143,20 @@ mainautofarmsec:NewToggle("Kill Aura", "Toggles the Kill Aura on and off.", func
 end)
 
 
-mainautofarmsec:NewDropdown("Select NPC", "Select an NPC to Auto-Farm.", NPCs, function(o)
+local k = mainautofarmsec:NewDropdown("Select NPC", "Select an NPC to Auto-Farm.", NPCs, function(o)
     getgenv().npcs = o
 end)
-
+mainautofarmsec:NewButton("Refresh NPCs", "Refreshes NPC Dropdown.", function()
+    table.clear(NPCs)
+    for i, v in pairs(game:GetService("Workspace").Mobs:GetDescendants()) do
+        if v:IsA "Model" and v:FindFirstChild("Humanoid") then
+            if not table.find(NPCs, tostring(v)) then
+                table.insert(NPCs, tostring(v))
+            k:SetOptions(NPCs)
+            end
+        end
+    end
+end)
 local function getNPC()
     local dist, thing = math.huge
     for i, v in next, game:GetService("Workspace").Mobs:GetDescendants() do
@@ -160,8 +170,7 @@ local function getNPC()
     end
     return thing
 end
-
-local k = mainautofarmsec:NewToggle("Auto-Farm NPC", "Toggles the NPC Auto-Farm on and off.", function(state)
+mainautofarmsec:NewToggle("Auto-Farm NPC", "Toggles the NPC Auto-Farm on and off.", function(state)
     oo = state
     while oo do
         task.wait()
@@ -277,17 +286,7 @@ mainextrassec:NewButton("Invisible", "Makes you Invisible.", function()
     end
 end)
 
-mainextrassec:NewButton("Refresh NPCs", "Refreshes NPC Dropdown.", function()
-    table.clear(NPCs)
-    for i, v in pairs(game:GetService("Workspace").Mobs:GetDescendants()) do
-        if v:IsA "Model" and v:FindFirstChild("Humanoid") then
-            if not table.find(NPCs, tostring(v)) then
-                table.insert(NPCs, tostring(v))
-            k:SetOptions(NPCs)
-            end
-        end
-    end
-end)
+
 
 mainextrassec:NewButton("Teleport to Wagon", "Teleports you to the Wagon.", function()
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
