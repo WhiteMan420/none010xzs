@@ -4,7 +4,7 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Ka
 local win = lib.CreateLib("Keybrew Hub discord.gg/keybrew", "GrapeTheme")
 
 local maint = win:NewTab("READ EVERYTHING")
-maint:NewSection("Do not M1 while using Kill Aura")
+maint:NewSection("Do not manually attack while using Kill Aura")
 maint:NewSection("Do not Spam Teleport Buttons")
 maint:NewSection("Do not Spam Toggles or will be banned")
 local rule = maint:NewSection("DO NOT BLAME US FOR YOUR BAN")
