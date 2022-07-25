@@ -1,3 +1,23 @@
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local win = lib.CreateLib("Keybrew Hub", "GrapeTheme")
+
+local maint = win:NewTab("READ EVERYTHING")
+maint:NewSection("Do not M1 while using Kill Aura")
+maint:NewSection("Do not Spam Teleport Buttons")
+maint:NewSection("Do not Spam Toggles or will be banned")
+local rule = maint:NewSection("DO NOT BLAME US FOR YOUR BAN")
+
+
+rule:NewButton("I DENY", "DENY", function()
+    game.Players.LocalPlayer:Kick("YOU DENIED HOW COULD YOU")
+end)
+
+
+rule:NewButton("I ACCEPT", "ACCEPT", function()
+
+
+
+
 
 local player = game.Players.LocalPlayer
 local char = player.Character
@@ -882,4 +902,5 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
    wait(1)
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 end)
