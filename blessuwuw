@@ -769,7 +769,7 @@ miscinfsec:NewToggle("Infinite Breathing", "Automatically Breathe.", function(st
 end)
 
 
-miscinfsec:NewToggle("Auto Soul", "Automatically eats souls.", function(state)
+miscinfsec:NewToggle("Infinite Stamina", "Never run out of Stamina.", function(state)
     ae = state
     while ae do
         task.wait()
