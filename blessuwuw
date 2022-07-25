@@ -152,7 +152,7 @@ mainautofarmsec:NewButton("Refresh NPCs", "Refreshes NPC Dropdown.", function()
         if v:IsA "Model" and v:FindFirstChild("Humanoid") then
             if not table.find(NPCs, tostring(v)) then
                 table.insert(NPCs, tostring(v))
-            k:SetOptions(NPCs)
+            k:Refresh(NPCs)
             end
         end
     end
@@ -505,7 +505,7 @@ teleportplayersec:NewButton("Refresh Players", "Refreshes player dropdown.", fun
     for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
         if v:FindFirstChild("Climbing") then
             table.insert(Players, tostring(v))
-            p:SetOptions(Players)
+            p:Refresh(Players)
         end
     end
 end)
