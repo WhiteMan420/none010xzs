@@ -1,5 +1,5 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local win = lib.CreateLib("Keybrew Hub", "GrapeTheme")
+local win = lib.CreateLib("Keybrew Hub discord.gg/keybrew", "GrapeTheme")
 
 local maint = win:NewTab("READ EVERYTHING")
 maint:NewSection("Do not M1 while using Kill Aura")
