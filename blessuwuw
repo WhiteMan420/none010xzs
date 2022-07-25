@@ -120,7 +120,7 @@ end
 
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local window = library.CreateLib("Keybrew Dev Build", "GrapeTheme")
+local window = library.CreateLib("Keybrew Hub discord.gg/keybrew", "GrapeTheme")
 
 -- Main
 
