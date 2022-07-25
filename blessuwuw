@@ -143,7 +143,7 @@ end
 game:GetService("ReplicatedStorage")["Player_Data"][game.Players.LocalPlayer.Name].BreathingProgress[1].Changed:Connect(BreathingProgressRefresh)
 
 mainautofarmsec:NewDropdown("Select Weapon", "Select a Weapon to Auto-Farm.", {"fist_combat",
-"Sword_Combat_Slash"}, function(o)
+"Sword_Combat_Slash","claw_Combat_Slash"}, function(o)
     getgenv().wep = o
 end)
 
@@ -195,11 +195,10 @@ mainautofarmsec:NewToggle("Auto-Farm NPC", "Toggles the NPC Auto-Farm on and off
     while oo do
         task.wait()
         pcall(function()
-            
-        moveto(getNPC().CFrame + Vector3.new(0,0,0),100)   
+            lp.Character.HumanoidRootPart.CFrame = getNPC().CFrame
         end)
-    end
-end)
+        end
+    end)
 
 local mainautoquestsec = maintab:NewSection("Auto-Quest")
 mainautoquestsec:NewDropdown("Select Quest", "Select an Quest to Farm.", 
@@ -310,13 +309,13 @@ end)
 
 mainextrassec:NewButton("Teleport to Wagon", "Teleports you to the Wagon.", function()
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-    lp.Character.HumanoidRootPart.CFrame = CFrame.new(223, 283, -1610)
+    moveto(CFrame.new(223, 283, -1610) + Vector3.new(0,0,0),100)
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
 end)
 
 mainextrassec:NewButton("Teleport to Kurake", "Teleports you to Kurake.", function()
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-    lp.Character.HumanoidRootPart.CFrame = CFrame.new(-415, 275, -3317)
+    moveto(CFrame.new(-415, 275, -3317) + Vector3.new(0,0,0),100)
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
 end)
 
@@ -491,7 +490,7 @@ end)
 teleportplayersec:NewToggle("Tween to Player", "Tweens to the selected Player.", function(state)
     tween = state
     while tween do task.wait()
-    moveto(game:GetService("Workspace")[playr].HumanoidRootPart.CFrame + Vector3.new(0,0,0),100)
+    lp.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[playr].HumanoidRootPart.CFrame
     end
 end)
 
@@ -514,9 +513,6 @@ teleportextrasec:NewButton("Teleport to Muzan", "Teleports you to Muzan.", funct
     moveto(CFrame.new(game:GetService("Workspace").Muzan.SpawnPos.Value) + Vector3.new(0, 0, 0), tonumber(125))
 end)
 
-teleportextrasec:NewButton("Click if Stuck", "Step bro im stuck", function()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
-end)
 
 
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/bub/main/chub"))()
