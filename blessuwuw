@@ -621,6 +621,9 @@ teleportbosssec:NewButton("Teleport", "Teleports you to the selected Boss.", fun
     end
     end)
 
+ 
+
+
 local teleportplayersec = teleporttab:NewSection("Player Tweening")
 local p = teleportplayersec:NewDropdown("Select Player", "Select an Player to Tween to.", Players, function(o)
     getgenv().playr = o
@@ -668,6 +671,12 @@ teleportextrasec:NewButton("Teleport to Muzan", "Teleports you to Muzan.", funct
     wait(.5)
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
 end)
+
+teleportextrasec:NewButton("Click if Stuck", "Step bro im stuck", function()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+end)
+
+
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteMan420/bub/main/chub"))()
 
 local Waypoints = Instance.new("Folder", game.Workspace)
