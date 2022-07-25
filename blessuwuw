@@ -402,94 +402,31 @@ end)
 
 teleportareasec:NewButton("Teleport", "Teleports you to the selected Area.", function()
     if area == "Kiribating Village" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(107, 282, -1630)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(107, 282, -1630) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Zapiwara Cave" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(18, 276, -2569)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(18, 276, -2569) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Usumaru Village" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(-142, 353, -3039)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(-142, 353, -3039) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Butterfly Mansion" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(2961, 317, -3920)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(2961, 317, -3920) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Zapiwara Mountain" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(-326, 427, -2384)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(-326, 427, -2384) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Waroru Cave" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(705, 261, -2395)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(705, 261, -2395) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Kabiwaru Village" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(1987, 326, -2903)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1987, 326, -2903) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Abubu Cave" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(1037, 276, -3554)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1037, 276, -3554) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Final Selection" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(5340, 372, -2424)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(5340, 372, -2424) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Ouwbayashi Home" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(1268, 316, -4578)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1268, 316, -4578) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Wind Trainer" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(1788, 334, -3522)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1788, 334, -3522) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Dangerous Woods" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(3966, 343, -3989)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(3966, 343, -3989) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Slasher Demon" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        lp.Character.HumanoidRootPart.CFrame = CFrame.new(4324, 342, -4274)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(4324, 342, -4274) + Vector3.new(0, 0, 0), tonumber(125))
     end
 end)
 
@@ -511,74 +448,25 @@ end)
 
 teleportbosssec:NewButton("Teleport", "Teleports you to the selected Boss.", function()
     if area == "Zuko" then
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(209.372, 292.624, -1860.0)
-       wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(209.372, 292.624, -1860.0) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Sabito" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1121.19, 291.22, -2890.5)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1121.19, 291.22, -2890.5) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Zenitsu" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-398, 435, -2188)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(-398, 435, -2188) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Kaden" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-477.035, 308.986, -2918.89) 
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(-477.035, 308.986, -2918.89) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Sanemi" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1547.73, 348.462, -3778.08)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1547.73, 348.462, -3778.08) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Nezuko" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3530.02, 349.031, -4450.54)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(3530.02, 349.031, -4450.54) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Giyu" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2935, 352, -2931)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(2935, 352, -2931) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Shiron" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3283.97, 448.609, -3941.2)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(3283.97, 448.609, -3941.2) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Slasher" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4290, 365, -4367)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(4290, 365, -4367) + Vector3.new(0, 0, 0), tonumber(125))
     elseif area == "Yahaba/Susamaru" then
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-        wait(.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1403, 500, -4459)
-        wait(.5)
-        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+        moveto(CFrame.new(1403, 500, -4459) + Vector3.new(0, 0, 0), tonumber(125))
     end
     end)
 
@@ -618,19 +506,12 @@ teleportextrasec:NewButton("Teleport to Demon Flower", "Teleports you to a Demon
             Duration = 15
         }
     )
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-    wait(.5)
-    lp.Character.HumanoidRootPart.CFrame = getDEMON().CFrame 
-    wait(.5)
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+    moveto(getDEMON().CFrame + Vector3.new(0, 0, 0), tonumber(125))
+
 end)
 
 teleportextrasec:NewButton("Teleport to Muzan", "Teleports you to Muzan.", function()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = true
-    wait(.5)
-    lp.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Muzan.SpawnPos.Value)
-    wait(.5)
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Anchored = false
+    moveto(CFrame.new(game:GetService("Workspace").Muzan.SpawnPos.Value) + Vector3.new(0, 0, 0), tonumber(125))
 end)
 
 teleportextrasec:NewButton("Click if Stuck", "Step bro im stuck", function()
@@ -890,9 +771,9 @@ end)
 miscfarmingsec:NewToggle("Auto Chest", "Automatically grabs chests.", function(state)
     ez = state
     while ez do
-        pcall(
-            function()
                 task.wait()
+                pcall(
+                    function()
                 for i, v in next,game:GetService("Workspace").Debree["Loot_Chest"].Drops:GetChildren() do
                     if v.Parent.Name == "Drops" then
                 local args = {
@@ -902,8 +783,7 @@ miscfarmingsec:NewToggle("Auto Chest", "Automatically grabs chests.", function(s
                 workspace.Debree.Loot_Chest.Add_To_Inventory:InvokeServer(unpack(args))
                 wait(0.5)
             end
-        
-    end
+        end
 end)
     end
 end)
