@@ -7,6 +7,7 @@ local maint = win:NewTab("READ EVERYTHING")
 maint:NewSection("Do not manually attack while using Kill Aura")
 maint:NewSection("Do not Spam Teleport Buttons")
 maint:NewSection("Do not Spam Toggles or will be banned")
+maint:NewSection("Using KRNL will have a higher chance of being banned")
 local rule = maint:NewSection("DO NOT BLAME US FOR YOUR BAN")
 
 
@@ -17,46 +18,6 @@ end)
 
 rule:NewButton("I ACCEPT", "ACCEPT", function()
 
-    local func
-    local name = "do_punch"
-    
-    function info(fun)
-        return getinfo(fun)
-    end
-    
-    for i,v in pairs(getgc()) do
-        if type(v) == "function" and info(v).name then
-            --rconsoleinfo(getinfo(v).name)
-            if info(v).name == name then
-                func = v
-                print("SRC: ",info(v).short_src)
-            end
-        end
-    end
-    
-    print("------- cons and upvals -------")
-    
-    for i2, v2 in pairs(getconstants(func)) do
-        if type(v2) == "function" then
-            if info(v2).name == "resume" or info(v2).name == "create" then
-                hookfunction(v2, function() return "nil" end)
-            end
-        elseif type(v2) == "number" then
-            setconstant(func, i2, 0) 
-        end
-    end
-    
-    
-    -- if type(v2) == "number" and v2 == 0.177 then
-    --         setconstant(func, i2, 0)
-    --         print("Sat")
-    --     end
-    --     if type(v2) == "function" then
-    --         if getinfo(v2).name == "wait" then
-    --             hookfunction(v2, function()wait(0)end)
-    --             print("Hooked")
-    --         end
-    --     end
     
 local player = game.Players.LocalPlayer
 local char = player.Character
