@@ -190,12 +190,14 @@ local function getNPC()
     end
     return thing
 end
+
+
 mainautofarmsec:NewToggle("Auto-Farm NPC", "Toggles the NPC Auto-Farm on and off.", function(state)
     oo = state
     while oo do
         task.wait()
         pcall(function()
-            lp.Character.HumanoidRootPart.CFrame = getNPC().CFrame
+            moveto(getNPC().CFrame + Vector3.new(0,0,0),100)
         end)
         end
     end)
