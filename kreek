@@ -101,18 +101,13 @@ Main:NewToggle("Auto-Farm NPC", "Toggles the NPC Auto-Farm on and off.", functio
         while d do
             task.wait()
             pcall(function()
-            if not game:GetService("Workspace").ZoneDetections:FindFirstChild("DungeonLobby") then
+            if not game:GetService("Workspace").ZoneDetections:FindFirstChildWhichIsA("Part") then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(181, 25, -139)
             elseif game:GetService("Workspace").ZoneDetections:FindFirstChild("DungeonLobby") then
                     game:GetService("ReplicatedStorage").Events.EnterDungeon:InvokeServer()
                 print("lol")
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getDUNGEON().HumanoidRootPart.CFrame
-                    local args = {
-                        [1] = getDUNGEON(),
-                        [2] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-                    }
-        
-                    game:GetService("ReplicatedStorage").Remotes.Gameplay.FireHit:FireServer(unpack(args))
+                    game:GetService("ReplicatedStorage").Remotes.Gameplay.FireHit:FireServer(getDUNGEON(),game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
                 end
                 end)
             end
