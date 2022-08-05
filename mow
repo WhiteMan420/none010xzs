@@ -1,0 +1,108 @@
+local lp = game.Players.LocalPlayer
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local window = library.CreateLib("Keybrew Hub discord.gg/keybrew", "GrapeTheme")
+local maintab = window:NewTab("Main")
+
+-- Main
+local World = maintab:NewSection("Select World/Zone")
+
+World:NewTextBox("Enter World Number", "Ex: 1 or 2", function(txt)
+	getgenv().world = txt
+end)
+
+World:NewTextBox("Enter Zone Number", "Ex: 1 or 2", function(txt)
+	getgenv().zone = txt
+end)
+
+
+local Main = maintab:NewSection("Farm")
+Main:NewToggle("Infinite Mow", "Automatically Mow", function(state)
+    aa = state
+    while aa do
+        task.wait()
+            game:GetService("ReplicatedStorage").Remotes.Game.ClientMowGrass:FireServer((zone))
+        end
+    end)
+Main:NewToggle("Infinite Gas", "Automatically fills Gas Tank", function(state)
+    o = state
+    while o do
+        task.wait()
+game:GetService("ReplicatedStorage").Remotes.Game.ClientToggleUseGasStation:FireServer(workspace.Map.Zones:FindFirstChild(world):FindFirstChild(zone).GasStation.GasPumps,true)
+            task.wait(1)
+        end
+    end)        
+    local function getClosest()
+        local dist, thing = math.huge
+        for i, v in next, game:GetService("Workspace").Map.Zones:GetDescendants() do
+            if v:IsA("MeshPart") and v.Name == "Meshes/grass fix" then
+                local mag =
+                    (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude
+                if mag < dist then
+                    dist = mag
+                    thing = v
+                end
+            end
+        end
+        return thing
+    end
+    Main:NewToggle("Autofarm Grass", "Automatically farms Grass", function(state)
+        a = state
+        while a do
+            task.wait()
+            pcall(function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = getClosest().CFrame
+                end)
+            end
+        end)
+        local eggtab = window:NewTab("Eggs")
+        local Egg = eggtab:NewSection("Eggs")
+        local Eggz = {}
+
+        for i, v in pairs(game:GetService("Workspace").Map.Zones:GetDescendants()) do
+            if v:IsA "Model" and v.Parent.Name == "Eggs" then
+                if not table.find(Eggz, tostring(v)) then
+                    table.insert(Eggz, tostring(v))
+                end
+            end
+        end
+        Egg:NewDropdown("Select Egg", "Select an Egg to Auto-Open.", Eggz, function(o)
+            getgenv().eggz = o
+        end)
+        Egg:NewToggle("Open Eggs", "Automatically Open Eggs", function(state)
+            aaa = state
+            while aaa do
+                task.wait()
+                    game:GetService("ReplicatedStorage").Remotes.Shop.ClientBuyEgg:InvokeServer(eggz)
+                end
+            end)
+            local misctab = window:NewTab("Misc")
+
+            local miscplayersec = misctab:NewSection("Local Player")
+            miscplayersec:NewSlider("WalkSpeed", "Sets your WalkSpeed.", 500, 1, function(s)
+                getgenv().speed = s
+            end)
+            
+            miscplayersec:NewToggle("Toggle WalkSpeed", "Toggles your WalkSpeed.", function(state)
+                gg = state
+                while gg do
+                    task.wait()
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+                end
+            end)
+            
+-- Settings
+
+local settingstab = window:NewTab("Settings")
+local settingsuisec = settingstab:NewSection("UI Settings")
+settingsuisec:NewKeybind("Toggle UI Keybind", "Toggles the UI with the use of a key.", Enum.KeyCode.RightControl, function()
+	library:ToggleUI()
+end)
+
+--anti afk
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
